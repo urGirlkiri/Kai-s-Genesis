@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc216d544wbwq"
-path="res://.godot/imported/baby-chicken-sheet.png-38e1227e0ca33c1f78a617cf8c0b573d.ctex"
+uid="uid://wb35upmpmu41"
+path="res://.godot/imported/tileset_tiled_watered.png-fe383241ee2fe6ec40b53dc8259691e0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/MooMoo/baby-chicken-sheet.png"
-dest_files=["res://.godot/imported/baby-chicken-sheet.png-38e1227e0ca33c1f78a617cf8c0b573d.ctex"]
+source_file="res://assets/sprites/MooWorld/tileset_tiled_watered.png"
+dest_files=["res://.godot/imported/tileset_tiled_watered.png-fe383241ee2fe6ec40b53dc8259691e0.ctex"]
 
 [params]
 

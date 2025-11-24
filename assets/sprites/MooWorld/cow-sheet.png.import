@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcslgbr5bddsh"
-path="res://.godot/imported/chicken-sheet.png-0635702508cbf1d0eaa9eb5f77ffa721.ctex"
+uid="uid://bll8kltm7d02q"
+path="res://.godot/imported/cow-sheet.png-85c4d43133cc5a1be88ddb6d896fddea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/MooMoo/chicken-sheet.png"
-dest_files=["res://.godot/imported/chicken-sheet.png-0635702508cbf1d0eaa9eb5f77ffa721.ctex"]
+source_file="res://assets/sprites/MooWorld/cow-sheet.png"
+dest_files=["res://.godot/imported/cow-sheet.png-85c4d43133cc5a1be88ddb6d896fddea.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wb35upmpmu41"
-path="res://.godot/imported/tileset_tiled_watered.png-6aa971cae1dcdd541767b3a81ad1deec.ctex"
+uid="uid://cs4xlyypi58dw"
+path="res://.godot/imported/green.png-d7b7ab6b889e28fa59cba02a3dde72a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/MooMoo/tileset_tiled_watered.png"
-dest_files=["res://.godot/imported/tileset_tiled_watered.png-6aa971cae1dcdd541767b3a81ad1deec.ctex"]
+source_file="res://assets/frames/green.png"
+dest_files=["res://.godot/imported/green.png-d7b7ab6b889e28fa59cba02a3dde72a8.ctex"]
 
 [params]
 

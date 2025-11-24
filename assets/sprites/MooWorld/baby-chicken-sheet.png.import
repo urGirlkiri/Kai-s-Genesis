@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6namq2aq1co3"
-path="res://.godot/imported/tileset_grass.png-b0e3a476c06ad4a115c43bd3cfc0bd85.ctex"
+uid="uid://cc216d544wbwq"
+path="res://.godot/imported/baby-chicken-sheet.png-e9250ae826eaca8358b226de798ac151.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/MooMoo/tileset_grass.png"
-dest_files=["res://.godot/imported/tileset_grass.png-b0e3a476c06ad4a115c43bd3cfc0bd85.ctex"]
+source_file="res://assets/sprites/MooWorld/baby-chicken-sheet.png"
+dest_files=["res://.godot/imported/baby-chicken-sheet.png-e9250ae826eaca8358b226de798ac151.ctex"]
 
 [params]
 

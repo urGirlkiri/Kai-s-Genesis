@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bll8kltm7d02q"
-path="res://.godot/imported/cow-sheet.png-5349fb8719e157ad22ea564f89a45954.ctex"
+uid="uid://c6namq2aq1co3"
+path="res://.godot/imported/tileset_grass.png-ff55fc4df446b7e8db39a59cd074124f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/MooMoo/cow-sheet.png"
-dest_files=["res://.godot/imported/cow-sheet.png-5349fb8719e157ad22ea564f89a45954.ctex"]
+source_file="res://assets/sprites/MooWorld/tileset_grass.png"
+dest_files=["res://.godot/imported/tileset_grass.png-ff55fc4df446b7e8db39a59cd074124f.ctex"]
 
 [params]
 
