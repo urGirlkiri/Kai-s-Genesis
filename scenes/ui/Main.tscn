@@ -43,8 +43,6 @@ corner_radius_bottom_left = 20
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_cc00j")
-click_power = null
-life_force = null
 
 [node name="GameManager" type="CanvasLayer" parent="."]
 offset = Vector2(12, 12)

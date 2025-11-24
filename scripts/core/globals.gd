@@ -1,6 +1,12 @@
+extends Node
+
+const ENERGY_GEN_CYCLE = 2 #seconds
+const GRASS_ENERGY_OUT_PER_CYCLE = 0.5 
+
 const BUYABLES = {
 		"Grass": {
 		"button_path": "GameManager/Shop/Grass",
+		"item_path": "res://scenes/entities/Flora/Grass.tscn",
 		"cost": 10
 	},
 	"Chick": {
