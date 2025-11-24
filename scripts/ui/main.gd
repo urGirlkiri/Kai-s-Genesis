@@ -6,30 +6,11 @@ extends Node2D
 @onready var life_force_label := $GameManager/LifeForce/Label
 @onready var click_popup_label := preload("res://scenes/ui/ClickPopup.tscn")
 
-const BUYABLES = {
-		"Grass": {
-		"button_path": "GameManager/Shop/Grass",
-		"cost": 10
-	},
-	"Chick": {
-		"button_path": "GameManager/Shop/Chick",
-		"cost": 25
-	},
-	"Chicken": {
-		"button_path": "GameManager/Shop/Chicken",
-		"cost": 100
-	},
-	"Cow": {
-		"button_path": "GameManager/Shop/Cow",
-		"cost": 250
-	}
-}
-
 var shop_buttons = {}
 
 func _ready() -> void:
-	for name in BUYABLES.keys():
-		var btn = get_node(BUYABLES[name]["button_path"])
+	for name in Globals.BUYABLES.keys():
+		var btn = get_node( Globals.BUYABLES[name]["button_path"])
 		shop_buttons[name] = btn
 		btn.pressed.connect(_on_buy_button_pressed.bind(name))
 
@@ -57,8 +38,8 @@ func generate_energy(amount: int):
 
 
 func update_shop_buttons():
-	for name in BUYABLES.keys():
-		var cost = BUYABLES[name]["cost"]
+	for name in  Globals.BUYABLES.keys():
+		var cost =  Globals.BUYABLES[name]["cost"]
 		var btn = shop_buttons[name]
 		
 		var affordable = life_force >= cost
@@ -72,7 +53,7 @@ func update_shop_buttons():
 
 
 func _on_buy_button_pressed(item_name: String):
-	var cost = BUYABLES[item_name]["cost"]
+	var cost =  Globals.BUYABLES[item_name]["cost"]
 
 	if life_force < cost:
 		return
