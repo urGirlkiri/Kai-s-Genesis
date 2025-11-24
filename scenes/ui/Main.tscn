@@ -1,6 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2g0pw5amocod"]
+[gd_scene load_steps=7 format=3 uid="uid://c2g0pw5amocod"]
 
 [ext_resource type="Script" uid="uid://dvuy58vaxm02c" path="res://scripts/ui/main.gd" id="1_cc00j"]
+[ext_resource type="Texture2D" uid="uid://61fymvkwgbr4" path="res://assets/images/leaf.svg" id="2_fuxbl"]
+[ext_resource type="PackedScene" uid="uid://ccvkpckf4usie" path="res://scenes/worlds/MooWorld.tscn" id="2_njtbt"]
+[ext_resource type="Texture2D" uid="uid://cs4xlyypi58dw" path="res://assets/frames/green.png" id="2_rigbv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rigbv"]
+bg_color = Color(0.15847227, 0.15847233, 0.15847221, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fuxbl"]
+texture = ExtResource("2_rigbv")
+region_rect = Rect2(546, 477, 65, 65)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_cc00j")
@@ -9,13 +23,35 @@ script = ExtResource("1_cc00j")
 offset = Vector2(-12, 12)
 transform = Transform2D(1, 0, 0, 1, -12, 12)
 
-[node name="LifeForce" type="Label" parent="LevelStats"]
+[node name="Panel" type="Panel" parent="LevelStats"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -93.0
-offset_bottom = 23.0
+offset_left = -236.0
+offset_top = 5.0
+offset_right = -17.0
+offset_bottom = 87.0
 grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_rigbv")
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelStats/Panel"]
+position = Vector2(32, 41)
+texture = ExtResource("2_fuxbl")
+
+[node name="LifeForce" type="Label" parent="LevelStats/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.150024
+offset_top = -15.0
+offset_right = 91.849976
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 20
 text = "Life Force: 0"
 uppercase = true
@@ -24,9 +60,30 @@ uppercase = true
 offset = Vector2(12, 12)
 transform = Transform2D(1, 0, 0, 1, 12, 12)
 
-[node name="LocationName" type="Label" parent="LevelInfo"]
-offset_right = 185.0
-offset_bottom = 28.0
+[node name="LocationPanel" type="Panel" parent="LevelInfo"]
+offset_right = 277.0
+offset_bottom = 85.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_fuxbl")
+
+[node name="LocationName" type="Label" parent="LevelInfo/LocationPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.5
+offset_top = -14.0
+offset_right = 92.5
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.796243, 0.796243, 0.796243, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.72033906, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Planet Moo Moo"
 uppercase = true
+
+[node name="MooWorld" parent="." instance=ExtResource("2_njtbt")]
+position = Vector2(420, 193)

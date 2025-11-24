@@ -3,7 +3,7 @@ extends Node2D
 @export var click_power := 1
 @export var life_force := 0
 
-@onready var life_force_label := $LevelStats/LifeForce
+@onready var life_force_label := $LevelStats/Panel/LifeForce
 @onready var click_popup_label := preload("res://scenes/ui/ClickPopup.tscn")
 
 func _ready() -> void:
