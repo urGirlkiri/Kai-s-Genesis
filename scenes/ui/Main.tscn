@@ -16,6 +16,6 @@ anchor_right = 1.0
 offset_left = -93.0
 offset_bottom = 23.0
 grow_horizontal = 0
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 20
 text = "Life Force: 0"
 uppercase = true
