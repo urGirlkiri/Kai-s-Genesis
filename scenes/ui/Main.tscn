@@ -1,9 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2g0pw5amocod"]
+[gd_scene load_steps=11 format=3 uid="uid://c2g0pw5amocod"]
 
 [ext_resource type="Script" uid="uid://dvuy58vaxm02c" path="res://scripts/ui/main.gd" id="1_cc00j"]
 [ext_resource type="Texture2D" uid="uid://61fymvkwgbr4" path="res://assets/images/leaf.svg" id="2_fuxbl"]
 [ext_resource type="PackedScene" uid="uid://ccvkpckf4usie" path="res://scenes/worlds/MooWorld.tscn" id="2_njtbt"]
 [ext_resource type="Texture2D" uid="uid://cs4xlyypi58dw" path="res://assets/frames/green.png" id="2_rigbv"]
+[ext_resource type="Texture2D" uid="uid://bcslgbr5bddsh" path="res://assets/sprites/MooWorld/chicken-sheet.png" id="4_jy5xg"]
+[ext_resource type="Texture2D" uid="uid://bll8kltm7d02q" path="res://assets/sprites/MooWorld/cow-sheet.png" id="4_w11ry"]
+[ext_resource type="Texture2D" uid="uid://c6namq2aq1co3" path="res://assets/sprites/MooWorld/tileset_grass.png" id="4_x5f0r"]
+[ext_resource type="Texture2D" uid="uid://cc216d544wbwq" path="res://assets/sprites/MooWorld/baby-chicken-sheet.png" id="5_fss6w"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fuxbl"]
+texture = ExtResource("2_rigbv")
+region_rect = Rect2(546, 477, 65, 65)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rigbv"]
 bg_color = Color(0.15847227, 0.15847233, 0.15847221, 1)
@@ -12,60 +20,19 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fuxbl"]
-texture = ExtResource("2_rigbv")
-region_rect = Rect2(546, 477, 65, 65)
-
 [node name="Main" type="Node2D"]
 script = ExtResource("1_cc00j")
 
-[node name="LevelStats" type="CanvasLayer" parent="."]
-offset = Vector2(-12, 12)
-transform = Transform2D(1, 0, 0, 1, -12, 12)
-
-[node name="Panel" type="Panel" parent="LevelStats"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -236.0
-offset_top = 5.0
-offset_right = -17.0
-offset_bottom = 87.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_rigbv")
-
-[node name="Sprite2D" type="Sprite2D" parent="LevelStats/Panel"]
-position = Vector2(32, 41)
-texture = ExtResource("2_fuxbl")
-
-[node name="LifeForce" type="Label" parent="LevelStats/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -38.150024
-offset_top = -15.0
-offset_right = 91.849976
-offset_bottom = 13.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "Life Force: 0"
-uppercase = true
-
-[node name="LevelInfo" type="CanvasLayer" parent="."]
+[node name="GameManager" type="CanvasLayer" parent="."]
 offset = Vector2(12, 12)
 transform = Transform2D(1, 0, 0, 1, 12, 12)
 
-[node name="LocationPanel" type="Panel" parent="LevelInfo"]
+[node name="World" type="Panel" parent="GameManager"]
 offset_right = 277.0
 offset_bottom = 85.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_fuxbl")
 
-[node name="LocationName" type="Label" parent="LevelInfo/LocationPanel"]
+[node name="Label" type="Label" parent="GameManager/World"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -83,6 +50,167 @@ theme_override_colors/font_shadow_color = Color(0, 0.72033906, 0, 0)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Planet Moo Moo"
+uppercase = true
+
+[node name="LifeForce" type="Panel" parent="GameManager"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -288.0
+offset_top = 5.0
+offset_right = -69.0
+offset_bottom = 87.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_rigbv")
+
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/LifeForce"]
+position = Vector2(32, 41)
+texture = ExtResource("2_fuxbl")
+
+[node name="Label" type="Label" parent="GameManager/LifeForce"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.150024
+offset_top = -15.0
+offset_right = 91.849976
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Life Force: 0"
+uppercase = true
+
+[node name="Shop" type="VBoxContainer" parent="GameManager"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -323.0
+offset_top = 110.0
+offset_right = -33.0
+offset_bottom = 488.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Grass" type="Panel" parent="GameManager/Shop"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_rigbv")
+
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/Shop/Grass"]
+position = Vector2(32, 46)
+scale = Vector2(3, 3)
+texture = ExtResource("4_x5f0r")
+region_enabled = true
+region_rect = Rect2(178, 194, 11, 9)
+
+[node name="Label" type="Label" parent="GameManager/Shop/Grass"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.5
+offset_top = -15.0
+offset_right = 70.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Grass PATCH (10)"
+uppercase = true
+
+[node name="Chick" type="Panel" parent="GameManager/Shop"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_rigbv")
+
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/Shop/Chick"]
+position = Vector2(29, 46)
+scale = Vector2(3, 3)
+texture = ExtResource("5_fss6w")
+region_enabled = true
+region_rect = Rect2(34, 55, 12, 10)
+
+[node name="Label" type="Label" parent="GameManager/Shop/Chick"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -15.0
+offset_right = 112.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "One Chick  (40)"
+uppercase = true
+
+[node name="Chickens" type="Panel" parent="GameManager/Shop"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_rigbv")
+
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/Shop/Chickens"]
+position = Vector2(32, 44)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("4_jy5xg")
+region_enabled = true
+region_rect = Rect2(35, 51, 11, 14)
+
+[node name="LifeForce" type="Label" parent="GameManager/Shop/Chickens"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.5
+offset_top = -15.0
+offset_right = 70.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "ONE CHICKEN (90)"
+uppercase = true
+
+[node name="Cows" type="Panel" parent="GameManager/Shop"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_rigbv")
+
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/Shop/Cows"]
+position = Vector2(35, 46)
+scale = Vector2(2, 2)
+texture = ExtResource("4_w11ry")
+region_enabled = true
+region_rect = Rect2(64, 11, 32, 22)
+
+[node name="LifeForce" type="Label" parent="GameManager/Shop/Cows"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.5
+offset_top = -15.0
+offset_right = 70.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "One Cow  (200)"
 uppercase = true
 
 [node name="MooWorld" parent="." instance=ExtResource("2_njtbt")]

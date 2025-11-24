@@ -3,10 +3,11 @@ extends Node2D
 @export var click_power := 1
 @export var life_force := 0
 
-@onready var life_force_label := $LevelStats/Panel/LifeForce
+@onready var life_force_label := $GameManager/LifeForce/Label
 @onready var click_popup_label := preload("res://scenes/ui/ClickPopup.tscn")
 
 func _ready() -> void:
+	add_to_group("game_managers")
 	update_stats()
 
 func _unhandled_input(event: InputEvent) -> void:
