@@ -32,9 +32,18 @@ func _process(delta: float) -> void:
 	life_generation_timer -= delta
 	
 	if life_generation_timer <= 0:
-		var grass_count = get_tree().get_nodes_in_group("grass").size()
-		var total_energy = grass_count * Globals.GRASS_ENERGY_OUT_PER_CYCLE
-		
+		var total_energy := 0.0
+
+		var grass_count   = get_tree().get_nodes_in_group("grass").size()
+		var chick_count   = get_tree().get_nodes_in_group("chick").size()
+		var chicken_count = get_tree().get_nodes_in_group("chicken").size()
+		var cow_count     = get_tree().get_nodes_in_group("cow").size()
+
+		total_energy += grass_count   * Globals.GRASS_ENERGY_OUT_PER_CYCLE
+		total_energy += chick_count   * Globals.CHICK_ENERGY_OUT_PER_CYCLE
+		total_energy += chicken_count * Globals.CHICKEN_ENERGY_OUT_PER_CYCLE
+		total_energy += cow_count     * Globals.COW_ENERGY_OUT_PER_CYCLE
+
 		generate_energy(total_energy)
 		life_generation_timer = Globals.ENERGY_GEN_CYCLE
 
