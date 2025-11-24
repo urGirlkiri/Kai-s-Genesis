@@ -11,6 +11,7 @@ var placing_item = null
 var placing_scene = null
 var is_placing := false
 
+var life_generation_timer := Globals.ENERGY_GEN_CYCLE
 
 func _ready() -> void:
 	for name in Globals.BUYABLES.keys():
@@ -25,9 +26,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	update_shop_buttons()
 	if is_placing:
-		# Follow mouse with preview (optional)
 		if Input.is_action_just_pressed("click"):
 			place_item()
+	
+	life_generation_timer -= delta
+	
+	if life_generation_timer <= 0:
+		var grass_count = get_tree().get_nodes_in_group("grass").size()
+		var total_energy = grass_count * Globals.GRASS_ENERGY_OUT_PER_CYCLE
+		
+		generate_energy(total_energy)
+		life_generation_timer = Globals.ENERGY_GEN_CYCLE
 
 func _unhandled_input(event: InputEvent) -> void:
 	if is_placing:
@@ -38,8 +47,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func update_stats():
-	life_force_label.text = "Life Force: " + str(life_force)
-
+	life_force_label.text = "Life Force: %.2f" % life_force
 
 func generate_energy(amount: float):
 	life_force += amount
@@ -83,8 +91,6 @@ func place_item():
 	var new_item = placing_scene.instantiate()
 	new_item.global_position = get_global_mouse_position()
 	add_child(new_item)
-
-	print("Placed:", placing_item)
 
 	# Exit placement mode
 	placing_item = null

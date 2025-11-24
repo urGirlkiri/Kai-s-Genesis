@@ -1,7 +1,7 @@
 extends Node
 
-const ENERGY_GEN_CYCLE = 2 #seconds
-const GRASS_ENERGY_OUT_PER_CYCLE = 0.5 
+const ENERGY_GEN_CYCLE = 20 #seconds
+const GRASS_ENERGY_OUT_PER_CYCLE = 0.01 
 
 const BUYABLES = {
 		"Grass": {
