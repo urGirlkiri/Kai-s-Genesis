@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c2g0pw5amocod"]
+[gd_scene load_steps=14 format=3 uid="uid://c2g0pw5amocod"]
 
 [ext_resource type="Script" uid="uid://dvuy58vaxm02c" path="res://scripts/ui/main.gd" id="1_cc00j"]
 [ext_resource type="Texture2D" uid="uid://61fymvkwgbr4" path="res://assets/images/leaf.svg" id="2_fuxbl"]
@@ -15,6 +15,27 @@ region_rect = Rect2(546, 477, 65, 65)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rigbv"]
 bg_color = Color(0.15847227, 0.15847233, 0.15847221, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fss6w"]
+bg_color = Color(0.13357541, 0.27742723, 0.11697144, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvcut"]
+bg_color = Color(0.17283267, 0.17283267, 0.17283261, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x5f0r"]
+bg_color = Color(0.2231029, 0.2231029, 0.22310287, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -56,9 +77,9 @@ uppercase = true
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -288.0
+offset_left = -256.0
 offset_top = 5.0
-offset_right = -69.0
+offset_right = -37.0
 offset_bottom = 87.0
 grow_horizontal = 0
 size_flags_horizontal = 3
@@ -89,7 +110,7 @@ uppercase = true
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -323.0
+offset_left = -353.0
 offset_top = 110.0
 offset_right = -33.0
 offset_bottom = 488.0
@@ -97,10 +118,17 @@ grow_horizontal = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Grass" type="Panel" parent="GameManager/Shop"]
+[node name="Grass" type="Button" parent="GameManager/Shop"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_rigbv")
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_fss6w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yvcut")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
+disabled = true
+shortcut_in_tooltip = false
 
 [node name="Sprite2D" type="Sprite2D" parent="GameManager/Shop/Grass"]
 position = Vector2(32, 46)
@@ -109,109 +137,62 @@ texture = ExtResource("4_x5f0r")
 region_enabled = true
 region_rect = Rect2(178, 194, 11, 9)
 
-[node name="Label" type="Label" parent="GameManager/Shop/Grass"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -59.5
-offset_top = -15.0
-offset_right = 70.5
-offset_bottom = 13.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "Grass PATCH (10)"
-uppercase = true
-
-[node name="Chick" type="Panel" parent="GameManager/Shop"]
+[node name="Chick" type="Button" parent="GameManager/Shop"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_rigbv")
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_fss6w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yvcut")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
+disabled = true
+shortcut_in_tooltip = false
 
 [node name="Sprite2D" type="Sprite2D" parent="GameManager/Shop/Chick"]
-position = Vector2(29, 46)
+position = Vector2(36, 49)
 scale = Vector2(3, 3)
 texture = ExtResource("5_fss6w")
 region_enabled = true
 region_rect = Rect2(34, 55, 12, 10)
 
-[node name="Label" type="Label" parent="GameManager/Shop/Chick"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -89.0
-offset_top = -15.0
-offset_right = 112.0
-offset_bottom = 13.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "One Chick  (40)"
-uppercase = true
-
-[node name="Chickens" type="Panel" parent="GameManager/Shop"]
+[node name="Chicken" type="Button" parent="GameManager/Shop"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_rigbv")
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_fss6w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yvcut")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
+disabled = true
+shortcut_in_tooltip = false
 
-[node name="Sprite2D" type="Sprite2D" parent="GameManager/Shop/Chickens"]
-position = Vector2(32, 44)
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/Shop/Chicken"]
+position = Vector2(36, 51.000008)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("4_jy5xg")
 region_enabled = true
 region_rect = Rect2(35, 51, 11, 14)
 
-[node name="LifeForce" type="Label" parent="GameManager/Shop/Chickens"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -59.5
-offset_top = -15.0
-offset_right = 70.5
-offset_bottom = 13.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "ONE CHICKEN (90)"
-uppercase = true
-
-[node name="Cows" type="Panel" parent="GameManager/Shop"]
+[node name="Cow" type="Button" parent="GameManager/Shop"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_rigbv")
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_fss6w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yvcut")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
+disabled = true
+shortcut_in_tooltip = false
 
-[node name="Sprite2D" type="Sprite2D" parent="GameManager/Shop/Cows"]
-position = Vector2(35, 46)
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/Shop/Cow"]
+position = Vector2(48, 43)
 scale = Vector2(2, 2)
 texture = ExtResource("4_w11ry")
 region_enabled = true
 region_rect = Rect2(64, 11, 32, 22)
 
-[node name="LifeForce" type="Label" parent="GameManager/Shop/Cows"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -59.5
-offset_top = -15.0
-offset_right = 70.5
-offset_bottom = 13.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "One Cow  (200)"
-uppercase = true
-
 [node name="MooWorld" parent="." instance=ExtResource("2_njtbt")]
-position = Vector2(420, 193)
+position = Vector2(372, 293)
