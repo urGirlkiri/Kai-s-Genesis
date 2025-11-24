@@ -3,13 +3,13 @@ extends Node2D
 @export var click_power := 1
 @export var life_force := 0
 
-@onready var life_force_label := $Gamestats/LifeForce
+@onready var life_force_label := $LevelStats/LifeForce
 @onready var click_popup_label := preload("res://scenes/ui/ClickPopup.tscn")
 
 func _ready() -> void:
 	update_stats()
 
-func _input(event):
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		generate_energy(click_power)
 		pop_click_label(get_global_mouse_position(), click_power)
