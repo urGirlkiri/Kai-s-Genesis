@@ -278,6 +278,7 @@ animations = [{
 }]
 
 [node name="Chicken" type="Node2D"]
+z_index = 1
 script = ExtResource("1_sb80t")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]

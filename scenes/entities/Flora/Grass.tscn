@@ -7,6 +7,7 @@
 script = ExtResource("1_sgsj2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
 texture = ExtResource("1_did47")
 region_enabled = true
-region_rect = Rect2(178, 193, 12, 10)
+region_rect = Rect2(78, 125, 35, 6)
