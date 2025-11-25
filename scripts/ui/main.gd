@@ -50,9 +50,11 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if is_placing:
 		return 
-	elif event is InputEventMouseButton and event.pressed:
-		generate_energy(click_power)
-		pop_click_label(get_global_mouse_position(), click_power)
+
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			generate_energy(click_power)
+			pop_click_label(get_global_mouse_position(), click_power)
 
 
 func update_stats():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c2g0pw5amocod"]
+[gd_scene load_steps=15 format=3 uid="uid://c2g0pw5amocod"]
 
 [ext_resource type="Script" uid="uid://dvuy58vaxm02c" path="res://scripts/ui/main.gd" id="1_cc00j"]
 [ext_resource type="Texture2D" uid="uid://61fymvkwgbr4" path="res://assets/images/leaf.svg" id="2_fuxbl"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bll8kltm7d02q" path="res://assets/sprites/MooWorld/cow-sheet.png" id="4_w11ry"]
 [ext_resource type="Texture2D" uid="uid://c6namq2aq1co3" path="res://assets/sprites/MooWorld/tileset_grass.png" id="4_x5f0r"]
 [ext_resource type="Texture2D" uid="uid://cc216d544wbwq" path="res://assets/sprites/MooWorld/baby-chicken-sheet.png" id="5_fss6w"]
+[ext_resource type="Script" uid="uid://b4y6dsux1hjpm" path="res://scripts/core/camera_control.gd" id="9_fss6w"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fuxbl"]
 texture = ExtResource("2_rigbv")
@@ -195,4 +196,8 @@ region_enabled = true
 region_rect = Rect2(64, 11, 32, 22)
 
 [node name="MooWorld" parent="." instance=ExtResource("2_njtbt")]
-position = Vector2(372, 293)
+position = Vector2(290, 264)
+
+[node name="CameraControl" type="Camera2D" parent="."]
+position = Vector2(543, 328)
+script = ExtResource("9_fss6w")
