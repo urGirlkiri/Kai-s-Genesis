@@ -9,8 +9,8 @@ const COW_ENERGY_OUT_PER_CYCLE = 7.5
 
 const BUYABLES = {
 		"Grass Patch": {
-		"button_path": "GameManager/Shop/Grass",
-		"item_path": "res://scenes/entities/Flora/Grass.tscn",
+		"button_path": "GameManager/Shop/GrassPatch",
+		"item_path": "res://scenes/entities/Flora/GrassPatch.tscn",
 		"cost": 10
 	},
 	"Chick": {

@@ -119,7 +119,7 @@ grow_horizontal = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Grass" type="Button" parent="GameManager/Shop"]
+[node name="GrassPatch" type="Button" parent="GameManager/Shop"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
@@ -131,7 +131,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
 disabled = true
 shortcut_in_tooltip = false
 
-[node name="Sprite2D" type="Sprite2D" parent="GameManager/Shop/Grass"]
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/Shop/GrassPatch"]
 position = Vector2(32, 46)
 scale = Vector2(3, 3)
 texture = ExtResource("4_x5f0r")
