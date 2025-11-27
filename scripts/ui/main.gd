@@ -1,114 +1,62 @@
 extends Node2D
 
-@export var click_power := 1.0
-@export var life_force := 0.0
-
 @onready var life_force_label := $GameManager/LifeForce/Label
-@onready var click_popup_label := preload("res://scenes/ui/ClickPopup.tscn")
+@onready var moo_world := $MooWorld 
 
 var shop_buttons = {}
-var placing_item = null
-var placing_scene = null
-var is_placing := false
-
 var life_generation_timer := Globals.ENERGY_GEN_CYCLE
+var previous_life_force := 0.0
 
 func _ready() -> void:
 	for name in Globals.BUYABLES.keys():
-		var btn = get_node( Globals.BUYABLES[name]["button_path"])
+		var btn = get_node(Globals.BUYABLES[name]["button_path"])
 		shop_buttons[name] = btn
 		btn.pressed.connect(_on_buy_button_pressed.bind(name))
 
+	previous_life_force = Globals.life_force
 	add_to_group("game_managers")
 	update_stats()
-
-
+	
 func _process(delta: float) -> void:
 	update_shop_buttons()
-	if is_placing:
-		if Input.is_action_just_pressed("click"):
-			place_item()
-	
-	life_generation_timer -= delta
-	
-	if life_generation_timer <= 0:
-		var total_energy := 0.0
+	update_passive_income(delta)
 
-		var grass_count   = get_tree().get_nodes_in_group("grass").size()
-		var chick_count   = get_tree().get_nodes_in_group("chick").size()
-		var chicken_count = get_tree().get_nodes_in_group("chicken").size()
-		var cow_count     = get_tree().get_nodes_in_group("cow").size()
-
-		total_energy += grass_count   * Globals.GRASS_ENERGY_OUT_PER_CYCLE
-		total_energy += chick_count   * Globals.CHICK_ENERGY_OUT_PER_CYCLE
-		total_energy += chicken_count * Globals.CHICKEN_ENERGY_OUT_PER_CYCLE
-		total_energy += cow_count     * Globals.COW_ENERGY_OUT_PER_CYCLE
-
-		generate_energy(total_energy)
-		life_generation_timer = Globals.ENERGY_GEN_CYCLE
-
-func _unhandled_input(event: InputEvent) -> void:
-	if is_placing:
-		return 
-
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			generate_energy(click_power)
-			pop_click_label(get_global_mouse_position(), click_power)
-
+	if Globals.life_force != previous_life_force:
+		update_stats()
 
 func update_stats():
-	life_force_label.text = "Life Force: %.2f" % life_force
+	life_force_label.text = "Life Force: %.2f" % Globals.life_force
 
-func generate_energy(amount: float):
-	life_force += amount
-	update_stats()
+func update_passive_income(delta: float):
+	life_generation_timer -= delta
+	if life_generation_timer <= 0:
+		var total_energy := 0.0
+		
+		total_energy += get_tree().get_nodes_in_group("grass").size() * Globals.GRASS_ENERGY_OUT_PER_CYCLE
+		total_energy += get_tree().get_nodes_in_group("chick").size() * Globals.CHICK_ENERGY_OUT_PER_CYCLE
+		total_energy += get_tree().get_nodes_in_group("chicken").size() * Globals.CHICKEN_ENERGY_OUT_PER_CYCLE
+		total_energy += get_tree().get_nodes_in_group("cow").size() * Globals.COW_ENERGY_OUT_PER_CYCLE
 
+		Globals.life_force += total_energy
+		life_generation_timer = Globals.ENERGY_GEN_CYCLE
 
 func update_shop_buttons():
-	for name in  Globals.BUYABLES.keys():
-		var cost =  Globals.BUYABLES[name]["cost"]
+	for name in Globals.BUYABLES.keys():
+		var cost = Globals.BUYABLES[name]["cost"]
 		var btn = shop_buttons[name]
-		
-		var affordable = life_force >= cost
+		var affordable = Globals.life_force >= cost
 		
 		btn.disabled = not affordable
-		
 		if affordable:
 			btn.text = "Buy %s (%d)" % [name, cost]
 		else:
 			btn.text = "%s (%d)" % [name, cost]
 
-
 func _on_buy_button_pressed(item_name: String):
-	var cost =  Globals.BUYABLES[item_name]["cost"]
+	var cost = Globals.BUYABLES[item_name]["cost"]
+	if Globals.life_force < cost: return
 
-	if life_force < cost:
-		return
-
-	life_force -= cost
+	Globals.life_force -= cost
 	update_stats()
 	
-	placing_item = item_name
-	placing_scene = load(Globals.BUYABLES[item_name]["item_path"])
-	
-	is_placing = true
-	print("Placement Mode Activated for:", item_name)
-
-func place_item():
-	if placing_scene == null:
-		return
-
-	var new_item = placing_scene.instantiate()
-	new_item.global_position = get_global_mouse_position()
-	add_child(new_item)
-
-	# Exit placement mode
-	placing_item = null
-	placing_scene = null
-	is_placing = false
-
-func pop_click_label(pos: Vector2, amount: int):
-	var popup = click_popup_label.instantiate()
-	get_tree().current_scene.add_child(popup)
-	popup.setup(pos, amount)
+	moo_world.start_placement(Globals.BUYABLES[item_name]["item_path"])

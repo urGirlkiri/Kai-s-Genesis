@@ -1,5 +1,6 @@
 extends Node
 
+const CLICK_ENERGY_GAIN = 1.0
 const ENERGY_GEN_CYCLE = 20 #seconds
 
 const GRASS_ENERGY_OUT_PER_CYCLE = 0.1 
@@ -29,3 +30,5 @@ const BUYABLES = {
 		"cost": 250
 	}
 }
+
+@export var life_force := 0.0
