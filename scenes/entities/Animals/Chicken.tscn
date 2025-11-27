@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://go8t1nc7dqh1"]
+[gd_scene load_steps=38 format=3 uid="uid://go8t1nc7dqh1"]
 
 [ext_resource type="Script" uid="uid://enmh17647ebg" path="res://scripts/entities/chicken.gd" id="1_sb80t"]
 [ext_resource type="Texture2D" uid="uid://bcslgbr5bddsh" path="res://assets/sprites/MooWorld/chicken-sheet.png" id="2_lqjiu"]
@@ -277,7 +277,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Chicken" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_sb80t"]
+radius = 20.0
+
+[node name="Chicken" type="CharacterBody2D"]
 z_index = 1
 script = ExtResource("1_sb80t")
 
@@ -286,6 +289,9 @@ texture_filter = 1
 texture_repeat = 2
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_efw8h")
-animation = &"front_idle"
+animation = &"left_lean"
 autoplay = "front_idle"
-frame_progress = 0.707664
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_sb80t")

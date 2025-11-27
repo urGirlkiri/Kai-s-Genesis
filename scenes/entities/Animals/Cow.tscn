@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dr2710frnus56"]
+[gd_scene load_steps=41 format=3 uid="uid://dr2710frnus56"]
 
 [ext_resource type="Script" uid="uid://4lvlqs5ii1py" path="res://scripts/entities/cow.gd" id="1_eb52a"]
 [ext_resource type="Texture2D" uid="uid://bll8kltm7d02q" path="res://assets/sprites/MooWorld/cow-sheet.png" id="2_x4wru"]
@@ -19,22 +19,6 @@ region = Rect2(64, 192, 32, 32)
 atlas = ExtResource("2_x4wru")
 region = Rect2(96, 192, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qec0g"]
-atlas = ExtResource("2_x4wru")
-region = Rect2(0, 256, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8thcu"]
-atlas = ExtResource("2_x4wru")
-region = Rect2(32, 256, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_33kkv"]
-atlas = ExtResource("2_x4wru")
-region = Rect2(64, 256, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h3t1x"]
-atlas = ExtResource("2_x4wru")
-region = Rect2(96, 256, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4g1o"]
 atlas = ExtResource("2_x4wru")
 region = Rect2(0, 224, 32, 32)
@@ -50,6 +34,22 @@ region = Rect2(64, 224, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_sy4yx"]
 atlas = ExtResource("2_x4wru")
 region = Rect2(96, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qec0g"]
+atlas = ExtResource("2_x4wru")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8thcu"]
+atlas = ExtResource("2_x4wru")
+region = Rect2(32, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33kkv"]
+atlas = ExtResource("2_x4wru")
+region = Rect2(64, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3t1x"]
+atlas = ExtResource("2_x4wru")
+region = Rect2(96, 256, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q2hgg"]
 atlas = ExtResource("2_x4wru")
@@ -168,6 +168,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_t4g1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qy6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mg86u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sy4yx")
+}],
+"loop": true,
+"name": &"eating_foward",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qec0g")
 }, {
 "duration": 1.0,
@@ -181,23 +198,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"eating_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t4g1o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5qy6m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mg86u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sy4yx")
-}],
-"loop": true,
-"name": &"idle_forward",
 "speed": 5.0
 }, {
 "frames": [{
@@ -303,7 +303,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Cow" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eb52a"]
+size = Vector2(97.25, 47)
+
+[node name="Cow" type="CharacterBody2D"]
 z_index = 1
 script = ExtResource("1_eb52a")
 
@@ -312,6 +315,10 @@ texture_filter = 1
 texture_repeat = 2
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_3gir8")
-animation = &"idle_front"
+animation = &"walk_right"
 autoplay = "idle_front"
-frame_progress = 0.4009029
+frame_progress = 0.24260567
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15)
+shape = SubResource("RectangleShape2D_eb52a")

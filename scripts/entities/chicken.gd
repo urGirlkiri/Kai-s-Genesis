@@ -1,5 +1,12 @@
-extends Node2D
+extends "res://scripts/entities/wandering_animal.gd"
 
 func _ready():
 	if not is_in_group("chicken"):
 		add_to_group("chicken")
+	
+	wander_range = 300.0
+	wander_timer_duration = 4.0
+	move_speed = 80.0
+	fall_speed = 500.0
+	
+	super._ready()
