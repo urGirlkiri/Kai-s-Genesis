@@ -1,7 +1,5 @@
 extends Node2D
 
-signal item_placed_successfully
-
 var placing_scene: PackedScene = null
 var is_placing_mode := false
 
@@ -67,7 +65,6 @@ func finalize_placement(raw_pos: Vector2):
 	
 	is_placing_mode = false
 	placing_scene = null
-	item_placed_successfully.emit()
 	queue_redraw() 
 
 func spawn_popup(pos: Vector2):
