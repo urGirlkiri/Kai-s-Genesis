@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Kai’s Genesis"
-run/main_scene="uid://c2g0pw5amocod"
+config/description="A game about restoring shattered worlds as an apprentice Kai."
+run/main_scene="uid://t00851p71633"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/use_filter=false
+boot_splash/image="uid://domiiacq6j6fq"
+config/icon="uid://b61m220bwjm1b"
+boot_splash/minimum_display_time=1000
 
 [autoload]
 
@@ -23,6 +27,7 @@ Globals="*res://scripts/core/globals.gd"
 
 window/size/viewport_width=1080
 window/size/viewport_height=650
+window/size/mode=2
 
 [editor_plugins]
 

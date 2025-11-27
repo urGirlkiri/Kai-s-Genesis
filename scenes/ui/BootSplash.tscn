@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://t00851p71633"]
+
+[ext_resource type="Script" uid="uid://cs58emnguix7g" path="res://scripts/ui/boot_splash.gd" id="1_2haom"]
+[ext_resource type="Texture2D" uid="uid://domiiacq6j6fq" path="res://assets/images/boot_splash.png" id="1_cfsc3"]
+[ext_resource type="Texture2D" uid="uid://l4r4w6l2wme4" path="res://assets/images/progress_bar.png" id="3_twhw7"]
+
+[sub_resource type="Gradient" id="Gradient_2haom"]
+colors = PackedColorArray(0.9607843, 0.9098039, 0.49411765, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_27k0f"]
+gradient = SubResource("Gradient_2haom")
+width = 432
+height = 28
+
+[node name="BootSplash" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2haom")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_cfsc3")
+expand_mode = 1
+
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -251.0
+offset_top = -226.0
+offset_right = 374.0
+offset_bottom = -161.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_over = ExtResource("3_twhw7")
+texture_progress = SubResource("GradientTexture2D_27k0f")
+texture_progress_offset = Vector2(22, 21.5)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -74.0
+offset_top = -130.0
+offset_right = 75.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.9529412, 0.93333334, 0.7882353, 1)
+theme_override_font_sizes/font_size = 32
+text = "Loading..."
