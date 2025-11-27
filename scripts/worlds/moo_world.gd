@@ -26,8 +26,23 @@ func _unhandled_input(event: InputEvent) -> void:
 			if is_placing_mode:
 				finalize_placement(mouse_pos)
 			else:
-				Globals.life_force += Globals.CLICK_ENERGY_GAIN
-				spawn_popup(mouse_pos)
+				var energy_gain = Globals.CLICK_ENERGY_GAIN
+				var click_threshold = 32.0  # pixels
+				
+				for buyable_name in Globals.BUYABLES:
+					var buyable = Globals.BUYABLES[buyable_name]
+					var group = buyable["group"]
+					
+					for entity in get_tree().get_nodes_in_group(group):
+						if entity.global_position.distance_to(mouse_pos) < click_threshold:
+							energy_gain = buyable["click_energy_gain"]
+							break
+					
+					if energy_gain != Globals.CLICK_ENERGY_GAIN:
+						break
+				
+				Globals.life_force += energy_gain
+				spawn_popup(mouse_pos, energy_gain)
 
 func _draw() -> void:
 	if is_placing_mode:
@@ -67,10 +82,10 @@ func finalize_placement(raw_pos: Vector2):
 	placing_scene = null
 	queue_redraw() 
 
-func spawn_popup(pos: Vector2):
+func spawn_popup(pos: Vector2, amount: float):
 	var popup = click_popup_scene.instantiate()
 	add_child(popup)
-	popup.setup(pos, 1) 
+	popup.setup(pos, amount) 
 
 func is_point_walkable(global_pos: Vector2) -> bool:
 	var local_pos = tile_map.to_local(global_pos)
