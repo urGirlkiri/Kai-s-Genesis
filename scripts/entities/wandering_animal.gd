@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-# Exported parameters for easy configuration
 @export var wander_range: float = 200.0
 @export var wander_timer_duration: float = 3.0
 @export var move_speed: float = 100.0

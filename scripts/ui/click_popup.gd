@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var pop_distance := 40.0
+@export var rise_distance := 40.0
 @export var duration := 1
 
 @onready var text_label: Label = $PopText
@@ -13,11 +13,9 @@ func setup(pos: Vector2, amount: int):
 	text_label.modulate.a = 1.0
 
 func _process(delta: float) -> void:
-	# rise upward
-	global_position.y -= (pop_distance * delta)
-	# fade out
+	global_position.y -= (rise_distance * delta)
+
 	text_label.modulate.a -= delta / duration
 	
-	# delete when invisible
 	if text_label.modulate.a <= 0:
 		queue_free()
