@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c2g0pw5amocod"]
+[gd_scene load_steps=19 format=3 uid="uid://c2g0pw5amocod"]
 
 [ext_resource type="Script" uid="uid://dvuy58vaxm02c" path="res://scripts/ui/main.gd" id="1_cc00j"]
 [ext_resource type="PackedScene" uid="uid://ccvkpckf4usie" path="res://scenes/worlds/MooWorld.tscn" id="2_njtbt"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cc216d544wbwq" path="res://assets/sprites/MooWorld/baby-chicken-sheet.png" id="5_fss6w"]
 [ext_resource type="Script" uid="uid://b4y6dsux1hjpm" path="res://scripts/core/camera_control.gd" id="9_fss6w"]
 [ext_resource type="Texture2D" uid="uid://l846yitl76kb" path="res://assets/sprites/MooWorld/fence.png" id="9_thnqr"]
+[ext_resource type="Texture2D" uid="uid://wb35upmpmu41" path="res://assets/sprites/MooWorld/tileset_tiled_watered.png" id="9_upid4"]
 [ext_resource type="Texture2D" uid="uid://e21be2fqjgkr" path="res://assets/images/water_circle.png" id="10_gl1th"]
 [ext_resource type="Texture2D" uid="uid://dmntxk2hreiia" path="res://assets/images/void_texture.png" id="10_yvcut"]
 
@@ -148,7 +149,7 @@ disabled = true
 shortcut_in_tooltip = false
 
 [node name="Sprite2D" type="Sprite2D" parent="GameManager/NatureShop/GrassPatch"]
-position = Vector2(32, 46)
+position = Vector2(32, 39)
 scale = Vector2(3, 3)
 texture = ExtResource("4_x5f0r")
 region_enabled = true
@@ -224,17 +225,17 @@ disabled = true
 shortcut_in_tooltip = false
 
 [node name="Sprite2D" type="Sprite2D" parent="GameManager/NatureShop/Earth"]
-position = Vector2(48, 43)
-scale = Vector2(2, 2)
-texture = ExtResource("4_w11ry")
+position = Vector2(44, 37)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("9_upid4")
 region_enabled = true
-region_rect = Rect2(64, 11, 32, 22)
+region_rect = Rect2(16, 0, 47, 48)
 
 [node name="SynthShop" type="VBoxContainer" parent="GameManager"]
 offset_left = 5.0
 offset_top = 113.0
-offset_right = 275.0
-offset_bottom = 431.9375
+offset_right = 284.0
+offset_bottom = 442.56876
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -251,7 +252,7 @@ disabled = true
 shortcut_in_tooltip = false
 
 [node name="Sprite2D" type="Sprite2D" parent="GameManager/SynthShop/Grain"]
-position = Vector2(36, 49)
+position = Vector2(36, 55)
 scale = Vector2(3, 3)
 texture = ExtResource("4_x5f0r")
 region_enabled = true
@@ -270,7 +271,7 @@ disabled = true
 shortcut_in_tooltip = false
 
 [node name="Sprite2D" type="Sprite2D" parent="GameManager/SynthShop/Fence"]
-position = Vector2(37, 46)
+position = Vector2(37, 56)
 scale = Vector2(2, 2)
 texture = ExtResource("9_thnqr")
 region_enabled = true
@@ -290,7 +291,7 @@ shortcut_in_tooltip = false
 
 [node name="Sprite2D" type="Sprite2D" parent="GameManager/SynthShop/Pond"]
 texture_filter = 1
-position = Vector2(39, 49)
+position = Vector2(39, 53)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("10_gl1th")
 region_rect = Rect2(8, 56, 31, 30)
