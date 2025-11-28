@@ -8,5 +8,6 @@ func _ready():
 	wander_timer_duration = 5.0
 	move_speed = 60.0
 	fall_speed = 500.0
+	fall_value_factor = 2.0
 	
 	super._ready()

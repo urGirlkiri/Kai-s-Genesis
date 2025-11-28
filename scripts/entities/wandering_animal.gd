@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
-@export var wander_range: float = 200.0
-@export var wander_timer_duration: float = 3.0
-@export var move_speed: float = 100.0
-@export var fall_speed: float = 500.0
+@export var wander_range := 200.0
+@export var wander_timer_duration := 3.0
+@export var move_speed := 100.0
+@export var fall_speed := 500.0
+@export var fall_value_factor := 1.0
 
 var wander_timer := 0.0
 var wander_direction := Vector2.ZERO
@@ -55,6 +56,8 @@ func handle_falling_off(delta: float) -> void:
 	# Remove when fallen far enough or fully transparent
 	if fall_velocity > 1000 or modulate.a < 0.1:
 		queue_free()
+		Globals.life_force -= fall_value_factor * 10
+
 
 func check_ground() -> bool:
 	var is_on_valid_ground = moo_world.is_point_walkable(global_position)
