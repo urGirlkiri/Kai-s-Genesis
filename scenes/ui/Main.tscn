@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c2g0pw5amocod"]
+[gd_scene load_steps=18 format=3 uid="uid://c2g0pw5amocod"]
 
 [ext_resource type="Script" uid="uid://dvuy58vaxm02c" path="res://scripts/ui/main.gd" id="1_cc00j"]
 [ext_resource type="PackedScene" uid="uid://ccvkpckf4usie" path="res://scenes/worlds/MooWorld.tscn" id="2_njtbt"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://c6namq2aq1co3" path="res://assets/sprites/MooWorld/tileset_grass.png" id="4_x5f0r"]
 [ext_resource type="Texture2D" uid="uid://cc216d544wbwq" path="res://assets/sprites/MooWorld/baby-chicken-sheet.png" id="5_fss6w"]
 [ext_resource type="Script" uid="uid://b4y6dsux1hjpm" path="res://scripts/core/camera_control.gd" id="9_fss6w"]
+[ext_resource type="Texture2D" uid="uid://l846yitl76kb" path="res://assets/sprites/MooWorld/fence.png" id="9_thnqr"]
+[ext_resource type="Texture2D" uid="uid://e21be2fqjgkr" path="res://assets/images/water_circle.png" id="10_gl1th"]
 [ext_resource type="Texture2D" uid="uid://dmntxk2hreiia" path="res://assets/images/void_texture.png" id="10_yvcut"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fuxbl"]
@@ -121,7 +123,7 @@ theme_override_font_sizes/font_size = 20
 text = "Life Force: 0"
 uppercase = true
 
-[node name="Shop" type="VBoxContainer" parent="GameManager"]
+[node name="NatureShop" type="VBoxContainer" parent="GameManager"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -133,7 +135,7 @@ grow_horizontal = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="GrassPatch" type="Button" parent="GameManager/Shop"]
+[node name="GrassPatch" type="Button" parent="GameManager/NatureShop"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
@@ -145,14 +147,14 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
 disabled = true
 shortcut_in_tooltip = false
 
-[node name="Sprite2D" type="Sprite2D" parent="GameManager/Shop/GrassPatch"]
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/NatureShop/GrassPatch"]
 position = Vector2(32, 46)
 scale = Vector2(3, 3)
 texture = ExtResource("4_x5f0r")
 region_enabled = true
 region_rect = Rect2(178, 194, 11, 9)
 
-[node name="Chick" type="Button" parent="GameManager/Shop"]
+[node name="Chick" type="Button" parent="GameManager/NatureShop"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
@@ -164,14 +166,14 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
 disabled = true
 shortcut_in_tooltip = false
 
-[node name="Sprite2D" type="Sprite2D" parent="GameManager/Shop/Chick"]
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/NatureShop/Chick"]
 position = Vector2(36, 49)
 scale = Vector2(3, 3)
 texture = ExtResource("5_fss6w")
 region_enabled = true
 region_rect = Rect2(34, 55, 12, 10)
 
-[node name="Chicken" type="Button" parent="GameManager/Shop"]
+[node name="Chicken" type="Button" parent="GameManager/NatureShop"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
@@ -183,14 +185,14 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
 disabled = true
 shortcut_in_tooltip = false
 
-[node name="Sprite2D" type="Sprite2D" parent="GameManager/Shop/Chicken"]
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/NatureShop/Chicken"]
 position = Vector2(36, 51.000008)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("4_jy5xg")
 region_enabled = true
 region_rect = Rect2(35, 51, 11, 14)
 
-[node name="Cow" type="Button" parent="GameManager/Shop"]
+[node name="Cow" type="Button" parent="GameManager/NatureShop"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
@@ -202,15 +204,100 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
 disabled = true
 shortcut_in_tooltip = false
 
-[node name="Sprite2D" type="Sprite2D" parent="GameManager/Shop/Cow"]
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/NatureShop/Cow"]
 position = Vector2(48, 43)
 scale = Vector2(2, 2)
 texture = ExtResource("4_w11ry")
 region_enabled = true
 region_rect = Rect2(64, 11, 32, 22)
 
+[node name="Earth" type="Button" parent="GameManager/NatureShop"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_fss6w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yvcut")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
+disabled = true
+shortcut_in_tooltip = false
+
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/NatureShop/Earth"]
+position = Vector2(48, 43)
+scale = Vector2(2, 2)
+texture = ExtResource("4_w11ry")
+region_enabled = true
+region_rect = Rect2(64, 11, 32, 22)
+
+[node name="SynthShop" type="VBoxContainer" parent="GameManager"]
+offset_left = 5.0
+offset_top = 113.0
+offset_right = 275.0
+offset_bottom = 431.9375
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Grain" type="Button" parent="GameManager/SynthShop"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_fss6w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yvcut")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
+disabled = true
+shortcut_in_tooltip = false
+
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/SynthShop/Grain"]
+position = Vector2(36, 49)
+scale = Vector2(3, 3)
+texture = ExtResource("4_x5f0r")
+region_enabled = true
+region_rect = Rect2(81, 160, 14, 11)
+
+[node name="Fence" type="Button" parent="GameManager/SynthShop"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_fss6w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yvcut")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
+disabled = true
+shortcut_in_tooltip = false
+
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/SynthShop/Fence"]
+position = Vector2(37, 46)
+scale = Vector2(2, 2)
+texture = ExtResource("9_thnqr")
+region_enabled = true
+region_rect = Rect2(74, 6, 12, 25)
+
+[node name="Pond" type="Button" parent="GameManager/SynthShop"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_fss6w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yvcut")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
+disabled = true
+shortcut_in_tooltip = false
+
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/SynthShop/Pond"]
+texture_filter = 1
+position = Vector2(39, 49)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_gl1th")
+region_rect = Rect2(8, 56, 31, 30)
+
 [node name="MooWorld" parent="." instance=ExtResource("2_njtbt")]
-position = Vector2(290, 264)
+position = Vector2(346, 453)
+scale = Vector2(0.8, 0.8)
 
 [node name="CameraControl" type="Camera2D" parent="."]
 position = Vector2(543, 328)
