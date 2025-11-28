@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnfdjywxnhy0o"]
+
+[ext_resource type="Texture2D" uid="uid://c6namq2aq1co3" path="res://assets/sprites/MooWorld/tileset_grass.png" id="1_4qsuj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ir1xc"]
+size = Vector2(34, 32)
+
+[node name="Grain" type="StaticBody2D"]
+z_index = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 1.9999993)
+scale = Vector2(3, 3.5555553)
+texture = ExtResource("1_4qsuj")
+region_enabled = true
+region_rect = Rect2(91, 161, 11, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_ir1xc")

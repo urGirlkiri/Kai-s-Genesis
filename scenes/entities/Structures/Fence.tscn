@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmb87dqfejldr"]
+
+[ext_resource type="Texture2D" uid="uid://l846yitl76kb" path="res://assets/sprites/MooWorld/fence.png" id="1_fe0wg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ir1xc"]
+size = Vector2(34, 32)
+
+[node name="Fence" type="StaticBody2D"]
+z_index = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fe0wg")
+region_enabled = true
+region_rect = Rect2(63, 6, 33, 25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_ir1xc")

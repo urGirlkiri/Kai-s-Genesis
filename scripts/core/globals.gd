@@ -49,7 +49,7 @@ const BUYABLES = {
 		"item_path": "res://scenes/entities/Structures/Earth.tscn",
 		"cost": 500,
 		"group": "earth",
-		"click_energy_gain": 1.0,
+		"click_energy_gain": 1.5,
 		"energy_per_cycle": 0.0
 	},
 	"Fence": {
@@ -65,7 +65,7 @@ const BUYABLES = {
 		"item_path": "res://scenes/entities/Structures/Pond.tscn",
 		"cost": 15,
 		"group": "pond",
-		"click_energy_gain": 1.0,
+		"click_energy_gain": 1.5,
 		"energy_per_cycle": 0.0
 	},
 	# Consumables
