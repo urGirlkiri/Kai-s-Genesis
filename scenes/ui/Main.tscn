@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c2g0pw5amocod"]
+[gd_scene load_steps=20 format=3 uid="uid://c2g0pw5amocod"]
 
 [ext_resource type="Script" uid="uid://dvuy58vaxm02c" path="res://scripts/ui/main.gd" id="1_cc00j"]
 [ext_resource type="PackedScene" uid="uid://ccvkpckf4usie" path="res://scenes/worlds/MooWorld.tscn" id="2_njtbt"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://wb35upmpmu41" path="res://assets/sprites/MooWorld/tileset_tiled_watered.png" id="9_upid4"]
 [ext_resource type="Texture2D" uid="uid://e21be2fqjgkr" path="res://assets/images/water_circle.png" id="10_gl1th"]
 [ext_resource type="Texture2D" uid="uid://dmntxk2hreiia" path="res://assets/images/void_texture.png" id="10_yvcut"]
+[ext_resource type="Texture2D" uid="uid://c4utgftowoxmn" path="res://assets/images/weapons.png" id="12_umypx"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fuxbl"]
 texture = ExtResource("2_rigbv")
@@ -94,10 +95,10 @@ uppercase = true
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -347.0
-offset_top = 5.0
-offset_right = -27.0
-offset_bottom = 87.0
+offset_left = -342.0
+offset_top = 8.0
+offset_right = -22.0
+offset_bottom = 90.0
 grow_horizontal = 0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_rigbv")
@@ -124,15 +125,87 @@ theme_override_font_sizes/font_size = 20
 text = "Life Force: 0"
 uppercase = true
 
-[node name="NatureShop" type="VBoxContainer" parent="GameManager"]
+[node name="AnimalShop" type="VBoxContainer" parent="GameManager"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -353.0
+offset_left = -344.0
 offset_top = 110.0
-offset_right = -33.0
-offset_bottom = 488.0
+offset_right = -24.0
+offset_bottom = 368.0
 grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Chick" type="Button" parent="GameManager/AnimalShop"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_fss6w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yvcut")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
+disabled = true
+shortcut_in_tooltip = false
+
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/AnimalShop/Chick"]
+position = Vector2(36, 44)
+scale = Vector2(3, 3)
+texture = ExtResource("5_fss6w")
+region_enabled = true
+region_rect = Rect2(34, 55, 12, 10)
+
+[node name="Chicken" type="Button" parent="GameManager/AnimalShop"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_fss6w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yvcut")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
+disabled = true
+shortcut_in_tooltip = false
+
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/AnimalShop/Chicken"]
+position = Vector2(36, 42.000008)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("4_jy5xg")
+region_enabled = true
+region_rect = Rect2(35, 51, 11, 14)
+
+[node name="Cow" type="Button" parent="GameManager/AnimalShop"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_fss6w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yvcut")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
+disabled = true
+shortcut_in_tooltip = false
+
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/AnimalShop/Cow"]
+position = Vector2(48, 45)
+scale = Vector2(2, 2)
+texture = ExtResource("4_w11ry")
+region_enabled = true
+region_rect = Rect2(64, 11, 32, 22)
+
+[node name="NatureShop" type="VBoxContainer" parent="GameManager"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -344.0
+offset_top = -182.0
+offset_right = -24.0
+offset_bottom = -22.0
+grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -155,63 +228,6 @@ texture = ExtResource("4_x5f0r")
 region_enabled = true
 region_rect = Rect2(178, 194, 11, 9)
 
-[node name="Chick" type="Button" parent="GameManager/NatureShop"]
-layout_mode = 2
-size_flags_vertical = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_fss6w")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yvcut")
-theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
-disabled = true
-shortcut_in_tooltip = false
-
-[node name="Sprite2D" type="Sprite2D" parent="GameManager/NatureShop/Chick"]
-position = Vector2(36, 49)
-scale = Vector2(3, 3)
-texture = ExtResource("5_fss6w")
-region_enabled = true
-region_rect = Rect2(34, 55, 12, 10)
-
-[node name="Chicken" type="Button" parent="GameManager/NatureShop"]
-layout_mode = 2
-size_flags_vertical = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_fss6w")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yvcut")
-theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
-disabled = true
-shortcut_in_tooltip = false
-
-[node name="Sprite2D" type="Sprite2D" parent="GameManager/NatureShop/Chicken"]
-position = Vector2(36, 51.000008)
-scale = Vector2(2.5, 2.5)
-texture = ExtResource("4_jy5xg")
-region_enabled = true
-region_rect = Rect2(35, 51, 11, 14)
-
-[node name="Cow" type="Button" parent="GameManager/NatureShop"]
-layout_mode = 2
-size_flags_vertical = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_fss6w")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yvcut")
-theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
-disabled = true
-shortcut_in_tooltip = false
-
-[node name="Sprite2D" type="Sprite2D" parent="GameManager/NatureShop/Cow"]
-position = Vector2(48, 43)
-scale = Vector2(2, 2)
-texture = ExtResource("4_w11ry")
-region_enabled = true
-region_rect = Rect2(64, 11, 32, 22)
-
 [node name="Earth" type="Button" parent="GameManager/NatureShop"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -232,10 +248,10 @@ region_enabled = true
 region_rect = Rect2(16, 0, 47, 48)
 
 [node name="SynthShop" type="VBoxContainer" parent="GameManager"]
-offset_left = 5.0
-offset_top = 113.0
-offset_right = 284.0
-offset_bottom = 442.56876
+offset_left = -1.0
+offset_top = 109.0
+offset_right = 278.0
+offset_bottom = 283.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -252,30 +268,11 @@ disabled = true
 shortcut_in_tooltip = false
 
 [node name="Sprite2D" type="Sprite2D" parent="GameManager/SynthShop/Grain"]
-position = Vector2(36, 55)
+position = Vector2(36, 46)
 scale = Vector2(3, 3)
 texture = ExtResource("4_x5f0r")
 region_enabled = true
 region_rect = Rect2(81, 160, 14, 11)
-
-[node name="Fence" type="Button" parent="GameManager/SynthShop"]
-layout_mode = 2
-size_flags_vertical = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_fss6w")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yvcut")
-theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
-disabled = true
-shortcut_in_tooltip = false
-
-[node name="Sprite2D" type="Sprite2D" parent="GameManager/SynthShop/Fence"]
-position = Vector2(37, 56)
-scale = Vector2(2, 2)
-texture = ExtResource("9_thnqr")
-region_enabled = true
-region_rect = Rect2(74, 6, 12, 25)
 
 [node name="Pond" type="Button" parent="GameManager/SynthShop"]
 layout_mode = 2
@@ -291,10 +288,61 @@ shortcut_in_tooltip = false
 
 [node name="Sprite2D" type="Sprite2D" parent="GameManager/SynthShop/Pond"]
 texture_filter = 1
-position = Vector2(39, 53)
+position = Vector2(39, 47)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("10_gl1th")
 region_rect = Rect2(8, 56, 31, 30)
+
+[node name="HardShop" type="VBoxContainer" parent="GameManager"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -178.0
+offset_right = 282.0
+offset_bottom = -21.0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Fence" type="Button" parent="GameManager/HardShop"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_fss6w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yvcut")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
+disabled = true
+shortcut_in_tooltip = false
+
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/HardShop/Fence"]
+position = Vector2(37, 38)
+scale = Vector2(2, 2)
+texture = ExtResource("9_thnqr")
+region_enabled = true
+region_rect = Rect2(74, 6, 12, 25)
+
+[node name="Axe" type="Button" parent="GameManager/HardShop"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_fss6w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yvcut")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
+disabled = true
+shortcut_in_tooltip = false
+
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/HardShop/Axe"]
+position = Vector2(37.000008, 38)
+rotation = -0.77143556
+scale = Vector2(2.5, 2.5)
+skew = -0.082030475
+texture = ExtResource("12_umypx")
+region_enabled = true
+region_rect = Rect2(16, 49, 16, 15)
 
 [node name="MooWorld" parent="." instance=ExtResource("2_njtbt")]
 position = Vector2(346, 453)

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://rgo63mkh1afe"]
+
+[ext_resource type="Texture2D" uid="uid://wb35upmpmu41" path="res://assets/sprites/MooWorld/tileset_tiled_watered.png" id="1_31iu1"]
+
+[node name="Land" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(44, 37)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("1_31iu1")
+region_enabled = true
+region_rect = Rect2(16, 0, 47, 48)
