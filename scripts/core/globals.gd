@@ -88,4 +88,4 @@ const BUYABLES = {
 	},
 }
 
-@export var life_force := 0.0
+@export var life_force := 990.0

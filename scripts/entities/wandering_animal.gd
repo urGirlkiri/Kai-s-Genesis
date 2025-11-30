@@ -36,11 +36,6 @@ var fall_velocity := 0.0
 @onready var sprite_2d: AnimatedSprite2D = $Sprite2D
 
 func _ready():
-	print("Wandering Animal Ready")
-	print("Get Thirst Rate: ", get_thirst_rate)
-	print("Quench Thirst Rate: ", quench_thirst_rate)
-	print("Distance to Drink from Pond: ", distance_to_drink_from_pond)
-
 	current_get_thirst_rate = get_thirst_rate
 	current_quench_thirst_rate = quench_thirst_rate
 	start_position = global_position
@@ -55,10 +50,12 @@ func _physics_process(delta: float) -> void:
 		is_falling = true
 		return
 	
-	if current_get_thirst_rate <= get_thirst_rate - 10  and not is_finding_pond:
-		current_state = State.FIND_WATER
-		is_finding_pond = true
-	
+	if current_state == State.WANDER:
+		if current_get_thirst_rate <= get_thirst_rate - 10:
+			if not is_finding_pond: 
+				current_state = State.FIND_WATER
+				is_finding_pond = true
+				
 	if current_get_thirst_rate <= 0 :
 		#todo: animate die of thirst
 		queue_free()
@@ -130,14 +127,16 @@ func handle_find_pond(delta: float) -> void:
 				nearest_pond = pond
 		
 		target_pond = nearest_pond
-		print("Target Pond Position: ", target_pond.global_position)
+
 		if target_pond != null and is_instance_valid(target_pond):
 			current_state = State.SEEK_WATER
 		else:
 			#todo: if thirst is low enugh, reduce speed and show tardniess
 			current_state = State.WANDER
+			is_finding_pond = false
 	else:
 		current_state = State.WANDER
+		is_finding_pond = false
 
 func handle_seek_pond(delta: float) -> void:
 	get_thirsty(delta)
@@ -157,10 +156,8 @@ func handle_seek_pond(delta: float) -> void:
 func handle_drink_water(delta: float) -> void:
 	current_state = State.DRINK_WATER
 	
-	# Calculate the decrement for the timer first
 	var timer_step = delta * 5.0
 	
-	# Increase thirst meter proportionally so they finish at the exact same time
 	if current_quench_thirst_rate > 0:
 		var ratio = timer_step / current_quench_thirst_rate
 		var thirst_deficit = get_thirst_rate - current_get_thirst_rate
@@ -177,11 +174,11 @@ func handle_drink_water(delta: float) -> void:
 		
 		if target_pond != null and is_instance_valid(target_pond):
 			target_pond.consume()
-		
-		target_pond = null
+		else:
+			is_finding_pond = false		
 	else:
-		# Stop moving while drinking
 		velocity = Vector2.ZERO
+		
 
 func handle_wandering(delta: float) -> void:
 	wander_timer -= delta
@@ -197,7 +194,7 @@ func handle_wandering(delta: float) -> void:
 		wander_direction = (start_position - global_position).normalized()
 
 func get_thirsty(delta: float) -> void:
-	current_get_thirst_rate -= delta * 0.5
+	current_get_thirst_rate -= delta * 5
 
 func check_ground() -> bool:
 	var is_on_valid_ground = moo_world.is_point_walkable(global_position)

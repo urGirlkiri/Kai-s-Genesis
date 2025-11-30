@@ -20,4 +20,4 @@ offset_right = 127.0
 offset_bottom = 29.0
 theme_override_styles/background = SubResource("StyleBoxFlat_pmu2r")
 theme_override_styles/fill = SubResource("StyleBoxFlat_pp6hu")
-step = 33.01
+step = 0.0

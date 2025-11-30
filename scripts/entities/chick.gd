@@ -10,7 +10,7 @@ func _ready():
 	fall_speed = 500.0
 	fall_value_factor = 1.0
 
-	get_thirst_rate = 200.0
+	get_thirst_rate = 100
 	quench_thirst_rate = get_thirst_rate * 2.0
 	distance_to_drink_from_pond = 15.0
 	
