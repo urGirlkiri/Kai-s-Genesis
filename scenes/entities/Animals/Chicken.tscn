@@ -1,7 +1,8 @@
-[gd_scene load_steps=38 format=3 uid="uid://go8t1nc7dqh1"]
+[gd_scene load_steps=39 format=3 uid="uid://go8t1nc7dqh1"]
 
 [ext_resource type="Script" uid="uid://enmh17647ebg" path="res://scripts/entities/chicken.gd" id="1_sb80t"]
 [ext_resource type="Texture2D" uid="uid://bcslgbr5bddsh" path="res://assets/sprites/MooWorld/chicken-sheet.png" id="2_lqjiu"]
+[ext_resource type="PackedScene" uid="uid://mfck21s4g3hh" path="res://scenes/ui/progressbars/ThirstBar.tscn" id="3_lqjiu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_awggd"]
 atlas = ExtResource("2_lqjiu")
@@ -295,3 +296,7 @@ autoplay = "front_idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_sb80t")
+
+[node name="ThirstBar" parent="." instance=ExtResource("3_lqjiu")]
+position = Vector2(-35, 38.000004)
+scale = Vector2(0.7, 0.7)

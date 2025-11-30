@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://lwjwdwwr28wk"]
+[gd_scene load_steps=4 format=3 uid="uid://lwjwdwwr28wk"]
 
 [ext_resource type="Texture2D" uid="uid://bxllr6uq7q48w" path="res://assets/sprites/MooWorld/land.png" id="1_f2mro"]
+[ext_resource type="Script" uid="uid://do6vm38gcbxci" path="res://scripts/entities/pond.gd" id="1_for0j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ir1xc"]
 size = Vector2(34, 32)
 
-[node name="Pond" type="Area2D"]
+[node name="Pond" type="StaticBody2D"]
+script = ExtResource("1_for0j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_f2mro")

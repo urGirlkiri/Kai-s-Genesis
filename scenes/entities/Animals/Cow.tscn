@@ -1,7 +1,8 @@
-[gd_scene load_steps=41 format=3 uid="uid://dr2710frnus56"]
+[gd_scene load_steps=42 format=3 uid="uid://dr2710frnus56"]
 
 [ext_resource type="Script" uid="uid://4lvlqs5ii1py" path="res://scripts/entities/cow.gd" id="1_eb52a"]
 [ext_resource type="Texture2D" uid="uid://bll8kltm7d02q" path="res://assets/sprites/MooWorld/cow-sheet.png" id="2_x4wru"]
+[ext_resource type="PackedScene" uid="uid://mfck21s4g3hh" path="res://scenes/ui/progressbars/ThirstBar.tscn" id="3_x4wru"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_roiw1"]
 atlas = ExtResource("2_x4wru")
@@ -322,3 +323,6 @@ frame_progress = 0.24260567
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15)
 shape = SubResource("RectangleShape2D_eb52a")
+
+[node name="ThirstBar" parent="." instance=ExtResource("3_x4wru")]
+position = Vector2(-53, 70)
