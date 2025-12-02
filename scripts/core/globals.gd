@@ -12,7 +12,7 @@ const BUYABLES = {
 	# ANIMALS
 	"Chick": {
 		"button_path": "GameManager/AnimalShop/Chick",
-		"item_path": "res://scenes/entities/Animals/Chick.tscn",
+		"item_path": "res://scenes/entities/Animals/Wandering/Chick.tscn",
 		"cost": 25,
 		"group": "chick",
 		"click_energy_gain": 2.5,
@@ -20,7 +20,7 @@ const BUYABLES = {
 	},
 	"Chicken": {
 		"button_path": "GameManager/AnimalShop/Chicken",
-		"item_path": "res://scenes/entities/Animals/Chicken.tscn",
+		"item_path": "res://scenes/entities/Animals/Wandering/Chicken.tscn",
 		"cost": 100,
 		"group": "chicken",
 		"click_energy_gain": 5.0,
@@ -28,7 +28,7 @@ const BUYABLES = {
 	},
 	"Cow": {
 		"button_path": "GameManager/AnimalShop/Cow",
-		"item_path": "res://scenes/entities/Animals/Cow.tscn",
+		"item_path": "res://scenes/entities/Animals/Wandering/Cow.tscn",
 		"cost": 250,
 		"group": "cow",
 		"click_energy_gain": 10.0,

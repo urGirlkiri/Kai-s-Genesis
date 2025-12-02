@@ -74,13 +74,10 @@ func _physics_process(delta: float) -> void:
 		State.WANDER:
 			handle_wandering(delta)
 		State.FIND_WATER:
-			print("Finding Water")
 			handle_find_pond(delta)
 		State.SEEK_WATER:
-			print("Seeking Water")
 			handle_seek_pond(delta)
 		State.DRINK_WATER:
-			print("Drinking Water")
 			handle_drink_water(delta)
 		State.FIND_FOOD:
 			pass
@@ -123,7 +120,6 @@ func handle_find_pond(delta: float) -> void:
 	get_thirsty(delta)
 
 	var ponds = get_tree().get_nodes_in_group("pond")
-	print("Found Ponds: ", ponds.size())
 
 	if ponds.size() > 0:
 		var nearest_pond =  ponds[0]

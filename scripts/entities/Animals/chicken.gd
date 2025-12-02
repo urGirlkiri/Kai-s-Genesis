@@ -10,4 +10,7 @@ func _ready():
 	fall_speed = 500.0
 	fall_value_factor = 1.5
 
+	get_thirst_rate = 150
+	cooldown_time_before_action = 15
+	
 	super._ready()

@@ -11,7 +11,6 @@ func _ready():
 	fall_value_factor = 1.0
 
 	get_thirst_rate = 100
-	quench_thirst_rate = get_thirst_rate * 2.0
-	distance_to_drink_from_pond = 15.0
+	cooldown_time_before_action = 8.0
 	
 	super._ready()
