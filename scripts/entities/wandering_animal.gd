@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 			current_cooldown_time = cooldown_time_before_action
 
 	if current_state == State.WANDER and is_cooling_down == false :
-		if current_get_thirst_rate <= get_thirst_rate - 10:
+		if current_get_thirst_rate <= get_thirst_rate * 0.4:
 			if not is_finding_pond: 
 				current_state = State.FIND_WATER
 				is_finding_pond = true
