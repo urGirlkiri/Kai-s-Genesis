@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dkvjin5opcryb"]
 
-[ext_resource type="Script" uid="uid://m0ohdkrug4s8" path="res://scripts/entities/grass.gd" id="1_sgsj2"]
+[ext_resource type="Script" uid="uid://m0ohdkrug4s8" path="res://scripts/grass.gd" id="1_sgsj2"]
 [ext_resource type="Texture2D" uid="uid://1liogldrkrrb" path="res://assets/tilesets/grass_patch.png" id="2_ir0cv"]
 
 [node name="GrassPatch" type="Node2D"]
