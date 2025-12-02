@@ -15,5 +15,4 @@ func start_loading_animation() -> void:
 	tween.finished.connect(_on_loading_complete)
 
 func _on_loading_complete() -> void:
-	# Optional: Add a small delay or fade out effect here
 	get_tree().change_scene_to_packed(MAIN_GAME_SCENE)
