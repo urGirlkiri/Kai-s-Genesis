@@ -11,7 +11,10 @@ extends CharacterBody2D
 @export var get_thirst_rate := 20.0
 @export var quench_thirst_rate := 20.0
 @export var distance_to_drink_from_pond := 20.0
+@export var cooldown_time_before_action := 5.0 # find pond,food...
 
+var current_cooldown_time := 0.0
+var is_cooling_down := false
 var current_get_thirst_rate := 0.0
 var current_quench_thirst_rate := 0.0
 var target_pond: Node2D = null
@@ -38,6 +41,7 @@ var fall_velocity := 0.0
 func _ready():
 	current_get_thirst_rate = get_thirst_rate
 	current_quench_thirst_rate = quench_thirst_rate
+	current_cooldown_time = cooldown_time_before_action
 	start_position = global_position
 	pick_new_wander_direction()
 
@@ -49,8 +53,16 @@ func _physics_process(delta: float) -> void:
 	if not check_ground():
 		is_falling = true
 		return
-	
-	if current_state == State.WANDER:
+
+	if is_cooling_down:
+		print("Cooling Down: ", current_cooldown_time)
+		current_cooldown_time -= delta
+		if current_cooldown_time <= 0:
+			is_cooling_down = false
+			current_cooldown_time = cooldown_time_before_action
+
+	if current_state == State.WANDER and is_cooling_down == false :
+		print("Not Cool :)")
 		if current_get_thirst_rate <= get_thirst_rate - 10:
 			if not is_finding_pond: 
 				current_state = State.FIND_WATER
@@ -62,7 +74,6 @@ func _physics_process(delta: float) -> void:
 
 	match current_state:
 		State.WANDER:
-			# print("Wandering")
 			handle_wandering(delta)
 		State.FIND_WATER:
 			print("Finding Water")
@@ -134,9 +145,11 @@ func handle_find_pond(delta: float) -> void:
 			#todo: if thirst is low enugh, reduce speed and show tardniess
 			current_state = State.WANDER
 			is_finding_pond = false
+			is_cooling_down = true
 	else:
 		current_state = State.WANDER
 		is_finding_pond = false
+		is_cooling_down = true
 
 func handle_seek_pond(delta: float) -> void:
 	get_thirsty(delta)
@@ -144,7 +157,8 @@ func handle_seek_pond(delta: float) -> void:
 	if target_pond == null or not is_instance_valid(target_pond):
 		print("No valid pond found")
 		current_state = State.WANDER
-		is_finding_pond = false # Reset logic
+		is_finding_pond = false
+		is_cooling_down = true
 		return
 
 	var direction_to_pond = (target_pond.global_position - global_position).normalized()
@@ -194,7 +208,7 @@ func handle_wandering(delta: float) -> void:
 		wander_direction = (start_position - global_position).normalized()
 
 func get_thirsty(delta: float) -> void:
-	current_get_thirst_rate -= delta * 5
+	current_get_thirst_rate -= delta * 0.5
 
 func check_ground() -> bool:
 	var is_on_valid_ground = moo_world.is_point_walkable(global_position)
