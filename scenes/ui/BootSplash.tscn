@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://t00851p71633"]
 
-[ext_resource type="Script" uid="uid://cs58emnguix7g" path="res://scripts/ui/boot_splash.gd" id="1_2haom"]
+[ext_resource type="Script" uid="uid://cs58emnguix7g" path="res://scripts/core/boot_splash.gd" id="1_2haom"]
 [ext_resource type="Texture2D" uid="uid://domiiacq6j6fq" path="res://assets/images/boot_splash.png" id="1_cfsc3"]
 [ext_resource type="Texture2D" uid="uid://l4r4w6l2wme4" path="res://assets/images/progress_bar.png" id="3_twhw7"]
 

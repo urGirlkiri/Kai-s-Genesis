@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var thirst_bar: Node2D = $ThirstBar
 @onready var sense_area: Area2D = $Sensor
 
+const CHECK_THIRST_AT_PERC = 0.4
 
 @export var wander_range := 200.0
 @export var wander_timer_duration := 3.0
@@ -61,7 +62,7 @@ func _physics_process(delta: float) -> void:
 			current_cooldown_time = cooldown_time_before_action
 
 	if current_state == State.WANDER and is_cooling_down == false :
-		if current_get_thirst_rate <= get_thirst_rate * 0.4:
+		if current_get_thirst_rate <= get_thirst_rate * CHECK_THIRST_AT_PERC:
 			if not is_finding_pond: 
 				current_state = State.FIND_WATER
 				is_finding_pond = true

@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://c2g0pw5amocod"]
 
-[ext_resource type="Script" uid="uid://dvuy58vaxm02c" path="res://scripts/ui/main.gd" id="1_cc00j"]
+[ext_resource type="Script" uid="uid://dvuy58vaxm02c" path="res://scripts/core/main.gd" id="1_cc00j"]
 [ext_resource type="PackedScene" uid="uid://ccvkpckf4usie" path="res://scenes/worlds/MooWorld.tscn" id="2_njtbt"]
 [ext_resource type="Texture2D" uid="uid://cs4xlyypi58dw" path="res://assets/frames/green.png" id="2_rigbv"]
 [ext_resource type="Texture2D" uid="uid://bv8ymibt2djfm" path="res://assets/images/yin_yang.png" id="3_fss6w"]
@@ -90,6 +90,15 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Planet Moo Moo"
 uppercase = true
+
+[node name="Info" type="Label" parent="GameManager"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
 
 [node name="LifeForce" type="Panel" parent="GameManager"]
 anchors_preset = 1
