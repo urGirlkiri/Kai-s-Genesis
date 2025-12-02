@@ -139,11 +139,13 @@ func handle_find_pond(delta: float) -> void:
 			if sense_area.overlaps_area(target_pond_area):
 				_on_sensor_area_entered(target_pond_area)
 		else:
+			SignalBus.set_warning.emit("drought", false)
 			#todo: if thirst is low enugh, reduce speed and show tardniess
 			current_state = State.WANDER
 			is_finding_pond = false
 			is_cooling_down = true
 	else:
+		SignalBus.set_warning.emit("drought", true)
 		current_state = State.WANDER
 		is_finding_pond = false
 		is_cooling_down = true

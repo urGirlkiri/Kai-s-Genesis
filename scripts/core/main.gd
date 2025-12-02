@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var life_force_label := $GameManager/LifeForce/Label
-@onready var moo_world := $MooWorld 
+@onready var moo_world := $MooWorld
 
 var shop_buttons = {}
 var life_generation_timer := Globals.ENERGY_GEN_CYCLE
@@ -54,7 +54,12 @@ func update_shop_buttons():
 
 func _on_buy_button_pressed(item_name: String):
 	var cost = Globals.BUYABLES[item_name]["cost"]
-	if Globals.life_force < cost: return
+
+	if Globals.life_force < cost:
+		SignalBus.show_message.emit("Not enough Life Force!", "error")
+		return
+	else:
+		SignalBus.show_message.emit("Bought " + item_name + "!", "success")
 
 	Globals.life_force -= cost
 	update_stats()
