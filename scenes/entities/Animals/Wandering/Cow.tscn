@@ -1,8 +1,6 @@
-[gd_scene load_steps=43 format=3 uid="uid://d00fg0imk63hw"]
+[gd_scene load_steps=41 format=3 uid="uid://d00fg0imk63hw"]
 
 [ext_resource type="PackedScene" uid="uid://og6c2vmfh5t2" path="res://scenes/entities/Animals/wandering_animal.tscn" id="1_l006n"]
-[ext_resource type="Script" uid="uid://b5ikl1vmvsn7a" path="res://scripts/entities/Animals/chick.gd" id="2_ledgd"]
-[ext_resource type="Script" uid="uid://4lvlqs5ii1py" path="res://scripts/entities/Animals/cow.gd" id="3_xc2gh"]
 [ext_resource type="Texture2D" uid="uid://bll8kltm7d02q" path="res://assets/sprites/MooWorld/cow-sheet.png" id="4_7slq3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_roiw1"]
@@ -149,7 +147,7 @@ region = Rect2(64, 96, 32, 32)
 atlas = ExtResource("4_7slq3")
 region = Rect2(96, 96, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_c3h7y"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_7558a"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -305,31 +303,25 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_juwi2"]
-size = Vector2(97.25, 47)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltfmd"]
+size = Vector2(64, 85)
 
 [node name="Cow" instance=ExtResource("1_l006n")]
-script = ExtResource("2_ledgd")
 
 [node name="ThirstBar" parent="." index="0"]
-position = Vector2(-33, 72)
-script = ExtResource("3_xc2gh")
-wander_range = 200.0
-wander_timer_duration = 3.0
-move_speed = 100.0
-fall_speed = 500.0
-fall_value_factor = 1.0
-get_thirst_rate = 20.0
-cooldown_time_before_action = 5.0
+position = Vector2(-43, 68)
+
+[node name="CollisionShape2D" parent="Sensor" index="0"]
+position = Vector2(1, 19)
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." index="2"]
 texture_filter = 1
 texture_repeat = 2
 scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_c3h7y")
-animation = &"walk_right"
-autoplay = "idle_front"
+sprite_frames = SubResource("SpriteFrames_7558a")
+animation = &"walk_forward"
+autoplay = "walk_forward"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
-position = Vector2(0, 15)
-shape = SubResource("RectangleShape2D_juwi2")
+position = Vector2(0, 23.5)
+shape = SubResource("RectangleShape2D_ltfmd")

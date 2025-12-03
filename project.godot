@@ -17,11 +17,11 @@ config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/use_filter=false
 boot_splash/image="uid://domiiacq6j6fq"
 config/icon="uid://b61m220bwjm1b"
-boot_splash/minimum_display_time=1000
 
 [autoload]
 
 Globals="*res://scripts/core/globals.gd"
+SignalBus="*res://scripts/core/signal_bus.gd"
 
 [display]
 
