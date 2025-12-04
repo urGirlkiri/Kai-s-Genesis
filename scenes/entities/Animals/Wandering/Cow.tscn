@@ -1,6 +1,7 @@
-[gd_scene load_steps=41 format=3 uid="uid://d00fg0imk63hw"]
+[gd_scene load_steps=42 format=3 uid="uid://d00fg0imk63hw"]
 
 [ext_resource type="PackedScene" uid="uid://og6c2vmfh5t2" path="res://scenes/entities/Animals/wandering_animal.tscn" id="1_l006n"]
+[ext_resource type="Script" uid="uid://4lvlqs5ii1py" path="res://scripts/entities/Animals/Grazers/cow.gd" id="2_ltfmd"]
 [ext_resource type="Texture2D" uid="uid://bll8kltm7d02q" path="res://assets/sprites/MooWorld/cow-sheet.png" id="4_7slq3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_roiw1"]
@@ -307,6 +308,9 @@ animations = [{
 size = Vector2(64, 85)
 
 [node name="Cow" instance=ExtResource("1_l006n")]
+script = ExtResource("2_ltfmd")
+nutrition_per_cew = 5
+chew_cooldown = 0.0
 
 [node name="ThirstBar" parent="." index="0"]
 position = Vector2(-43, 68)

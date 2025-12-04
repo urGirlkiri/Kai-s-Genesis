@@ -1,4 +1,4 @@
-extends "res://scripts/entities/Animals/wandering_animal.gd"
+extends "res://scripts/entities/Animals/grazer.gd"
 
 func _ready():
 	if not is_in_group("cow"):
@@ -12,5 +12,10 @@ func _ready():
 	
 	max_water_cap = 220
 	default_cooldown_time = 28.0
+
+	CHECK_HUNGER_AT_PERC = 0.98
+	CHECK_THIRST_AT_PERC = 0.4
+
+	chew_cooldown = 2.0
 	
 	super._ready()

@@ -1,12 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkvjin5opcryb"]
+[gd_scene load_steps=6 format=3 uid="uid://dkvjin5opcryb"]
 
-[ext_resource type="Script" uid="uid://m0ohdkrug4s8" path="res://scripts/entities/Consumambles/grass.gd" id="1_sgsj2"]
+[ext_resource type="Script" uid="uid://m0ohdkrug4s8" path="res://scripts/entities/Consumambles/grass_patch.gd" id="1_sgsj2"]
 [ext_resource type="Texture2D" uid="uid://1liogldrkrrb" path="res://assets/tilesets/grass_patch.png" id="2_ir0cv"]
+[ext_resource type="Shader" uid="uid://c8dgw2m7dn2vy" path="res://shaders/dirtify.gdshader" id="2_l4ktx"]
 
-[node name="GrassPatch" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bsuqb"]
+shader = ExtResource("2_l4ktx")
+shader_parameter/target_color = Color(0.4, 0.25, 0.1, 1)
+shader_parameter/depletion_progress = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ir0cv"]
+size = Vector2(49, 44)
+
+[node name="GrassPatch" type="Area2D" groups=["grass"]]
+collision_layer = 8
 script = ExtResource("1_sgsj2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_bsuqb")
 texture = ExtResource("2_ir0cv")
 region_enabled = true
 region_rect = Rect2(506, 307, 38, 38)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ir0cv")

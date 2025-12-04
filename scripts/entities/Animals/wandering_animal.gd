@@ -29,7 +29,6 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	print("Stomach: ", current_stomach_cap)
 
 	if is_falling:
 		handle_falling_off(delta)

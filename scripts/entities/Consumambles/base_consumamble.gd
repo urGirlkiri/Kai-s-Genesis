@@ -16,9 +16,7 @@ func handle_consumption(amount: float) -> float:
 	available_nutrition -= eaten_amount
 	
 	var percent_left = available_nutrition / max_nutrition
-
-	sprite.scale = Vector2.ONE * max(0.1, percent_left)
-
+	
 	handle_item_part_consumed(percent_left)
 		
 	if available_nutrition <= 0:
