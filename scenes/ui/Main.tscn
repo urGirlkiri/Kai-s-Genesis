@@ -21,7 +21,7 @@ texture = ExtResource("2_rigbv")
 region_rect = Rect2(546, 477, 65, 65)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_te6ad"]
-bg_color = Color(0.6, 0.6, 0.6, 0.003921569)
+bg_color = Color(0.16924527, 0.16924533, 0.16924518, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -107,15 +107,19 @@ uppercase = true
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
+offset_left = -95.0
+offset_right = 95.0
+offset_bottom = 50.0
 grow_horizontal = 2
+size_flags_horizontal = 3
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxFlat_te6ad")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 script = ExtResource("4_te6ad")
 success_color = Color(1.4439226e-07, 0.62415147, 0.06424646, 1)
 
