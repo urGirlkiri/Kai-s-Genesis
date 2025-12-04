@@ -40,7 +40,6 @@ func _ready() -> void:
 	quench_thirst_rate = max_water_cap * 2.0
 
 func _physics_process(delta: float) -> void:
-	print("inzoe")
 	check_survival()
 	update_ui()
 

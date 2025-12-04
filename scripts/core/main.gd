@@ -11,7 +11,8 @@ func _ready() -> void:
 	for name in Globals.BUYABLES.keys():
 		var btn = get_node(Globals.BUYABLES[name]["button_path"])
 		shop_buttons[name] = btn
-		btn.pressed.connect(_on_buy_button_pressed.bind(name))
+		if Globals.BUYABLES[name].has('cost'): 
+			btn.pressed.connect(_on_buy_button_pressed.bind(name))
 
 	previous_life_force = Globals.life_force
 	add_to_group("game_managers")
@@ -54,8 +55,6 @@ func update_shop_buttons():
 			btn.text = "%s (%d)" % [name, cost]
 
 func _on_buy_button_pressed(item_name: String):
-	if not Globals.BUYABLES[name].has('cost'): return
-
 	var cost = Globals.BUYABLES[item_name]["cost"]
 
 	if Globals.life_force < cost:

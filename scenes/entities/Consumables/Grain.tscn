@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cnfdjywxnhy0o"]
 
 [ext_resource type="Texture2D" uid="uid://c6namq2aq1co3" path="res://assets/sprites/MooWorld/tileset_grass.png" id="1_4qsuj"]
-[ext_resource type="Script" uid="uid://m0ohdkrug4s8" path="res://scripts/entities/Consumambles/grass_patch.gd" id="1_wq0jx"]
+[ext_resource type="Script" uid="uid://c4c8gi7nsnw4a" path="res://scripts/entities/Consumambles/grain.gd" id="1_wq0jx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ir1xc"]
 size = Vector2(33, 32)

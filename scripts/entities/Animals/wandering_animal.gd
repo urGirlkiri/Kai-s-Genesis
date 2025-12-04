@@ -9,7 +9,6 @@ class_name WanderingAnimal
 @export var fall_speed := 500.0
 
 @export var food_source_name := ""
-@export var eat_speed := 5.0 
 
 var current_state = State.WANDER
 
@@ -29,8 +28,8 @@ func _ready():
 	pick_new_wander_direction()
 
 func _physics_process(delta: float) -> void:
-	current_stomach_cap -= delta * 0.5
-	print("Hunger: ", current_stomach_cap)
+	super._physics_process(delta)
+	print("Stomach: ", current_stomach_cap)
 
 	if is_falling:
 		handle_falling_off(delta)
@@ -104,7 +103,7 @@ func handle_falling_off(delta: float) -> void:
 		Globals.life_force -= fall_value_factor * 10
 
 func handle_find_food(delta: float) -> void:
-	get_thirsty(delta)
+	lose_energy(delta)
 
 	var food_source = find_nearest_something_in_group(food_source_name)
 
@@ -121,7 +120,7 @@ func handle_find_food(delta: float) -> void:
 		return_to_wander_with_cooldown()
 
 func handle_seek_food(delta: float) -> void:
-	get_thirsty(delta)
+	lose_energy(delta)
 	
 	if not is_instance_valid(target_food_area):
 		return_to_wander_with_cooldown()
@@ -134,9 +133,9 @@ func handle_eat_food(_delta: float) -> void:
 	pass
 
 func handle_find_pond(delta: float) -> void:
-	get_thirsty(delta)
+	lose_energy(delta)
 
-	var nearest_pond = find_nearest_something_in_group("pond") 
+	var nearest_pond = find_nearest_something_in_group("pond")
 
 	if (nearest_pond != null):
 		SignalBus.set_warning.emit("drought", false)
@@ -144,15 +143,15 @@ func handle_find_pond(delta: float) -> void:
 		target_pond_area = nearest_pond
 		current_state = State.SEEK_WATER
 		
-		if sense_area.overlaps_area(target_pond_area): 
-			_on_sensor_area_entered(target_pond_area)   
+		if sense_area.overlaps_area(target_pond_area):
+			_on_sensor_area_entered(target_pond_area)
 			
 	else:
 		SignalBus.set_warning.emit("drought", true)
 		return_to_wander_with_cooldown()
 
 func handle_seek_pond(delta: float) -> void:
-	get_thirsty(delta)
+	lose_energy(delta)
 
 	if not is_instance_valid(target_pond_area):
 		print("No valid pond found")
@@ -182,7 +181,7 @@ func handle_drink_water(delta: float) -> void:
 		
 func handle_wandering(delta: float) -> void:
 	wander_timer -= delta
-	get_thirsty(delta)
+	lose_energy(delta)
 
 	if wander_timer <= 0:
 		pick_new_wander_direction()
@@ -193,8 +192,10 @@ func handle_wandering(delta: float) -> void:
 	if distance_from_start > wander_range:
 		wander_direction = (start_position - global_position).normalized()
 
-func get_thirsty(delta: float) -> void:
+func lose_energy(delta: float) -> void:
 	current_water_cap -= delta * 1.5
+	current_stomach_cap -= delta * 0.5
+
 
 func check_ground() -> bool:
 	var is_on_valid_ground = current_world.is_point_walkable(global_position)
@@ -219,7 +220,7 @@ func pick_new_wander_direction():
 func return_to_wander_with_cooldown():
 	current_state = State.WANDER
 	is_finding_pond = false
-	is_finding_food = false 
+	is_finding_food = false
 	is_cooling_down = true
 	current_cooldown_time = default_cooldown_time
 
