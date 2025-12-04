@@ -18,14 +18,16 @@ func handle_consumption(amount: float) -> float:
 	var percent_left = available_nutrition / max_nutrition
 
 	sprite.scale = Vector2.ONE * max(0.1, percent_left)
-	
-	sprite.rotation_degrees = randf_range(-10, 10)
-	
+
+	handle_item_part_consumed(percent_left)
+		
 	if available_nutrition <= 0:
-		handle_item_consumed()
+		handle_item_fully_consumed()
 		
 	return eaten_amount 
 
+func handle_item_part_consumed(_percent_left: float): 
+	pass
 
-func handle_item_consumed():
+func handle_item_fully_consumed():
 	pass
