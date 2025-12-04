@@ -34,27 +34,17 @@ const BUYABLES = {
 		"click_energy_gain": 10.0,
 		"energy_per_cycle": 7.5
 	},
-	# FLORA
+	# Consumables
 	"Grass Patch": {
-		"button_path": "GameManager/NatureShop/GrassPatch",
+		"button_path": "GameManager/ConsuShop/GrassPatch",
 		"item_path": "res://scenes/entities/Flora/GrassPatch.tscn",
 		"cost": 10,
 		"group": "grass",
 		"click_energy_gain": 2.0,
 		"energy_per_cycle": 0.1
 	},
-	# STRUCTURES
-	"Earth": {
-		"button_path": "GameManager/NatureShop/Earth",
-		"item_path": "res://scenes/entities/Structures/Earth.tscn",
-		"cost": 500,
-		"group": "earth",
-		"click_energy_gain": 1.5,
-		"energy_per_cycle": 0.0
-	},
-	# Consumables
 	"Pond":{
-		"button_path": "GameManager/SynthShop/Pond",
+		"button_path": "GameManager/ConsuShop/Pond",
 		"item_path": "res://scenes/entities/Structures/Pond.tscn",
 		"cost": 15,
 		"group": "pond",
@@ -62,24 +52,42 @@ const BUYABLES = {
 		"energy_per_cycle": 0.0
 	},
 	"Grain": {
-		"button_path": "GameManager/SynthShop/Grain",
+		"button_path": "GameManager/ConsuShop/Grain",
 		"item_path": "res://scenes/entities/Consumables/Grain.tscn",
 		"cost": 30,
 		"group": "grain",
 		"click_energy_gain": 0.0,
 		"energy_per_cycle": 0.0
 	},
+	# Nature 
+	"Earth": {
+		"button_path": "GameManager/NatureShop/Earth",
+		"item_path": "res://scenes/entities/Structures/Earth.tscn",
+		# "cost": 500,
+		"group": "earth",
+		"click_energy_gain": 1.5,
+		"energy_per_cycle": 0.0
+	},
+	"Rain": {
+		"button_path": "GameManager/NatureShop/Rain",
+		"item_path": "res://scenes/entities/Structures/Rain.tscn",
+		# "cost": 750,
+		"group": "rain",
+		# "click_energy_gain": 2.5,
+		# "energy_per_cycle": 0.0
+	},
+
 	# Tools
 	"Axe": {
-		"button_path": "GameManager/HardShop/Axe",
+		"button_path": "GameManager/SynthShop/Axe",
 		"item_path": "res://scenes/entities/Tools/Axe.tscn",
-		"cost": 100,
+		# "cost": 100,
 		"group": "hammer",
 		"click_energy_gain": 0.0,
 		"energy_per_cycle": 0.0
 	},
 	"Fence": {
-		"button_path": "GameManager/HardShop/Fence",
+		"button_path": "GameManager/SynthShop/Fence",
 		"item_path": "res://scenes/entities/Structures/Fence.tscn",
 		"cost": 15,
 		"group": "fence",

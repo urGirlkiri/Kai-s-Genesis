@@ -42,6 +42,7 @@ func update_passive_income(delta: float):
 
 func update_shop_buttons():
 	for name in Globals.BUYABLES.keys():
+		if not Globals.BUYABLES[name].has('cost'): continue
 		var cost = Globals.BUYABLES[name]["cost"]
 		var btn = shop_buttons[name]
 		var affordable = Globals.life_force >= cost
@@ -53,6 +54,8 @@ func update_shop_buttons():
 			btn.text = "%s (%d)" % [name, cost]
 
 func _on_buy_button_pressed(item_name: String):
+	if not Globals.BUYABLES[name].has('cost'): return
+
 	var cost = Globals.BUYABLES[item_name]["cost"]
 
 	if Globals.life_force < cost:

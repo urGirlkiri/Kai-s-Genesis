@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c2g0pw5amocod"]
+[gd_scene load_steps=23 format=3 uid="uid://c2g0pw5amocod"]
 
 [ext_resource type="Script" uid="uid://dvuy58vaxm02c" path="res://scripts/core/main.gd" id="1_cc00j"]
 [ext_resource type="PackedScene" uid="uid://ccvkpckf4usie" path="res://scenes/worlds/MooWorld.tscn" id="2_njtbt"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://e21be2fqjgkr" path="res://assets/images/water_circle.png" id="10_gl1th"]
 [ext_resource type="Texture2D" uid="uid://dmntxk2hreiia" path="res://assets/images/void_texture.png" id="10_yvcut"]
 [ext_resource type="Texture2D" uid="uid://c4utgftowoxmn" path="res://assets/images/weapons.png" id="12_umypx"]
+[ext_resource type="PackedScene" uid="uid://dmb87dqfejldr" path="res://scenes/entities/Structures/Fence.tscn" id="15_i8jtn"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fuxbl"]
 texture = ExtResource("2_rigbv")
@@ -241,7 +242,7 @@ grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="GrassPatch" type="Button" parent="GameManager/NatureShop"]
+[node name="Rain" type="Button" parent="GameManager/NatureShop"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
@@ -252,13 +253,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
 disabled = true
 shortcut_in_tooltip = false
-
-[node name="Sprite2D" type="Sprite2D" parent="GameManager/NatureShop/GrassPatch"]
-position = Vector2(32, 39)
-scale = Vector2(3, 3)
-texture = ExtResource("4_x5f0r")
-region_enabled = true
-region_rect = Rect2(178, 194, 11, 9)
+text = "Rain (Coming Soon)"
 
 [node name="Earth" type="Button" parent="GameManager/NatureShop"]
 layout_mode = 2
@@ -271,23 +266,25 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
 disabled = true
 shortcut_in_tooltip = false
+text = "Earth (Coming Soon)"
 
 [node name="Sprite2D" type="Sprite2D" parent="GameManager/NatureShop/Earth"]
+visible = false
 position = Vector2(44, 37)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("9_upid4")
 region_enabled = true
 region_rect = Rect2(16, 0, 47, 48)
 
-[node name="SynthShop" type="VBoxContainer" parent="GameManager"]
+[node name="ConsuShop" type="VBoxContainer" parent="GameManager"]
 offset_left = -1.0
 offset_top = 109.0
-offset_right = 278.0
-offset_bottom = 283.0
+offset_right = 286.0
+offset_bottom = 362.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Grain" type="Button" parent="GameManager/SynthShop"]
+[node name="Grain" type="Button" parent="GameManager/ConsuShop"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
@@ -299,14 +296,14 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
 disabled = true
 shortcut_in_tooltip = false
 
-[node name="Sprite2D" type="Sprite2D" parent="GameManager/SynthShop/Grain"]
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/ConsuShop/Grain"]
 position = Vector2(36, 46)
 scale = Vector2(3, 3)
 texture = ExtResource("4_x5f0r")
 region_enabled = true
 region_rect = Rect2(81, 160, 14, 11)
 
-[node name="Pond" type="Button" parent="GameManager/SynthShop"]
+[node name="Pond" type="Button" parent="GameManager/ConsuShop"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
@@ -318,14 +315,33 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
 disabled = true
 shortcut_in_tooltip = false
 
-[node name="Sprite2D" type="Sprite2D" parent="GameManager/SynthShop/Pond"]
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/ConsuShop/Pond"]
 texture_filter = 1
 position = Vector2(39, 47)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("10_gl1th")
 region_rect = Rect2(8, 56, 31, 30)
 
-[node name="HardShop" type="VBoxContainer" parent="GameManager"]
+[node name="GrassPatch" type="Button" parent="GameManager/ConsuShop"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_fss6w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yvcut")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
+disabled = true
+shortcut_in_tooltip = false
+
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/ConsuShop/GrassPatch"]
+position = Vector2(29, 39)
+scale = Vector2(3, 3)
+texture = ExtResource("4_x5f0r")
+region_enabled = true
+region_rect = Rect2(178, 194, 11, 9)
+
+[node name="SynthShop" type="VBoxContainer" parent="GameManager"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -336,7 +352,7 @@ grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Fence" type="Button" parent="GameManager/HardShop"]
+[node name="Fence" type="Button" parent="GameManager/SynthShop"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
@@ -348,14 +364,14 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
 disabled = true
 shortcut_in_tooltip = false
 
-[node name="Sprite2D" type="Sprite2D" parent="GameManager/HardShop/Fence"]
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/SynthShop/Fence"]
 position = Vector2(37, 38)
 scale = Vector2(2, 2)
 texture = ExtResource("9_thnqr")
 region_enabled = true
 region_rect = Rect2(74, 6, 12, 25)
 
-[node name="Axe" type="Button" parent="GameManager/HardShop"]
+[node name="Axe" type="Button" parent="GameManager/SynthShop"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 0
@@ -366,8 +382,10 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
 disabled = true
 shortcut_in_tooltip = false
+text = "Axe (Coming Soon)"
 
-[node name="Sprite2D" type="Sprite2D" parent="GameManager/HardShop/Axe"]
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/SynthShop/Axe"]
+visible = false
 position = Vector2(37.000008, 38)
 rotation = -0.77143556
 scale = Vector2(2.5, 2.5)
@@ -378,6 +396,40 @@ region_rect = Rect2(16, 49, 16, 15)
 
 [node name="MooWorld" parent="." instance=ExtResource("2_njtbt")]
 position = Vector2(346, 453)
+scale = Vector2(0.8, 0.8)
+
+[node name="Node" type="Node" parent="MooWorld"]
+
+[node name="Fence" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
+position = Vector2(469.99997, 549)
+scale = Vector2(0.8, 0.8)
+
+[node name="Fence2" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
+position = Vector2(469.99997, 524)
+scale = Vector2(0.8, 0.8)
+
+[node name="Fence3" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
+position = Vector2(469.99997, 498)
+scale = Vector2(0.8, 0.8)
+
+[node name="Fence4" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
+position = Vector2(496.99997, 498)
+scale = Vector2(0.8, 0.8)
+
+[node name="Fence5" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
+position = Vector2(524.99994, 498)
+scale = Vector2(0.8, 0.8)
+
+[node name="Fence6" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
+position = Vector2(498.00006, 549)
+scale = Vector2(0.8, 0.8)
+
+[node name="Fence7" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
+position = Vector2(525.99994, 549)
+scale = Vector2(0.8, 0.8)
+
+[node name="Fence8" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
+position = Vector2(526.00006, 524)
 scale = Vector2(0.8, 0.8)
 
 [node name="CameraControl" type="Camera2D" parent="."]
