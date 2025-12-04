@@ -49,3 +49,5 @@
 ### Key Point 7: Game Expansion
 - [ ] Add multiple worlds and progression 
 - [ ] Add tutorialization
+- [ ] when world expands add the kai eye at the top or bottom where one can see the prt of the map they at
+- [ ] add rain to revive dry grass
