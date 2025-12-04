@@ -1,12 +1,18 @@
 extends CharacterBody2D
 
+class_name WanderingAnimal
+
 @onready var thirst_bar: Node2D = $ThirstBar
 @onready var sense_area: Area2D = $Sensor
+@onready var current_world = get_parent()
+@onready var sprite_2d: AnimatedSprite2D = $Sprite2D
 
-const CHECK_THIRST_AT_PERC = 0.4
+@export var CHECK_THIRST_AT_PERC = 0.4
+@export var CHECK_HUNGER_AT_PERC = 0.4
 
 @export var wander_range := 200.0
 @export var wander_timer_duration := 3.0
+
 @export var move_speed := 100.0
 @export var fall_speed := 500.0
 @export var fall_value_factor := 1.0
@@ -14,16 +20,22 @@ const CHECK_THIRST_AT_PERC = 0.4
 @export var get_thirst_rate := 20.0
 @export var cooldown_time_before_action := 5.0 # find pond,food...
 
+@export var max_hunger := 30.0
+@export var eat_speed := 5.0 
+
+var current_hunger := 30.0
+var target_food_area: Area2D = null
+
 var quench_thirst_rate := 0.0
 var current_cooldown_time := 0.0
 var is_cooling_down := false
 var current_get_thirst_rate := 0.0
 var target_pond_area: Area2D = null
 
-enum State { 
-	WANDER, 
-	FIND_WATER, SEEK_WATER, DRINK_WATER, 
-	FIND_FOOD, SEEK_FOOD,  EAT_FOOD 
+enum State {
+	WANDER,
+	FIND_WATER, SEEK_WATER, DRINK_WATER,
+	FIND_FOOD, SEEK_FOOD, EAT_FOOD
 }
 
 var current_state = State.WANDER
@@ -35,9 +47,7 @@ var start_position := Vector2.ZERO
 var is_falling := false
 var is_finding_pond := false
 var fall_velocity := 0.0
-
-@onready var current_world = get_parent()
-@onready var sprite_2d: AnimatedSprite2D = $Sprite2D
+var is_finding_food := false
 
 func _ready():
 	current_get_thirst_rate = get_thirst_rate
@@ -47,6 +57,15 @@ func _ready():
 	pick_new_wander_direction()
 
 func _physics_process(delta: float) -> void:
+	current_hunger -= delta * 0.5
+	print("Hunger: ", current_hunger)
+
+	if current_get_thirst_rate <= 0 or current_hunger <= 0:
+		#todo: animate die of thirst
+		queue_free()
+		Globals.life_force -= fall_value_factor * 5
+		return
+
 	if is_falling:
 		handle_falling_off(delta)
 		return
@@ -61,31 +80,38 @@ func _physics_process(delta: float) -> void:
 			is_cooling_down = false
 			current_cooldown_time = cooldown_time_before_action
 
-	if current_state == State.WANDER and is_cooling_down == false :
+	if current_state == State.WANDER and is_cooling_down == false:
 		if current_get_thirst_rate <= get_thirst_rate * CHECK_THIRST_AT_PERC:
-			if not is_finding_pond: 
-				current_state = State.FIND_WATER
-				is_finding_pond = true
-				
-	if current_get_thirst_rate <= 0 :
-		#todo: animate die of thirst
-		queue_free()
+			pass
+			# if not is_finding_pond:
+			# 	current_state = State.FIND_WATER
+			# 	is_finding_pond = true
 
+		if current_hunger <= max_hunger * CHECK_HUNGER_AT_PERC:
+			if not is_finding_food:
+				current_state = State.FIND_FOOD
+				is_finding_food = true
+				
 	match current_state:
 		State.WANDER:
 			handle_wandering(delta)
 		State.FIND_WATER:
+			print("Finding Pond")
 			handle_find_pond(delta)
 		State.SEEK_WATER:
+			print("Seeking Pond")
 			handle_seek_pond(delta)
 		State.DRINK_WATER:
 			handle_drink_water(delta)
 		State.FIND_FOOD:
-			pass
+			print("Finding Food")
+			handle_find_food(delta)
 		State.SEEK_FOOD:
-			pass 
+			print("Seeking Food")
+			handle_seek_food(delta)
 		State.EAT_FOOD:
-			pass
+			print("Eating Food")
+			handle_eat_food(delta)
 	
 	handle_thirst_bar()
 	move_and_slide()
@@ -117,47 +143,39 @@ func handle_falling_off(delta: float) -> void:
 		queue_free()
 		Globals.life_force -= fall_value_factor * 10
 
+func handle_find_food(_delta: float) -> void:
+	pass
+
+func handle_seek_food(_delta: float) -> void:
+	pass
+
+func handle_eat_food(_delta: float) -> void:
+	pass
+
 func handle_find_pond(delta: float) -> void:
 	get_thirsty(delta)
 
-	var ponds = get_tree().get_nodes_in_group("pond")
+	var nearest_pond = find_nearest_something_in_group("pond") 
 
-	if ponds.size() > 0:
-		var nearest_pond =  ponds[0]
-		var nearest_distance = global_position.distance_to(nearest_pond.global_position)
-		
-		for pond in ponds:
-			var dist = global_position.distance_to(pond.global_position)
-			if dist < nearest_distance:
-				nearest_distance = dist
-				nearest_pond = pond
+	if (nearest_pond != null):
+		SignalBus.set_warning.emit("drought", false)
 		
 		target_pond_area = nearest_pond
-
-		if target_pond_area != null and is_instance_valid(target_pond_area):
-			current_state = State.SEEK_WATER
-			if sense_area.overlaps_area(target_pond_area):
-				_on_sensor_area_entered(target_pond_area)
-		else:
-			SignalBus.set_warning.emit("drought", false)
-			#todo: if thirst is low enugh, reduce speed and show tardniess
-			current_state = State.WANDER
-			is_finding_pond = false
-			is_cooling_down = true
+		current_state = State.SEEK_WATER
+		
+		if sense_area.overlaps_area(target_pond_area): 
+			_on_sensor_area_entered(target_pond_area)   
+			
 	else:
 		SignalBus.set_warning.emit("drought", true)
-		current_state = State.WANDER
-		is_finding_pond = false
-		is_cooling_down = true
+		return_to_wander_with_cooldown()
 
 func handle_seek_pond(delta: float) -> void:
 	get_thirsty(delta)
 
 	if not is_instance_valid(target_pond_area):
 		print("No valid pond found")
-		current_state = State.WANDER
-		is_finding_pond = false
-		is_cooling_down = true
+		return_to_wander_with_cooldown()
 		return
 
 	var direction_to_pond = (target_pond_area.global_position - global_position).normalized()
@@ -171,7 +189,7 @@ func handle_drink_water(delta: float) -> void:
 		var fill_amount_per_second = get_thirst_rate / quench_thirst_rate
 		current_get_thirst_rate += fill_amount_per_second * delta
 	
-	if current_get_thirst_rate >= get_thirst_rate:		
+	if current_get_thirst_rate >= get_thirst_rate:
 		current_state = State.WANDER
 		is_finding_pond = false
 		is_cooling_down = false
@@ -217,13 +235,44 @@ func pick_new_wander_direction():
 	var random_angle = randf() * TAU
 	wander_direction = Vector2(cos(random_angle), sin(random_angle)).normalized()
 
+func return_to_wander_with_cooldown():
+	current_state = State.WANDER
+	is_finding_pond = false
+	is_finding_food = false 
+	is_cooling_down = true
+	current_cooldown_time = cooldown_time_before_action
+
+func find_nearest_something_in_group(group_name: String) -> Area2D:
+	var items = get_tree().get_nodes_in_group(group_name)
+	
+	if items.size() == 0:
+		return null
+	
+	var nearest_item = items[0]
+	var nearest_distance = global_position.distance_to(nearest_item.global_position)
+	
+	for item in items:
+		var dist = global_position.distance_to(item.global_position)
+		if dist < nearest_distance:
+			nearest_distance = dist
+			nearest_item = item
+	
+	return nearest_item
+
 func _on_sensor_area_entered(area: Area2D) -> void:
+	print("Sensor detected area: ", area.name)
 
 	if current_state == State.SEEK_WATER and area == target_pond_area:
 		current_state = State.DRINK_WATER
-		velocity = Vector2.ZERO 
+		velocity = Vector2.ZERO
+	
+	if current_state == State.SEEK_FOOD and area == target_food_area:
+		current_state = State.EAT_FOOD
+		velocity = Vector2.ZERO
 
 func _on_sensor_area_exited(area: Area2D) -> void:
-
 	if area == target_pond_area and current_state == State.DRINK_WATER:
-		current_state = State.SEEK_WATER 
+		current_state = State.SEEK_WATER
+	
+	if area == target_food_area and current_state == State.EAT_FOOD:
+		current_state = State.SEEK_FOOD

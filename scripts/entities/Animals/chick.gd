@@ -1,4 +1,4 @@
-extends "res://scripts/entities/wandering_animal.gd"
+extends "res://scripts/entities/bird.gd"
 
 func _ready():
 	if not is_in_group("chick"):
@@ -12,5 +12,8 @@ func _ready():
 
 	get_thirst_rate = 100
 	cooldown_time_before_action = 8.0
+
+	CHECK_HUNGER_AT_PERC = 0.8
+	CHECK_THIRST_AT_PERC = 0.7
 	
 	super._ready()
