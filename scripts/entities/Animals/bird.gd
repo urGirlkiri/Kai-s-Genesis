@@ -7,16 +7,6 @@ var peck_cooldown: float = 0.0
 func _ready():
 	super._ready()
 	food_source_name = 'grain'
-
-func handle_seek_food(delta: float) -> void:
-	get_thirsty(delta)
-	
-	if not is_instance_valid(target_food_area):
-		return_to_wander_with_cooldown()
-		return
-
-	var direction = (target_food_area.global_position - global_position).normalized()
-	velocity = direction * move_speed
 	
 func handle_eat_food(delta: float) -> void:
 	velocity = Vector2.ZERO
