@@ -22,5 +22,5 @@ func set_value(value: float):
 		fill_style.corner_radius_top_right = 8
 		fill_style.corner_radius_bottom_right = 8
 
-func toggle_visibility(visible: bool) -> void:
-	progress_bar.visible = visible
+func toggle_visibility(value: bool) -> void:
+	progress_bar.visible = value

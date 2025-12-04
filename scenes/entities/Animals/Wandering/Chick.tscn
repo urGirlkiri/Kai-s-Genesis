@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://og6c2vmfh5t2" path="res://scenes/entities/Animals/wandering_animal.tscn" id="1_ccf3y"]
 [ext_resource type="Texture2D" uid="uid://cc216d544wbwq" path="res://assets/sprites/MooWorld/baby-chicken-sheet.png" id="2_85yju"]
-[ext_resource type="Script" uid="uid://b5ikl1vmvsn7a" path="res://scripts/entities/Animals/chick.gd" id="2_elgde"]
+[ext_resource type="Script" uid="uid://b5ikl1vmvsn7a" path="res://scripts/entities/Animals/Birds/chick.gd" id="2_elgde"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mq7kk"]
 atlas = ExtResource("2_85yju")
@@ -210,6 +210,7 @@ radius = 16.0
 
 [node name="Chick" instance=ExtResource("1_ccf3y")]
 script = ExtResource("2_elgde")
+peck_amount = 5
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." index="2"]
 texture_filter = 1

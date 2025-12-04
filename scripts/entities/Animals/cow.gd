@@ -1,4 +1,4 @@
-extends "res://scripts/entities/wandering_animal.gd"
+extends "res://scripts/entities/Animals/wandering_animal.gd"
 
 func _ready():
 	if not is_in_group("cow"):
