@@ -17,5 +17,6 @@ func _ready():
 	CHECK_THIRST_AT_PERC = 0.5
 
 	nutrition_per_perk = 10
+	peck_cooldown = 1.2
 
 	super._ready()

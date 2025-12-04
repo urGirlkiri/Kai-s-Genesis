@@ -9,7 +9,7 @@ var available_nutrition := 0.0
 func _ready() -> void:
 	available_nutrition = max_nutrition
 
-func be_pecked(amount: float) -> float:
+func handle_consumption(amount: float) -> float:
 	var eaten_amount = min(amount, available_nutrition)
 	available_nutrition -= eaten_amount
 	
