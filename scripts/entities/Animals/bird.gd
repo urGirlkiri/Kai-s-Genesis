@@ -1,6 +1,6 @@
 extends WanderingAnimal
 
-@export var peck_amount: int = 5      # Nutrition per peck
+@export var nutrition_per_perk: int = 5      
 
 var peck_cooldown: float = 0.0
 
@@ -42,7 +42,7 @@ func handle_eat_food(delta: float) -> void:
 
 		if is_instance_valid(target_food_area):
 			if target_food_area.has_method("be_pecked"):
-				var eaten_amount = target_food_area.be_pecked(peck_amount)
+				var eaten_amount = target_food_area.be_pecked(nutrition_per_perk)
 				if eaten_amount > 0:
 					current_hunger += eaten_amount
 	else:

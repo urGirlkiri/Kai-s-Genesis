@@ -16,6 +16,6 @@ func _ready():
 	CHECK_HUNGER_AT_PERC = 0.6
 	CHECK_THIRST_AT_PERC = 0.5
 
-	peck_amount = 10
+	nutrition_per_perk = 10
 
 	super._ready()
