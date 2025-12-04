@@ -10,8 +10,8 @@ func _ready():
 	fall_speed = 500.0
 	fall_value_factor = 1.5
 
-	get_thirst_rate = 150
-	cooldown_time_before_action = 15
+	max_water_cap = 150
+	default_cooldown_time = 15
 	
 	CHECK_HUNGER_AT_PERC = 0.6
 	CHECK_THIRST_AT_PERC = 0.5

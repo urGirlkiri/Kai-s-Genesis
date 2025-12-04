@@ -44,12 +44,12 @@ func handle_eat_food(delta: float) -> void:
 			if target_food_area.has_method("be_pecked"):
 				var eaten_amount = target_food_area.be_pecked(nutrition_per_perk)
 				if eaten_amount > 0:
-					current_hunger += eaten_amount
+					current_stomach_cap += eaten_amount
 	else:
 		get_thirsty(delta)
 	
-	if current_hunger >= max_hunger:
-		current_hunger = max_hunger
+	if current_stomach_cap >= max_stomach_cap:
+		current_stomach_cap = max_stomach_cap
 		
 		current_state = State.WANDER
 		is_finding_food = false

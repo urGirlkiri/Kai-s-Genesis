@@ -14,12 +14,11 @@
     - Enforce the cap on the player's current Life Force.
     - Update the UI to display current vs. max Life Force (e.g., "64 / 100"), with a visual indicator when capped.
     - The core loop: Start on a small island, hit the cap, and be forced to buy land to progress.
+    - implement axe that leads to destructing or tearing down buildings
  
 ### Key Point 2: Animal & Entity Interaction
 - [ ] **Animal Behavior & Consequences:**
     - Make cows consume grass tiles they wander over.
-    - Implement chicks that are attract to grain.
-    -[x] wandering animals should get tired Text: "⚠️ DROUGHT ALERT! NO WATER! ⚠️"after sme time and go drink water(which chsould disappear after getting consumed)
     - decide to show animations for animals show 
  
 ## Phase 2: Persistence & Polish
@@ -37,6 +36,7 @@
     - Add a satisfying "pop" or "collect" sound for clicks.
     - Implement a "thump" or "dirt" sound for placing land tiles.
     - make world explode when life exceeds max life
+    - negative life force leads to game over and resetting the game
  
 ## Phase 5: Long-Term Features & Customization
 **Focus:** Adding content and features that extend gameplay and add personality.
