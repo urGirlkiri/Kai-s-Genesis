@@ -8,6 +8,7 @@ class_name WanderingAnimal
 @export var move_speed := 100.0
 @export var fall_speed := 500.0
 
+@export var food_source_name := ""
 @export var eat_speed := 5.0 
 
 var current_state = State.WANDER
@@ -23,6 +24,7 @@ var is_finding_food := false
 
 func _ready():
 	super._ready()
+	food_source_name = food_source_name.to_lower()
 	start_position = global_position
 	pick_new_wander_direction()
 
@@ -101,8 +103,22 @@ func handle_falling_off(delta: float) -> void:
 		queue_free()
 		Globals.life_force -= fall_value_factor * 10
 
-func handle_find_food(_delta: float) -> void:
-	pass
+func handle_find_food(delta: float) -> void:
+	get_thirsty(delta)
+
+	var food_source = find_nearest_something_in_group(food_source_name)
+
+	if food_source != null:
+		SignalBus.set_warning.emit("famine", false)
+		
+		target_food_area = food_source
+		current_state = State.SEEK_FOOD
+		
+		if sense_area.overlaps_area(target_food_area):
+			_on_sensor_area_entered(target_food_area)
+	else:
+		SignalBus.set_warning.emit("famine", true)
+		return_to_wander_with_cooldown()
 
 func handle_seek_food(_delta: float) -> void:
 	pass

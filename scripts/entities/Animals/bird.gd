@@ -4,23 +4,9 @@ extends WanderingAnimal
 
 var peck_cooldown: float = 0.0
 
-
-func handle_find_food(delta: float) -> void:
-	get_thirsty(delta)
-
-	var food_source = find_nearest_something_in_group("grain")
-
-	if food_source != null:
-		SignalBus.set_warning.emit("famine", false)
-		
-		target_food_area = food_source
-		current_state = State.SEEK_FOOD
-		
-		if sense_area.overlaps_area(target_food_area):
-			_on_sensor_area_entered(target_food_area)
-	else:
-		SignalBus.set_warning.emit("famine", true)
-		return_to_wander_with_cooldown()
+func _ready():
+	super._ready()
+	food_source_name = 'grain'
 
 func handle_seek_food(delta: float) -> void:
 	get_thirsty(delta)
