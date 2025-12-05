@@ -1,0 +1,7 @@
+extends Node
+
+enum GAME_STATE {
+	PLAYING,
+	DESTRUCTING,
+	GAME_OVER
+}

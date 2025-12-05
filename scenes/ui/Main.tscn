@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c2g0pw5amocod"]
+[gd_scene load_steps=27 format=3 uid="uid://c2g0pw5amocod"]
 
 [ext_resource type="Script" uid="uid://dvuy58vaxm02c" path="res://scripts/core/main.gd" id="1_cc00j"]
 [ext_resource type="PackedScene" uid="uid://ccvkpckf4usie" path="res://scenes/worlds/MooWorld.tscn" id="2_njtbt"]
@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://e21be2fqjgkr" path="res://assets/images/water_circle.png" id="10_gl1th"]
 [ext_resource type="Texture2D" uid="uid://dmntxk2hreiia" path="res://assets/images/void_texture.png" id="10_yvcut"]
 [ext_resource type="Texture2D" uid="uid://c4utgftowoxmn" path="res://assets/images/weapons.png" id="12_umypx"]
-[ext_resource type="PackedScene" uid="uid://dmb87dqfejldr" path="res://scenes/entities/Structures/Fence.tscn" id="15_i8jtn"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fuxbl"]
 texture = ExtResource("2_rigbv")
@@ -59,6 +58,46 @@ corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i8jtn"]
+bg_color = Color(0.15847227, 0.15847233, 0.15847221, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.38928655, 0.3892867, 0.38928637, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ca1i"]
+bg_color = Color(0.10747974, 0.10747973, 0.107479684, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3nd05"]
+bg_color = Color(0.043039158, 0.04303915, 0.04303915, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_acbhb"]
+bg_color = Color(0.07683582, 0.07683582, 0.0768358, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kpu1v"]
+bg_color = Color(0.10747974, 0.10747973, 0.107479684, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_cc00j")
@@ -394,148 +433,77 @@ texture = ExtResource("12_umypx")
 region_enabled = true
 region_rect = Rect2(16, 49, 16, 15)
 
+[node name="Overlays" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="GameOver" type="ColorRect" parent="Overlays"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 0.2509804)
+
+[node name="PanelContainer" type="PanelContainer" parent="Overlays/GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -77.0
+offset_right = 171.91309
+offset_bottom = 196.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i8jtn")
+
+[node name="MarginContainer" type="MarginContainer" parent="Overlays/GameOver/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Overlays/GameOver/PanelContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="GameOver" type="Label" parent="Overlays/GameOver/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.6210423, 0.56365764, 1)
+theme_override_font_sizes/font_size = 32
+text = "game over"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Info" type="Label" parent="Overlays/GameOver/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(341, 93)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.765724, 0.72869813, 1)
+theme_override_font_sizes/font_size = 32
+text = "You've Failed This Galaxy"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="Overlays/GameOver/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_4ca1i")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3nd05")
+theme_override_styles/hover = SubResource("StyleBoxFlat_acbhb")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kpu1v")
+text = "Try Again"
+
 [node name="MooWorld" parent="." instance=ExtResource("2_njtbt")]
-position = Vector2(346, 453)
-scale = Vector2(0.8, 0.8)
-
-[node name="Node" type="Node" parent="MooWorld"]
-
-[node name="Fence" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(362.99997, 545)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence2" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(362, 519)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence3" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(362.99997, 493)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence9" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(363, 467)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence10" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(392, 467)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence11" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(419, 467)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence12" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(446, 467)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence13" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(470, 467)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence14" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(498, 468)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence15" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(525, 467)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence16" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(552, 467)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence17" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(578, 467)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence18" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(599, 467)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence19" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(599, 489)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence20" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(599, 508)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence21" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(599, 525)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence22" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(599, 547)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence23" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(599, 564)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence24" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(599, 577)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence25" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(599, 587)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence26" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(599, 605)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence27" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(599, 631)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence4" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(416, 631)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence28" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(416, 631)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence29" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(444, 632)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence30" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(472, 631)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence31" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(498, 630)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence32" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(524, 630)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence33" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(552, 631)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence34" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(579, 630)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence5" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(389.00006, 631)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence6" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(363, 570)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence7" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(364.00006, 596)
-scale = Vector2(0.8, 0.8)
-
-[node name="Fence8" parent="MooWorld/Node" instance=ExtResource("15_i8jtn")]
-position = Vector2(363, 622)
+position = Vector2(381, 280)
 scale = Vector2(0.8, 0.8)
 
 [node name="CameraControl" type="Camera2D" parent="."]
 position = Vector2(543, 328)
 script = ExtResource("9_fss6w")
+
+[connection signal="pressed" from="Overlays/GameOver/PanelContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_game_retry"]

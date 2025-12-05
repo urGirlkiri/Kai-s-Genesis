@@ -22,6 +22,7 @@ config/icon="uid://b61m220bwjm1b"
 
 Globals="*res://scripts/core/globals.gd"
 SignalBus="*res://scripts/core/signal_bus.gd"
+Enums="*res://scripts/core/enums.gd"
 
 [display]
 

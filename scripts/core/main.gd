@@ -2,12 +2,15 @@ extends Node2D
 
 @onready var life_force_label := $GameManager/LifeForce/Label
 @onready var moo_world := $MooWorld
+@onready var game_over: CanvasLayer = %Overlays
 
 var shop_buttons = {}
 var life_generation_timer := Globals.ENERGY_GEN_CYCLE
 var previous_life_force := 0.0
+var destroy_timer := 10.0
 
 func _ready() -> void:
+	Globals.game_state = Enums.GAME_STATE.PLAYING
 	for name in Globals.BUYABLES.keys():
 		var btn = get_node(Globals.BUYABLES[name]["button_path"])
 		shop_buttons[name] = btn
@@ -19,6 +22,13 @@ func _ready() -> void:
 	update_stats()
 	
 func _process(delta: float) -> void:
+	if Globals.life_force < 0:
+		Globals.game_state = Enums.GAME_STATE.GAME_OVER
+	
+	match Globals.game_state:
+		Enums.GAME_STATE.GAME_OVER:
+			_on_game_over()
+		
 	update_shop_buttons()
 	update_passive_income(delta)
 
@@ -67,3 +77,11 @@ func _on_buy_button_pressed(item_name: String):
 	update_stats()
 	
 	moo_world.start_placement(Globals.BUYABLES[item_name]["item_path"])
+	
+func _on_game_over(): 
+	game_over.show()
+
+func _on_game_retry() -> void:
+	Globals.reset()
+	get_tree().reload_current_scene()
+	

@@ -97,3 +97,15 @@ const BUYABLES = {
 }
 
 @export var life_force := 0.0
+@export var game_state: Enums.GAME_STATE
+
+var initial_life_force: float
+
+
+func _ready() -> void:
+	initial_life_force = life_force
+
+
+func reset() -> void:
+	life_force = initial_life_force
+	game_state = Enums.GAME_STATE.PLAYING
