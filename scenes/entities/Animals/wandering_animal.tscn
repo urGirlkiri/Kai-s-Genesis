@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://og6c2vmfh5t2"]
 
 [ext_resource type="Script" uid="uid://dkuyg7m5sr2no" path="res://scripts/entities/Animals/wandering_animal.gd" id="1_nmnic"]
-[ext_resource type="PackedScene" uid="uid://mfck21s4g3hh" path="res://scenes/ui/progressbars/ThirstBar.tscn" id="3_2ii2h"]
+[ext_resource type="PackedScene" uid="uid://d3safietoqoi1" path="res://scenes/ui/progressbars/AnimalBar.tscn" id="2_i8232"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lqjiu"]
 radius = 47.010635
@@ -10,8 +10,8 @@ radius = 47.010635
 z_index = 1
 script = ExtResource("1_nmnic")
 
-[node name="ThirstBar" parent="." instance=ExtResource("3_2ii2h")]
-position = Vector2(-35, 38.000004)
+[node name="AnimalBar" parent="." instance=ExtResource("2_i8232")]
+position = Vector2(-35.000004, 38)
 scale = Vector2(0.7, 0.7)
 
 [node name="Sensor" type="Area2D" parent="."]

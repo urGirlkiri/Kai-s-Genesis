@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3safietoqoi1"]
+
+[ext_resource type="Script" uid="uid://da15h4orpxti2" path="res://scripts/ui/animal_bar.gd" id="1_em11l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmu2r"]
+bg_color = Color(0, 0, 0, 0)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pp6hu"]
+bg_color = Color(0.2, 0.78039217, 1, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_em11l"]
+bg_color = Color(0.101960786, 0.14901961, 0.2, 1)
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8e6e"]
+bg_color = Color(0.8235294, 0.4117647, 0.11764706, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+
+[node name="AnimalBar" type="Node2D"]
+script = ExtResource("1_em11l")
+
+[node name="Thirst" type="ProgressBar" parent="."]
+z_index = 1
+offset_right = 127.0
+offset_bottom = 29.0
+theme_override_styles/background = SubResource("StyleBoxFlat_pmu2r")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pp6hu")
+step = 0.0
+show_percentage = false
+
+[node name="Hunger" type="ProgressBar" parent="Thirst"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_em11l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_e8e6e")
+step = 0.0
+show_percentage = false

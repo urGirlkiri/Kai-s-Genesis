@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 class_name Animal
 
-@onready var thirst_bar: Node2D = $ThirstBar
+@onready var animal_bar: Node2D = $AnimalBar
+
 @onready var sense_area: Area2D = $Sensor
 @onready var current_world = get_parent()
 @onready var sprite_2d: AnimatedSprite2D = $Sprite2D
@@ -25,10 +26,12 @@ var is_cooling_down := false
 var current_cooldown_time := 0.0
 
 enum State { 
-	WANDER, 
+	IDLE, WANDER, 
 	FIND_WATER, SEEK_WATER, DRINK_WATER, 
 	FIND_FOOD, SEEK_FOOD, EAT_FOOD 
 }
+
+var current_state = State.IDLE
 
 var target_pond_area: Area2D = null
 var target_food_area: Area2D = null
@@ -58,10 +61,48 @@ func die() -> void:
 	queue_free()
 
 func update_ui():
-	if thirst_bar:
-		var percent = (current_water_cap / max_water_cap) * 100
-		if thirst_bar.has_method("set_value"):
-			thirst_bar.set_value(percent)
+	if animal_bar:
+		var thirst_perc = (current_water_cap / max_water_cap) * 100
+		var hunger_perc = (current_stomach_cap / max_stomach_cap) * 100
+
+		if animal_bar.has_method("set_value"):
+			animal_bar.set_value(thirst_perc, hunger_perc)
 		
-		if thirst_bar.has_method("toggle_visibility"):
-			thirst_bar.toggle_visibility(percent < 99)
+		if animal_bar.has_method("toggle_visibility"):
+			animal_bar.toggle_visibility( min(thirst_perc, hunger_perc) < 99 )
+
+
+func find_nearest_something_in_group(group_name: String) -> Area2D:
+	var items = get_tree().get_nodes_in_group(group_name)
+	
+	if items.size() == 0:
+		return null
+	
+	var nearest_item = items[0]
+	var nearest_distance = global_position.distance_to(nearest_item.global_position)
+	
+	for item in items:
+		var dist = global_position.distance_to(item.global_position)
+		if dist < nearest_distance:
+			nearest_distance = dist
+			nearest_item = item
+	
+	return nearest_item
+
+func _on_sensor_area_entered(area: Area2D) -> void:
+	print("Sensor detected area: ", area.name)
+
+	if current_state == State.SEEK_WATER and area == target_pond_area:
+		current_state = State.DRINK_WATER
+		velocity = Vector2.ZERO
+	
+	if current_state == State.SEEK_FOOD and area == target_food_area:
+		current_state = State.EAT_FOOD
+		velocity = Vector2.ZERO
+
+func _on_sensor_area_exited(area: Area2D) -> void:
+	if area == target_pond_area and current_state == State.DRINK_WATER:
+		current_state = State.SEEK_WATER
+	
+	if area == target_food_area and current_state == State.EAT_FOOD:
+		current_state = State.SEEK_FOOD
