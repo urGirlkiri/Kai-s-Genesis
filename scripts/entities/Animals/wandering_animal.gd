@@ -37,17 +37,19 @@ func _physics_process(delta: float) -> void:
 		is_falling = true
 		return
 
-	if current_state == State.WANDER and is_cooling_down == false:
-		if current_water_cap <= max_water_cap * CHECK_THIRST_AT_PERC:
-			pass
-			# if not is_finding_pond:
-			# 	current_state = State.FIND_WATER
-			# 	is_finding_pond = true
+	if current_state == State.WANDER and not is_cooling_down:
+		var thirst_ratio_to_full = current_water_cap / float(max_water_cap)
+		var hungry_ratio_to_full = current_stomach_cap / float(max_stomach_cap)
 
-		if current_stomach_cap <= max_stomach_cap * CHECK_HUNGER_AT_PERC:
-			if not is_finding_food:
-				current_state = State.FIND_FOOD
-				is_finding_food = true
+		var is_thirsty = thirst_ratio_to_full <= CHECK_THIRST_AT_PERC
+		var is_hungry = hungry_ratio_to_full <= CHECK_HUNGER_AT_PERC
+
+		if is_thirsty and not is_finding_pond and (not is_hungry or thirst_ratio_to_full < hungry_ratio_to_full):
+			current_state = State.FIND_WATER
+			is_finding_pond = true
+		elif is_hungry and not is_finding_food:
+			current_state = State.FIND_FOOD
+			is_finding_food = true
 				
 	match current_state:
 		State.WANDER:
