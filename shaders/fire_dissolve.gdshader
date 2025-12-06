@@ -23,7 +23,6 @@ void fragment() {
     vec4 curve_value = texture(colorCurve, vec2(mask, 0.0));
     
     float blendMask = pow(mask, 0.1); 
-    COLOR.rgb = mix(COLOR.rgb, curve_value.rgb, blendMask);
-    
+	COLOR.rgb = mix(COLOR.rgb, curve_value.rgb, blendMask * COLOR.a);    
 	COLOR.a *= min(COLOR.a,1.0-(float(dist<radius)));
 }

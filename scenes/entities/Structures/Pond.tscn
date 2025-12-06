@@ -10,6 +10,7 @@ size = Vector2(29, 28)
 radius = 24.0
 
 [node name="Pond" type="StaticBody2D"]
+z_index = 1
 script = ExtResource("1_for0j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

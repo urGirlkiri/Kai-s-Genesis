@@ -5,7 +5,7 @@ class_name Animal
 @onready var animal_bar: Node2D = $AnimalBar
 
 @onready var sense_area: Area2D = $Sensor
-@onready var current_world = get_parent()
+@onready var current_world = Globals.current_world
 @onready var sprite_2d: AnimatedSprite2D = $Sprite2D
 
 @export var CHECK_THIRST_AT_PERC = 0.4

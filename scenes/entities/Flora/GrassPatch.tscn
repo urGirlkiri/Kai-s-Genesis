@@ -13,10 +13,12 @@ shader_parameter/depletion_progress = 0.0
 size = Vector2(49, 44)
 
 [node name="GrassPatch" type="Area2D" groups=["grass"]]
+z_index = 1
 collision_layer = 8
 script = ExtResource("1_sgsj2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 material = SubResource("ShaderMaterial_bsuqb")
 texture = ExtResource("2_ir0cv")
 region_enabled = true
