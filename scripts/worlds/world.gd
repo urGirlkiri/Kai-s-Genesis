@@ -100,6 +100,7 @@ func dissolve_world(center_pos: Vector2 = Vector2.ZERO):
 		if child.has_method("set_use_parent_material"):
 			child.set_use_parent_material(true)
 		if not child.is_in_group("dissolve"):
+			#todo: change the white canvas to a void texture to mimic a universal boom
 			child.z_index = 0
 			
 		

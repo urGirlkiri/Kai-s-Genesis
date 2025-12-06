@@ -35,8 +35,6 @@
 - [ ] **Sound Effects:**
     - Add a satisfying "pop" or "collect" sound for clicks.
     - Implement a "thump" or "dirt" sound for placing land tiles.
-    - make world explode when life exceeds max life
-    - negative life force leads to game over and resetting the game
  
 ## Phase 5: Long-Term Features & Customization
 **Focus:** Adding content and features that extend gameplay and add personality.
