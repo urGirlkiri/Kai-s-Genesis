@@ -11,6 +11,9 @@ var destroy_timer := 10.0
 
 func _ready() -> void:
 	Globals.game_state = Enums.GAME_STATE.PLAYING
+	
+	game_over.hide() 
+	
 	for name in Globals.BUYABLES.keys():
 		var btn = get_node(Globals.BUYABLES[name]["button_path"])
 		shop_buttons[name] = btn
@@ -22,18 +25,31 @@ func _ready() -> void:
 	update_stats()
 	
 func _process(delta: float) -> void:
-	if Globals.life_force < 0:
-		Globals.game_state = Enums.GAME_STATE.GAME_OVER
-	
-	match Globals.game_state:
-		Enums.GAME_STATE.GAME_OVER:
-			_on_game_over()
-		
-	update_shop_buttons()
-	update_passive_income(delta)
 
-	if Globals.life_force != previous_life_force:
-		update_stats()
+	if Globals.game_state == Enums.GAME_STATE.PLAYING:
+		if Globals.life_force < 0:
+			trigger_game_over_sequence()
+			return 
+
+		update_shop_buttons()
+		update_passive_income(delta)
+
+		if Globals.life_force != previous_life_force:
+			update_stats()
+
+func trigger_game_over_sequence():
+	Globals.game_state = Enums.GAME_STATE.GAME_OVER
+	
+	if moo_world.has_method("dissolve_world"):
+		var center_screen = get_viewport_rect().size / 2
+		moo_world.dissolve_world(center_screen)
+	else:
+		print("Error: trigger_dissolve method missing in moo_world.gd")
+	
+	await get_tree().create_timer(1.5).timeout
+	
+	game_over.show()
+
 
 func update_stats():
 	life_force_label.text = "Life Force: %.2f" % Globals.life_force
@@ -65,6 +81,8 @@ func update_shop_buttons():
 			btn.text = "%s (%d)" % [name, cost]
 
 func _on_buy_button_pressed(item_name: String):
+	if Globals.game_state != Enums.GAME_STATE.PLAYING: return
+
 	var cost = Globals.BUYABLES[item_name]["cost"]
 
 	if Globals.life_force < cost:
@@ -77,11 +95,7 @@ func _on_buy_button_pressed(item_name: String):
 	update_stats()
 	
 	moo_world.start_placement(Globals.BUYABLES[item_name]["item_path"])
-	
-func _on_game_over(): 
-	game_over.show()
 
 func _on_game_retry() -> void:
 	Globals.reset()
 	get_tree().reload_current_scene()
-	
