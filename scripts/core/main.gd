@@ -25,6 +25,8 @@ func _ready() -> void:
 	update_stats()
 	
 func _process(delta: float) -> void:
+	if Globals.life_force != previous_life_force:
+		update_stats()
 
 	if Globals.game_state == Enums.GAME_STATE.PLAYING:
 		if Globals.life_force < 0:
@@ -34,8 +36,6 @@ func _process(delta: float) -> void:
 		update_shop_buttons()
 		update_passive_income(delta)
 
-		if Globals.life_force != previous_life_force:
-			update_stats()
 
 func trigger_game_over_sequence():
 	Globals.game_state = Enums.GAME_STATE.GAME_OVER
@@ -43,9 +43,7 @@ func trigger_game_over_sequence():
 	if moo_world.has_method("dissolve_world"):
 		var center_screen = get_viewport_rect().size / 2
 		moo_world.dissolve_world(center_screen)
-	else:
-		print("Error: trigger_dissolve method missing in moo_world.gd")
-	
+
 	await get_tree().create_timer(1.5).timeout
 	
 	game_over.show()

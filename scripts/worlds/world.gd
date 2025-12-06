@@ -15,7 +15,7 @@ func _ready() -> void:
 
 	var mat = world_visuals.material as ShaderMaterial
 	if mat:
-		mat.set_shader_parameter("radius", -1.0)
+		mat.set_shader_parameter("radius", -0.1)
 
 func _process(_delta: float) -> void:
 	if is_placing_mode:

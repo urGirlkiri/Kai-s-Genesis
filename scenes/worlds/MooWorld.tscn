@@ -19,7 +19,7 @@ seamless = true
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_681qh"]
 shader = ExtResource("1_8fgff")
 shader_parameter/position = Vector2(0, 0)
-shader_parameter/radius = 1.0
+shader_parameter/radius = -0.1
 shader_parameter/borderWidth = 0.2
 shader_parameter/burnMult = 0.34
 shader_parameter/noiseTexture = SubResource("NoiseTexture2D_vpj7h")
