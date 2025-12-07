@@ -49,7 +49,7 @@ func _unhandled_input(event: InputEvent) -> void:
 					if energy_gain != Globals.CLICK_ENERGY_GAIN:
 						break
 				
-				Globals.life_force += energy_gain
+				Globals.add_life_force(energy_gain)
 				spawn_popup(mouse_pos, energy_gain)
 
 func _draw() -> void:
@@ -95,7 +95,7 @@ func spawn_popup(pos: Vector2, amount: float):
 	add_child(popup)
 	popup.setup(pos, amount)
 
-func dissolve_world(center_pos: Vector2 = Vector2.ZERO):
+func dissolve_world(center_pos: Vector2 = Vector2.ZERO, duration: float = 2.0):
 	for child in world_visuals.get_children():
 		if child.has_method("set_use_parent_material"):
 			child.set_use_parent_material(true)
@@ -117,7 +117,7 @@ func dissolve_world(center_pos: Vector2 = Vector2.ZERO):
 	mat.set_shader_parameter("position", uv_pos)
 
 	var tween = create_tween()
-	tween.tween_method(func(val): mat.set_shader_parameter("radius", val), 0.0, 1, 2.0)
+	tween.tween_method(func(val): mat.set_shader_parameter("radius", val), 0.0, 1, duration)
 	
 	set_process_unhandled_input(false)
 

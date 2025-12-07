@@ -96,18 +96,29 @@ const BUYABLES = {
 	},
 }
 
-@export var life_force := 0.0
+@export var life_force := 499.0
+@export var max_life_force := 500
 @export var game_state: Enums.GAME_STATE
 @export var current_world: World = null
 @export var animal_label: Label = null
 
 var initial_life_force: float
-
+var initial_max_life_force: float
 
 func _ready() -> void:
 	initial_life_force = life_force
+	initial_max_life_force = max_life_force
+
+func add_life_force(amount: float) -> void:
+	if game_state != Enums.GAME_STATE.PLAYING:
+		return
+	life_force += amount
+	if life_force > max_life_force:
+		life_force = max_life_force
+		game_state = Enums.GAME_STATE.GAME_OVER
 
 
 func reset() -> void:
 	life_force = initial_life_force
+	max_life_force  = initial_max_life_force
 	game_state = Enums.GAME_STATE.PLAYING

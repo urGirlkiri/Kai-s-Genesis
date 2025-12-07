@@ -32,9 +32,9 @@ func _process(delta: float) -> void:
 		update_stats()
 
 	if Globals.game_state == Enums.GAME_STATE.PLAYING:
-		if Globals.life_force < 0:
-			trigger_game_over_sequence()
-			return 
+		if Globals.life_force >= Globals.max_life_force:
+			trigger_boom_sequence()
+			return
 
 		update_shop_buttons()
 		update_passive_income(delta)
@@ -51,9 +51,27 @@ func trigger_game_over_sequence():
 	
 	game_over.show()
 
+func trigger_boom_sequence():
+	Globals.game_state = Enums.GAME_STATE.GAME_OVER
+	
+	SignalBus.set_warning.emit("LIFE_OVERLOAD", true)
+
+	if moo_world.has_method("dissolve_world"):
+		var center_screen = get_viewport_rect().size / 2
+		moo_world.dissolve_world(center_screen, 2.0)
+
+	await get_tree().create_timer(2.0).timeout
+	
+	game_over.show()
+
 
 func update_stats():
-	life_force_label.text = "Life Force: %.2f" % Globals.life_force
+
+	life_force_label.text = "Life Force: %.2f / %.2f" % [Globals.life_force, Globals.max_life_force]
+	if Globals.life_force >= Globals.max_life_force:
+		life_force_label.modulate = Color(1, 0, 0)
+	else:
+		life_force_label.modulate = Color(1, 1, 1)
 
 func update_passive_income(delta: float):
 	life_generation_timer -= delta
@@ -65,7 +83,7 @@ func update_passive_income(delta: float):
 		total_energy += get_tree().get_nodes_in_group("chicken").size() * Globals.CHICKEN_ENERGY_OUT_PER_CYCLE
 		total_energy += get_tree().get_nodes_in_group("cow").size() * Globals.COW_ENERGY_OUT_PER_CYCLE
 
-		Globals.life_force += total_energy
+		Globals.add_life_force(total_energy)
 		life_generation_timer = Globals.ENERGY_GEN_CYCLE
 
 func update_shop_buttons():
@@ -92,7 +110,7 @@ func _on_buy_button_pressed(item_name: String):
 	else:
 		SignalBus.show_message.emit("Bought " + item_name + "!", "success")
 
-	Globals.life_force -= cost
+	Globals.add_life_force(-cost)
 	update_stats()
 	
 	moo_world.start_placement(Globals.BUYABLES[item_name]["item_path"])

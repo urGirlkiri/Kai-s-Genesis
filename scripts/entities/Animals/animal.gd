@@ -61,7 +61,7 @@ func die() -> void:
 	if animal_label:
 		animal_label.show_status("%s died!" % name, false)
 	if Globals:
-		Globals.life_force -= fall_value_factor * 5
+		Globals.add_life_force(-(fall_value_factor * 5))
 	queue_free()
 
 func update_ui():

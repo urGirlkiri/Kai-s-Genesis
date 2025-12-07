@@ -10,7 +10,8 @@ var active_warnings: Dictionary = {}
 const WARNING_TEXTS = {
 	"drought": "⚠️ DROUGHT ALERT! NO WATER! ⚠️",
 	"famine": "☠️ FAMINE ALERT! ANIMALS STARVING! ☠️",
-	"cap_reached": "⚠️ STORAGE FULL! BUY LAND! ⚠️"
+	"cap_reached": "⚠️ STORAGE FULL! BUY LAND! ⚠️",
+	"LIFE_OVERLOAD": "LIFE OVERLOAD"
 }
 
 func _ready() -> void:
@@ -23,8 +24,11 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if not active_warnings.is_empty():
 		var id = active_warnings.keys()[0]
+		var color = warning_color
+		if id == "LIFE_OVERLOAD":
+			color = error_color
 		if text != active_warnings[id]: 
-			animate_in(active_warnings[id], warning_color, true)
+			animate_in(active_warnings[id], color, true)
 	else:
 		if tween == null or not tween.is_running():
 			if self.modulate.a > 0:

@@ -11,8 +11,7 @@
     - Scale land prices based on the number of currently owned tiles.
 - [ ] **The Space-Economy Link:**
     - Calculate max Life Force: `max_life_force = base_cap + (land_tiles_count * 100)`.
-    - Enforce the cap on the player's current Life Force.
-    - Update the UI to display current vs. max Life Force (e.g., "64 / 100"), with a visual indicator when capped.
+    - adee yin yang progressbar
     - The core loop: Start on a small island, hit the cap, and be forced to buy land to progress.
     - implement axe that leads to destructing or tearing down buildings
  
