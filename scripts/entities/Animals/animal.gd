@@ -3,6 +3,8 @@ extends CharacterBody2D
 class_name Animal
 
 @onready var animal_bar: Node2D = $AnimalBar
+var animal_label: Label = Globals.animal_label
+
 
 @onready var sense_area: Area2D = $Sensor
 @onready var current_world = Globals.current_world
@@ -56,6 +58,8 @@ func check_survival() -> void:
 		die()
 
 func die() -> void:
+	if animal_label:
+		animal_label.show_status("%s died!" % name, false)
 	if Globals:
 		Globals.life_force -= fall_value_factor * 5
 	queue_free()
@@ -70,6 +74,12 @@ func update_ui():
 		
 		if animal_bar.has_method("toggle_visibility"):
 			animal_bar.toggle_visibility( min(thirst_perc, hunger_perc) < 99 )
+
+	if animal_label:
+		if (current_water_cap / max_water_cap) < CHECK_THIRST_AT_PERC:
+			animal_label.show_status("%s is thirsty!" % name, false)
+		elif (current_stomach_cap / max_stomach_cap) < CHECK_HUNGER_AT_PERC:
+			animal_label.show_status("%s is hungry!" % name, false)
 
 
 func find_nearest_something_in_group(group_name: String) -> Area2D:

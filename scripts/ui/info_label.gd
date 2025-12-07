@@ -1,4 +1,4 @@
-extends Label
+extends "res://scripts/ui/base_label.gd"
 
 @export var info_color := Color.WHITE
 @export var success_color := Color("55ff55") 
@@ -6,7 +6,6 @@ extends Label
 @export var warning_color := Color.ORANGE
 
 var active_warnings: Dictionary = {} 
-var tween: Tween
 
 const WARNING_TEXTS = {
 	"drought": "⚠️ DROUGHT ALERT! NO WATER! ⚠️",
@@ -30,27 +29,6 @@ func _process(_delta: float) -> void:
 		if tween == null or not tween.is_running():
 			if self.modulate.a > 0:
 				animate_out()
-
-
-func animate_in(msg_text: String, color: Color, is_permanent: bool):
-	if tween: tween.kill()
-	tween = create_tween()
-	
-	self.text = msg_text
-	self.modulate = color 
-	
-	tween.parallel().tween_property(self, "position:y", 20.0, 0.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.parallel().tween_property(self, "modulate:a", 1.0, 0.3)
-	
-	if not is_permanent:
-		tween.tween_interval(2.5)
-		tween.tween_callback(animate_out)
-
-func animate_out():
-	var exit_tween = create_tween()
-	exit_tween.parallel().tween_property(self, "position:y", -50.0, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
-	exit_tween.parallel().tween_property(self, "modulate:a", 0.0, 0.3)
-
 
 func _on_show_message(msg_text: String, type: String = "info"):
 	if not active_warnings.is_empty(): return

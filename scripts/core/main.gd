@@ -2,7 +2,9 @@ extends Node2D
 
 @onready var life_force_label := $GameManager/LifeForce/Label
 @onready var moo_world := $MooWorld
-@onready var game_over: CanvasLayer = %Overlays
+@onready var animal_label: Label = $GameManager/AnimalLabel
+
+@onready var game_over: CanvasLayer = $Overlays
 
 var shop_buttons = {}
 var life_generation_timer := Globals.ENERGY_GEN_CYCLE
@@ -11,6 +13,7 @@ var destroy_timer := 10.0
 
 func _ready() -> void:
 	Globals.game_state = Enums.GAME_STATE.PLAYING
+	Globals.animal_label = animal_label
 	
 	game_over.hide() 
 	

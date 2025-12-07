@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c2g0pw5amocod"]
+[gd_scene load_steps=28 format=3 uid="uid://c2g0pw5amocod"]
 
 [ext_resource type="Script" uid="uid://dvuy58vaxm02c" path="res://scripts/core/main.gd" id="1_cc00j"]
 [ext_resource type="PackedScene" uid="uid://ccvkpckf4usie" path="res://scenes/worlds/MooWorld.tscn" id="2_njtbt"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bll8kltm7d02q" path="res://assets/sprites/MooWorld/cow-sheet.png" id="4_w11ry"]
 [ext_resource type="Texture2D" uid="uid://c6namq2aq1co3" path="res://assets/sprites/MooWorld/tileset_grass.png" id="4_x5f0r"]
 [ext_resource type="Texture2D" uid="uid://cc216d544wbwq" path="res://assets/sprites/MooWorld/baby-chicken-sheet.png" id="5_fss6w"]
+[ext_resource type="Script" uid="uid://bj7fglj1gpdsn" path="res://scripts/ui/animal_label.gd" id="5_i8jtn"]
 [ext_resource type="Script" uid="uid://b4y6dsux1hjpm" path="res://scripts/core/camera_control.gd" id="9_fss6w"]
 [ext_resource type="Texture2D" uid="uid://l846yitl76kb" path="res://assets/sprites/MooWorld/fence.png" id="9_thnqr"]
 [ext_resource type="Texture2D" uid="uid://wb35upmpmu41" path="res://assets/sprites/MooWorld/tileset_tiled_watered.png" id="9_upid4"]
@@ -115,6 +116,7 @@ texture = ExtResource("10_yvcut")
 stretch_mode = 1
 
 [node name="GameManager" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 offset = Vector2(12, 12)
 transform = Transform2D(1, 0, 0, 1, 12, 12)
 
@@ -162,6 +164,29 @@ vertical_alignment = 1
 autowrap_mode = 2
 script = ExtResource("4_te6ad")
 success_color = Color(1.4439226e-07, 0.62415147, 0.06424646, 1)
+
+[node name="AnimalLabel" type="Label" parent="GameManager"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -198.0
+offset_top = -75.0
+offset_right = 144.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_te6ad")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+script = ExtResource("5_i8jtn")
 
 [node name="LifeForce" type="Panel" parent="GameManager"]
 anchors_preset = 1
@@ -434,7 +459,6 @@ region_enabled = true
 region_rect = Rect2(16, 49, 16, 15)
 
 [node name="Overlays" type="CanvasLayer" parent="."]
-unique_name_in_owner = true
 visible = false
 
 [node name="GameOver" type="ColorRect" parent="Overlays"]

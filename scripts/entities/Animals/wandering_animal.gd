@@ -87,8 +87,7 @@ func handle_falling_off(delta: float) -> void:
 	
 	# Remove when fallen far enough or fully transparent
 	if fall_velocity > 1000 or modulate.a < 0.1:
-		queue_free()
-		Globals.life_force -= fall_value_factor * 10
+		die()
 
 func handle_find_food(delta: float) -> void:
 	lose_energy(delta)
