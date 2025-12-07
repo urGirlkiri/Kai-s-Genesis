@@ -16,11 +16,6 @@
     - The core loop: Start on a small island, hit the cap, and be forced to buy land to progress.
     - implement axe that leads to destructing or tearing down buildings
  
-### Key Point 2: Animal & Entity Interaction
-- [ ] **Animal Behavior & Consequences:**
-    - Make cows consume grass tiles they wander over.
-    - decide to show animations for animals show 
- 
 ## Phase 2: Persistence & Polish
 **Focus:** Saving player progress and adding audio-visual feedback to make the game feel more alive.
  
@@ -48,4 +43,5 @@
 - [ ] Add multiple worlds and progression 
 - [ ] Add tutorialization
 - [ ] when world expands add the kai eye at the top or bottom where one can see the prt of the map they at
+- [ ] Add a powerup god lift to lift off animals off the plane
 - [ ] add rain to revive dry grass

@@ -312,8 +312,8 @@ script = ExtResource("2_ltfmd")
 nutrition_per_cew = 5
 chew_cooldown = 0.0
 
-[node name="ThirstBar" parent="." index="0"]
-position = Vector2(-43, 68)
+[node name="AnimalBar" parent="." index="0"]
+position = Vector2(-40.000004, 70)
 
 [node name="CollisionShape2D" parent="Sensor" index="0"]
 position = Vector2(1, 19)

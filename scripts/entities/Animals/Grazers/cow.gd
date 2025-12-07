@@ -11,6 +11,7 @@ func _ready():
 	fall_value_factor = 2.0
 	
 	max_water_cap = 220
+	max_stomach_cap = 300
 	default_cooldown_time = 28.0
 
 	CHECK_HUNGER_AT_PERC = 0.98
