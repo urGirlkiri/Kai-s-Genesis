@@ -113,9 +113,6 @@ func add_life_force(amount: float) -> void:
 	if game_state != Enums.GAME_STATE.PLAYING:
 		return
 	life_force += amount
-	if life_force > max_life_force:
-		life_force = max_life_force
-		game_state = Enums.GAME_STATE.GAME_OVER
 
 
 func reset() -> void:
