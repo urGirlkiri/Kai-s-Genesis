@@ -35,6 +35,9 @@ func _process(delta: float) -> void:
 		if Globals.life_force >= Globals.max_life_force:
 			trigger_boom_sequence()
 			return
+		elif Globals.life_force < 0:
+			trigger_game_over_sequence()
+			return	
 
 		update_shop_buttons()
 		update_passive_income(delta)
