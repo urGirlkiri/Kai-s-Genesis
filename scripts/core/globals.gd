@@ -63,7 +63,7 @@ const BUYABLES = {
 	"Earth": {
 		"button_path": "GameManager/NatureShop/Earth",
 		"item_path": "res://scenes/entities/Structures/Earth.tscn",
-		# "cost": 500,
+		"cost": 50,
 		"group": "earth",
 		"click_energy_gain": 1.5,
 		"energy_per_cycle": 0.0
@@ -96,8 +96,8 @@ const BUYABLES = {
 	},
 }
 
-@export var life_force := 499.0
-@export var max_life_force := 500
+@export var life_force := 0.0
+@export var max_life_force := 501.0
 @export var game_state: Enums.GAME_STATE
 @export var current_world: World = null
 @export var animal_label: Label = null
