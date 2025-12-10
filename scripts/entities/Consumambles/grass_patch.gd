@@ -1,5 +1,6 @@
 extends BaseConsumable
 
+var can_be_drawn := true
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:

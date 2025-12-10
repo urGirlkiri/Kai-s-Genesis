@@ -4,6 +4,9 @@ class_name World
 
 var placing_scene: PackedScene = null
 var is_placing_mode := false
+var is_drawing_allowed := false
+var is_drawing := false
+var placement_cost := 0.0
 
 @onready var click_popup_scene = preload("res://scenes/ui/ClickPopup.tscn")
 @onready var tile_map: TileMapLayer = $WorldVisuals/TileMapLayer
@@ -23,34 +26,79 @@ func _process(_delta: float) -> void:
 		queue_redraw()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			var mouse_pos = get_global_mouse_position()
-			
-			if not is_point_placeable(mouse_pos):
-				SignalBus.show_message.emit("You can't gain life in space.", "error")
-				return
+	if is_placing_mode:
+		handle_placement_input(event)
+	else:
+		handle_world_click_input(event)
 
-			if is_placing_mode:
-				finalize_placement(mouse_pos)
-			else:
-				var energy_gain = Globals.CLICK_ENERGY_GAIN
-				var click_threshold = 32.0 # pixels
-				
-				for buyable_name in Globals.BUYABLES:
-					var buyable = Globals.BUYABLES[buyable_name]
-					var group = buyable["group"]
-					
-					for entity in get_tree().get_nodes_in_group(group):
-						if entity.global_position.distance_to(mouse_pos) < click_threshold:
-							energy_gain = buyable["click_energy_gain"]
-							break
-					
-					if energy_gain != Globals.CLICK_ENERGY_GAIN:
-						break
-				
-				Globals.add_life_force(energy_gain)
-				spawn_popup(mouse_pos, energy_gain)
+func handle_placement_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion and is_drawing:
+		place_item(get_global_mouse_position())
+		return
+
+	if not event is InputEventMouseButton:
+		return
+
+	if (event.button_index == MOUSE_BUTTON_RIGHT and event.pressed) or \
+	   (event.button_index == MOUSE_BUTTON_LEFT and not event.pressed and is_drawing):
+		reset_placement_state()
+		return
+
+	if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		var mouse_pos = get_global_mouse_position()
+		if not is_point_placeable(mouse_pos):
+			SignalBus.show_message.emit("You can't gain life in space.", "error")
+			return
+		
+		if is_drawing_allowed:
+			is_drawing = true
+			place_item(mouse_pos)
+		else:
+			finalize_placement(mouse_pos)
+
+func handle_world_click_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		var mouse_pos = get_global_mouse_position()
+		
+		if not is_point_placeable(mouse_pos):
+			SignalBus.show_message.emit("You can't gain life in space.", "error")
+			return
+
+		var energy_gain = Globals.CLICK_ENERGY_GAIN
+		var click_threshold = 32.0
+		
+		for buyable_name in Globals.BUYABLES:
+			var buyable = Globals.BUYABLES[buyable_name]
+			var group = buyable["group"]
+			
+			for entity in get_tree().get_nodes_in_group(group):
+				if entity.global_position.distance_to(mouse_pos) < click_threshold:
+					energy_gain = buyable["click_energy_gain"]
+					break
+			
+			if energy_gain != Globals.CLICK_ENERGY_GAIN:
+				break
+		
+		Globals.add_life_force(energy_gain)
+		spawn_popup(mouse_pos, energy_gain)
+
+func reset_placement_state() -> void:
+	is_placing_mode = false
+	is_drawing = false
+	is_drawing_allowed = false
+	placing_scene = null
+	placement_cost = 0.0
+	queue_redraw()
+
+func finalize_placement(raw_pos: Vector2):
+	if placing_scene == null:
+		return
+	
+	if not is_point_placeable(raw_pos):
+		return
+
+	place_item(raw_pos)
+	reset_placement_state()
 
 func _draw() -> void:
 	if is_placing_mode:
@@ -68,27 +116,50 @@ func _draw() -> void:
 		
 		draw_rect(Rect2(rect_top_left, tile_size), color, true)
 
-func start_placement(item_path: String):
-	placing_scene = load(item_path)
-	is_placing_mode = true
-
-func finalize_placement(raw_pos: Vector2):
+func place_item(raw_pos: Vector2):
 	if placing_scene == null:
 		return
-	
+
 	if not is_point_placeable(raw_pos):
 		return
 
-	var new_item = placing_scene.instantiate()
-	
+	if Globals.life_force < placement_cost:
+		SignalBus.show_message.emit("Not enough Life Force!", "error")
+		is_placing_mode = false
+		is_drawing = false
+		is_drawing_allowed = false
+		placing_scene = null
+		queue_redraw()
+		return
+
 	var final_pos = get_snapped_position(raw_pos)
+
+	var tile_size = tile_map.tile_set.tile_size
+	for child in world_visuals.get_children():
+		if child is Node2D and child.global_position.distance_to(final_pos) < tile_size.x / 4:
+			return
+
+	var new_item = placing_scene.instantiate()
 	
 	world_visuals.add_child(new_item)
 	new_item.global_position = final_pos
-	
-	is_placing_mode = false
-	placing_scene = null
-	queue_redraw()
+	Globals.add_life_force(-placement_cost)
+
+func start_placement(item_path: String):
+	placing_scene = load(item_path)
+	is_placing_mode = true
+	is_drawing_allowed = false
+	is_drawing = false
+	placement_cost = 0.0
+
+	for buyable_name in Globals.BUYABLES:
+		var buyable = Globals.BUYABLES[buyable_name]
+		if buyable["item_path"] == item_path:
+			if buyable.has("cost"):
+				placement_cost = buyable["cost"]
+			if buyable.has("can_be_drawn") and buyable["can_be_drawn"]:
+				is_drawing_allowed = true
+			break
 
 func spawn_popup(pos: Vector2, amount: float):
 	var popup = click_popup_scene.instantiate()
@@ -133,6 +204,9 @@ func get_current_world():
 func get_snapped_position(global_pos: Vector2) -> Vector2:
 	var local_pos = tile_map.to_local(global_pos)
 	var map_coords = tile_map.local_to_map(local_pos)
+	
+	map_coords.x = int(map_coords.x / 2) * 2
+	map_coords.y = int(map_coords.y / 2) * 2
 	
 	var centered_local_pos = tile_map.map_to_local(map_coords)
 	

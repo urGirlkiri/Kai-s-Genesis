@@ -41,7 +41,8 @@ const BUYABLES = {
 		"cost": 10,
 		"group": "grass",
 		"click_energy_gain": 2.0,
-		"energy_per_cycle": 0.1
+		"energy_per_cycle": 0.1,
+		"can_be_drawn": true
 	},
 	"Pond":{
 		"button_path": "GameManager/ConsuShop/Pond",
