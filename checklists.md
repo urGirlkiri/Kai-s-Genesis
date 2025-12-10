@@ -6,8 +6,6 @@
 
 ### Key Point 1: Dynamic World & Economy
 - [ ] **The "Buy Land" Mechanic:**
-    - Create `expand_land()` function to change TileMap cells from "Void/Empty" to "Earth".
-    - Implement a click-to-buy tool for individual tiles or an "Expand Border" button.
     - Scale land prices based on the number of currently owned tiles.
 - [ ] **The Space-Economy Link:**
     - Calculate max Life Force: `max_life_force = base_cap + (land_tiles_count * 100)`.
@@ -34,7 +32,6 @@
 **Focus:** Adding content and features that extend gameplay and add personality.
  
 ### Key Point 6: Customization & Aesthetics
-- [ ] The "Buy Land" Mechanic
 - [ ] Add custom music, bg and assets
 - [ ] Add planets in the background and a character who is constantly destroying them.
  

@@ -103,6 +103,13 @@ func update_shop_buttons():
 func _on_buy_button_pressed(item_name: String):
 	if Globals.game_state != Enums.GAME_STATE.PLAYING: return
 
+	if item_name == "Earth":
+		moo_world.land_expander_active =  not moo_world.land_expander_active
+		moo_world.cancel_placement()
+		return
+	else:
+		moo_world.land_expander_active = false
+
 	var cost = Globals.BUYABLES[item_name]["cost"]
 
 	if Globals.life_force < cost:
@@ -113,12 +120,7 @@ func _on_buy_button_pressed(item_name: String):
 
 	Globals.add_life_force(-cost)
 
-	if item_name == "Earth":
-		moo_world.land_expander_active =  not moo_world.land_expander_active
-		moo_world.cancel_placement()
-	else:
-		moo_world.land_expander_active = false
-		moo_world.start_placement(Globals.BUYABLES[item_name]["item_path"])
+	moo_world.start_placement(Globals.BUYABLES[item_name]["item_path"])
 
 	update_stats()
 
