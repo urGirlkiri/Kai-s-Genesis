@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=3 uid="uid://c2g0pw5amocod"]
 
 [ext_resource type="Script" uid="uid://dvuy58vaxm02c" path="res://scripts/core/main.gd" id="1_cc00j"]
-[ext_resource type="PackedScene" uid="uid://ccvkpckf4usie" path="res://scenes/worlds/MooWorld.tscn" id="2_njtbt"]
+[ext_resource type="PackedScene" uid="uid://cfjtiwface76l" path="res://scenes/worlds/MooWorld.tscn" id="2_njtbt"]
 [ext_resource type="Texture2D" uid="uid://cs4xlyypi58dw" path="res://assets/frames/green.png" id="2_rigbv"]
 [ext_resource type="Texture2D" uid="uid://bv8ymibt2djfm" path="res://assets/images/yin_yang.png" id="3_fss6w"]
 [ext_resource type="Texture2D" uid="uid://bcslgbr5bddsh" path="res://assets/sprites/MooWorld/chicken-sheet.png" id="4_jy5xg"]
@@ -522,8 +522,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_kpu1v")
 text = "Try Again"
 
 [node name="MooWorld" parent="." instance=ExtResource("2_njtbt")]
-position = Vector2(381, 280)
-scale = Vector2(0.8, 0.8)
+position = Vector2(344, 246)
 
 [node name="CameraControl" type="Camera2D" parent="."]
 position = Vector2(543, 328)
