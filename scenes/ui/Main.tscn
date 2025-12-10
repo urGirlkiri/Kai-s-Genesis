@@ -330,10 +330,9 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
 disabled = true
 shortcut_in_tooltip = false
-text = "Earth (Coming Soon)"
+text = "Earth "
 
 [node name="Sprite2D" type="Sprite2D" parent="GameManager/NatureShop/Earth"]
-visible = false
 position = Vector2(44, 37)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("9_upid4")

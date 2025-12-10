@@ -42,7 +42,6 @@ func _process(delta: float) -> void:
 		update_shop_buttons()
 		update_passive_income(delta)
 
-
 func trigger_game_over_sequence():
 	Globals.game_state = Enums.GAME_STATE.GAME_OVER
 	
@@ -66,7 +65,6 @@ func trigger_boom_sequence():
 	await get_tree().create_timer(2.0).timeout
 	
 	game_over.show()
-
 
 func update_stats():
 
@@ -114,9 +112,15 @@ func _on_buy_button_pressed(item_name: String):
 		SignalBus.show_message.emit("Bought " + item_name + "!", "success")
 
 	Globals.add_life_force(-cost)
+
+	if item_name == "Earth":
+		moo_world.land_expander_active =  not moo_world.land_expander_active
+		moo_world.cancel_placement()
+	else:
+		moo_world.land_expander_active = false
+		moo_world.start_placement(Globals.BUYABLES[item_name]["item_path"])
+
 	update_stats()
-	
-	moo_world.start_placement(Globals.BUYABLES[item_name]["item_path"])
 
 func _on_game_retry() -> void:
 	Globals.reset()

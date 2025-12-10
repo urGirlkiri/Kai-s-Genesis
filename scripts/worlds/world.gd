@@ -28,7 +28,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			var mouse_pos = get_global_mouse_position()
 			
 			if not is_point_placeable(mouse_pos):
-				SignalBus.show_message.emit("You can't place items in the void.", "error")
+				SignalBus.show_message.emit("You can't gain life in space.", "error")
 				return
 
 			if is_placing_mode:
