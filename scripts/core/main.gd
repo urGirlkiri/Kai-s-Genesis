@@ -118,8 +118,6 @@ func _on_buy_button_pressed(item_name: String):
 	else:
 		SignalBus.show_message.emit("Bought " + item_name + "!", "success")
 
-	Globals.add_life_force(-cost)
-
 	moo_world.start_placement(Globals.BUYABLES[item_name]["item_path"])
 
 	update_stats()

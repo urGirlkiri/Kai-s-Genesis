@@ -36,8 +36,10 @@
 - [ ] Add planets in the background and a character who is constantly destroying them.
  
 ### Key Point 7: Game Expansion
+- [ ] Make the plane exapandable into a 3d globe like world
 - [ ] Add multiple worlds and progression 
 - [ ] Add tutorialization
 - [ ] when world expands add the kai eye at the top or bottom where one can see the prt of the map they at
 - [ ] Add a powerup god lift to lift off animals off the plane
+- [ ] Add natural disaster like space storms and a corresponding powerup  to shield the plane
 - [ ] add rain to revive dry grass
