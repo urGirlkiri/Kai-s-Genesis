@@ -115,8 +115,6 @@ func _on_buy_button_pressed(item_name: String):
 	if Globals.life_force < cost:
 		SignalBus.show_message.emit("Not enough Life Force!", "error")
 		return
-	else:
-		SignalBus.show_message.emit("Bought " + item_name + "!", "success")
 
 	moo_world.start_placement(Globals.BUYABLES[item_name]["item_path"])
 

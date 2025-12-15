@@ -26,7 +26,15 @@ func _process(_delta: float) -> void:
 		queue_redraw()
 
 func _unhandled_input(event: InputEvent) -> void:
+	var is_aborting = event is InputEventKey and (event.keycode == KEY_X and event.pressed)
+
+	if is_aborting:
+		SignalBus.show_message.emit("Placement Mode Exited", "info")
+
+		reset_placement_state()
+
 	if is_placing_mode:
+		SignalBus.show_message.emit("Press X to exit placing mode", "info")
 		handle_placement_input(event)
 	else:
 		handle_world_click_input(event)
@@ -83,6 +91,9 @@ func handle_world_click_input(event: InputEvent) -> void:
 		spawn_popup(mouse_pos, energy_gain)
 
 func reset_placement_state() -> void:
+	if is_placing_mode:
+		SignalBus.show_message.emit("Placement Mode Exited", "info")
+
 	is_placing_mode = false
 	is_drawing = false
 	is_drawing_allowed = false
@@ -98,7 +109,6 @@ func finalize_placement(raw_pos: Vector2):
 		return
 
 	place_item(raw_pos)
-	reset_placement_state()
 
 func _draw() -> void:
 	if is_placing_mode:
@@ -125,11 +135,7 @@ func place_item(raw_pos: Vector2):
 
 	if Globals.life_force < placement_cost:
 		SignalBus.show_message.emit("Not enough Life Force!", "error")
-		is_placing_mode = false
-		is_drawing = false
-		is_drawing_allowed = false
-		placing_scene = null
-		queue_redraw()
+		reset_placement()
 		return
 
 	var final_pos = get_snapped_position(raw_pos)
@@ -144,6 +150,13 @@ func place_item(raw_pos: Vector2):
 	world_visuals.add_child(new_item)
 	new_item.global_position = final_pos
 	Globals.add_life_force(-placement_cost)
+
+func reset_placement():
+	is_placing_mode = false
+	is_drawing = false
+	is_drawing_allowed = false
+	placing_scene = null
+	queue_redraw()
 
 func start_placement(item_path: String):
 	placing_scene = load(item_path)

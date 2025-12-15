@@ -31,12 +31,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	if is_click or is_drag:		
 		attempt_place_land(get_global_mouse_position())
 	elif is_aborting:
+		SignalBus.show_message.emit("Placement Mode Exited", "info")
 		reset_placement_state()
 	else:
 		if not has_placed_tile:
 			SignalBus.show_message.emit("Click and Drag to place land", "info")
 		else:
-			SignalBus.show_message.emit("Press X to exit placing mode.", "info")
+			SignalBus.show_message.emit("Press X to exit placing mode", "info")
 
 
 func attempt_place_land(global_pos: Vector2) -> void:
@@ -54,6 +55,8 @@ func attempt_place_land(global_pos: Vector2) -> void:
 		has_placed_tile = true	
 
 func reset_placement_state():
+	super.reset_placement_state()
+	cancel_placement()
 	land_expander_active = false
 	has_placed_tile = false
 
