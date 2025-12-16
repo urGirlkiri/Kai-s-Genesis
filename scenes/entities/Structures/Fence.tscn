@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ir1xc"]
 size = Vector2(34, 32)
 
-[node name="Fence" type="StaticBody2D"]
+[node name="Fence" type="StaticBody2D" groups=["axable"]]
 z_index = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -7,6 +7,7 @@ var is_placing_mode := false
 var is_drawing_allowed := false
 var is_drawing := false
 var placement_cost := 0.0
+var click_threshold = 32.0
 
 @onready var click_popup_scene = preload("res://scenes/ui/ClickPopup.tscn")
 @onready var tile_map: TileMapLayer = $WorldVisuals/TileMapLayer
@@ -73,7 +74,6 @@ func handle_world_click_input(event: InputEvent) -> void:
 			return
 
 		var energy_gain = Globals.CLICK_ENERGY_GAIN
-		var click_threshold = 32.0
 		
 		for buyable_name in Globals.BUYABLES:
 			var buyable = Globals.BUYABLES[buyable_name]

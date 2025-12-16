@@ -82,7 +82,7 @@ const BUYABLES = {
 	"Axe": {
 		"button_path": "GameManager/SynthShop/Axe",
 		"item_path": "res://scenes/entities/Tools/Axe.tscn",
-		# "cost": 100,
+		"cost": 20,
 		"group": "hammer",
 		"click_energy_gain": 0.0,
 		"energy_per_cycle": 0.0
@@ -97,10 +97,11 @@ const BUYABLES = {
 	},
 }
 
-@export var life_force := 0.0
+@export var life_force := 440.0
 @export var max_life_force := 500.0
 @export var game_state: Enums.GAME_STATE
 @export var current_world: World = null
+@export var current_tilemap: TileMapLayer = null
 @export var animal_label: Label = null
 
 var initial_life_force: float
@@ -114,7 +115,6 @@ func add_life_force(amount: float) -> void:
 	if game_state != Enums.GAME_STATE.PLAYING:
 		return
 	life_force += amount
-
 
 func reset() -> void:
 	life_force = initial_life_force

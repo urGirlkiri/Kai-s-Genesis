@@ -445,10 +445,9 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
 disabled = true
 shortcut_in_tooltip = false
-text = "Axe (Coming Soon)"
+text = "Axe "
 
 [node name="Sprite2D" type="Sprite2D" parent="GameManager/SynthShop/Axe"]
-visible = false
 position = Vector2(37.000008, 38)
 rotation = -0.77143556
 scale = Vector2(2.5, 2.5)

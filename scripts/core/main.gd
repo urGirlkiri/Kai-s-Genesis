@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var life_force_label := $GameManager/LifeForce/Label
-@onready var moo_world := $MooWorld
+@onready var current_world := $MooWorld
 @onready var animal_label: Label = $GameManager/AnimalLabel
 
 @onready var game_over: CanvasLayer = $Overlays
@@ -45,9 +45,9 @@ func _process(delta: float) -> void:
 func trigger_game_over_sequence():
 	Globals.game_state = Enums.GAME_STATE.GAME_OVER
 	
-	if moo_world.has_method("dissolve_world"):
+	if current_world.has_method("dissolve_world"):
 		var center_screen = get_viewport_rect().size / 2
-		moo_world.dissolve_world(center_screen)
+		current_world.dissolve_world(center_screen)
 
 	await get_tree().create_timer(1.5).timeout
 	
@@ -58,9 +58,9 @@ func trigger_boom_sequence():
 	
 	SignalBus.set_warning.emit("LIFE_OVERLOAD", true)
 
-	if moo_world.has_method("dissolve_world"):
+	if current_world.has_method("dissolve_world"):
 		var center_screen = get_viewport_rect().size / 2
-		moo_world.dissolve_world(center_screen, 2.0)
+		current_world.dissolve_world(center_screen, 2.0)
 
 	await get_tree().create_timer(2.0).timeout
 	
@@ -104,11 +104,18 @@ func _on_buy_button_pressed(item_name: String):
 	if Globals.game_state != Enums.GAME_STATE.PLAYING: return
 
 	if item_name == "Earth":
-		moo_world.land_expander_active =  not moo_world.land_expander_active
-		moo_world.cancel_placement()
+		current_world.land_expander_active =  not current_world.land_expander_active
+		current_world.tool_mode = false
+		current_world.cancel_placement()
+		return
+	elif item_name == "Axe":
+		current_world.tool_mode = not current_world.tool_mode
+		current_world.land_expander_active = false
+		current_world.cancel_placement()
 		return
 	else:
-		moo_world.land_expander_active = false
+		current_world.land_expander_active = false
+		current_world.tool_mode = false
 
 	var cost = Globals.BUYABLES[item_name]["cost"]
 
@@ -116,7 +123,7 @@ func _on_buy_button_pressed(item_name: String):
 		SignalBus.show_message.emit("Not enough Life Force!", "error")
 		return
 
-	moo_world.start_placement(Globals.BUYABLES[item_name]["item_path"])
+	current_world.start_placement(Globals.BUYABLES[item_name]["item_path"])
 
 	update_stats()
 
