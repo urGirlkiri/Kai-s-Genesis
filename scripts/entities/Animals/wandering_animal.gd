@@ -187,15 +187,15 @@ func lose_energy(delta: float) -> void:
 func check_ground() -> bool:
 	var is_on_valid_ground = current_world.is_point_walkable(global_position)
 
-	if not is_on_valid_ground:
-		var safety_check_pos = global_position - (velocity.normalized() * 19.5)
-		if current_world.is_point_walkable(safety_check_pos):
-			is_on_valid_ground = true
+	# if not is_on_valid_ground:
+	# 	var safety_check_pos = global_position - (velocity.normalized() * 19.5)
+	# 	if current_world.is_point_walkable(safety_check_pos):
+	# 		is_on_valid_ground = true
 	
-	if not is_on_valid_ground:
-		var above_check_pos = global_position + Vector2(0, -19.5)
-		if current_world.is_point_walkable(above_check_pos):
-			is_on_valid_ground = true
+	# if not is_on_valid_ground:
+	# 	var above_check_pos = global_position + Vector2(0, -19.5)
+	# 	if current_world.is_point_walkable(above_check_pos):
+	# 		is_on_valid_ground = true
 	
 	return is_on_valid_ground
 
