@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 		handle_falling_off(delta)
 		return
 	
-	if not check_ground():
+	if not current_world.is_point_walkable(global_position):
 		is_falling = true
 		return
 
@@ -182,22 +182,6 @@ func handle_wandering(delta: float) -> void:
 func lose_energy(delta: float) -> void:
 	current_water_cap -= delta * 1.5
 	current_stomach_cap -= delta * 0.5
-
-
-func check_ground() -> bool:
-	var is_on_valid_ground = current_world.is_point_walkable(global_position)
-
-	# if not is_on_valid_ground:
-	# 	var safety_check_pos = global_position - (velocity.normalized() * 19.5)
-	# 	if current_world.is_point_walkable(safety_check_pos):
-	# 		is_on_valid_ground = true
-	
-	# if not is_on_valid_ground:
-	# 	var above_check_pos = global_position + Vector2(0, -19.5)
-	# 	if current_world.is_point_walkable(above_check_pos):
-	# 		is_on_valid_ground = true
-	
-	return is_on_valid_ground
 
 func pick_new_wander_direction():
 	wander_timer = randf_range(wander_timer_duration * 0.5, wander_timer_duration * 1.5)
