@@ -5,7 +5,7 @@
 [resource]
 shader = ExtResource("1_64fkm")
 shader_parameter/count = 150
-shader_parameter/slant = 0.048000005539879986
+shader_parameter/slant = 0.04800000553987998
 shader_parameter/speed = 67.0790019987525
 shader_parameter/blur = 0.00050000002375
 shader_parameter/colour = Color(0.6965597, 0.88121283, 0.99999994, 1)

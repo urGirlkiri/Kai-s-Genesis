@@ -2,6 +2,21 @@ extends Node2D
 
 class_name World
 
+enum WEATHER_STATE {
+	NEUTRAL, RAINY
+}
+
+const RAIN_MATERIAL_TRES = preload("res://tres/rain.tres")
+
+@onready var click_popup_scene = preload("res://scenes/ui/ClickPopup.tscn")
+@onready var tile_map: TileMapLayer = $WorldVisuals/TileMapLayer
+@onready var world_visuals: CanvasGroup = $WorldVisuals
+@onready var weather_rect: ColorRect = $WorldVisuals/WeatherLayer/WeatherRect
+
+@export var  weather_duration := 5.0
+
+var current_weather_duration = 0
+
 var placing_scene: PackedScene = null
 var is_placing_mode := false
 var is_drawing_allowed := false
@@ -9,15 +24,14 @@ var is_drawing := false
 var placement_cost := 0.0
 var click_threshold = 32.0
 
-@onready var click_popup_scene = preload("res://scenes/ui/ClickPopup.tscn")
-@onready var tile_map: TileMapLayer = $WorldVisuals/TileMapLayer
-@onready var world_visuals: CanvasGroup = $WorldVisuals
-
 var tool_mode := false
 var active_tool: Tool = null
+var weather_state := WEATHER_STATE.NEUTRAL
 
 func _ready() -> void:
 	Globals.current_world = self
+	current_weather_duration = weather_duration
+
 	if world_visuals.material:
 		world_visuals.material = world_visuals.material.duplicate()
 
@@ -26,6 +40,13 @@ func _ready() -> void:
 		mat.set_shader_parameter("radius", -1)
 
 func _process(_delta: float) -> void:
+	if weather_state != WEATHER_STATE.NEUTRAL:
+		if current_weather_duration > 0:
+			current_weather_duration -= _delta
+		elif current_weather_duration <= 0:
+			current_weather_duration = weather_duration
+			deactivate_weather()
+
 	if is_placing_mode or tool_mode:
 		queue_redraw()
 
@@ -45,6 +66,17 @@ func _unhandled_input(event: InputEvent) -> void:
 		handle_placement_input(event)
 	else:
 		handle_world_click_input(event)
+
+
+func activate_weather():
+	if weather_rect:
+		weather_rect.material = RAIN_MATERIAL_TRES
+		self.weather_state = WEATHER_STATE.RAINY
+
+func deactivate_weather():
+	if weather_rect:
+		weather_rect.material = null
+		self.weather_state = WEATHER_STATE.NEUTRAL
 
 func handle_tool_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -72,9 +104,12 @@ func handle_placement_input(event: InputEvent) -> void:
 	if not event is InputEventMouseButton:
 		return
 
-	if (event.button_index == MOUSE_BUTTON_RIGHT and event.pressed) or \
-	   (event.button_index == MOUSE_BUTTON_LEFT and not event.pressed and is_drawing):
+	if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 		reset_placement()
+		return
+
+	if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed and is_drawing:
+		is_drawing = false
 		return
 
 	if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:

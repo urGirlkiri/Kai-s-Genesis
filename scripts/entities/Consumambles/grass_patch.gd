@@ -1,6 +1,5 @@
 extends BaseConsumable
 
-var can_be_drawn := true
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:
@@ -8,11 +7,21 @@ func _ready() -> void:
 	if sprite.material:
 		sprite.material = sprite.material.duplicate()
 
+func _process(delta: float) -> void:
+	if Globals.current_world.weather_state == Globals.current_world.WEATHER_STATE.RAINY:
+		var mat = sprite.material as ShaderMaterial
+
+		if mat:
+			var depletion_progress = mat.get_shader_parameter("depletion_progress")
+			if depletion_progress > 0:
+				depletion_progress = max(0.0, depletion_progress - (delta / 5.0))
+				mat.set_shader_parameter("depletion_progress", depletion_progress)
+
 func handle_item_part_consumed(percent_left: float):
 	var percent_gone = 1.0 - percent_left
-	var mat = sprite.material as ShaderMaterial
 
-	if sprite.material is ShaderMaterial:
+	var mat = sprite.material as ShaderMaterial
+	if mat:
 		mat.set_shader_parameter("depletion_progress", percent_gone)
 
 func  handle_item_fully_consumed():

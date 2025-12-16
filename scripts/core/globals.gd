@@ -72,10 +72,10 @@ const BUYABLES = {
 	"Rain": {
 		"button_path": "GameManager/NatureShop/Rain",
 		"item_path": "res://scenes/entities/Structures/Rain.tscn",
-		# "cost": 750,
+		"cost": 70,
 		"group": "rain",
-		# "click_energy_gain": 2.5,
-		# "energy_per_cycle": 0.0
+		"click_energy_gain": 2.5,
+		"energy_per_cycle": 0.0
 	},
 
 	# Tools
@@ -97,7 +97,7 @@ const BUYABLES = {
 	},
 }
 
-@export var life_force := 440.0
+@export var life_force := 0.0
 @export var max_life_force := 500.0
 @export var game_state: Enums.GAME_STATE
 @export var current_world: World = null

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c2g0pw5amocod"]
+[gd_scene load_steps=29 format=3 uid="uid://c2g0pw5amocod"]
 
 [ext_resource type="Script" uid="uid://dvuy58vaxm02c" path="res://scripts/core/main.gd" id="1_cc00j"]
 [ext_resource type="PackedScene" uid="uid://cfjtiwface76l" path="res://scenes/worlds/MooWorld.tscn" id="2_njtbt"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://b4y6dsux1hjpm" path="res://scripts/core/camera_control.gd" id="9_fss6w"]
 [ext_resource type="Texture2D" uid="uid://l846yitl76kb" path="res://assets/sprites/MooWorld/fence.png" id="9_thnqr"]
 [ext_resource type="Texture2D" uid="uid://wb35upmpmu41" path="res://assets/sprites/MooWorld/tileset_tiled_watered.png" id="9_upid4"]
+[ext_resource type="Texture2D" uid="uid://cea8xbcq3bcsf" path="res://assets/images/drop.png" id="10_4ca1i"]
 [ext_resource type="Texture2D" uid="uid://e21be2fqjgkr" path="res://assets/images/water_circle.png" id="10_gl1th"]
 [ext_resource type="Texture2D" uid="uid://dmntxk2hreiia" path="res://assets/images/void_texture.png" id="10_yvcut"]
 [ext_resource type="Texture2D" uid="uid://c4utgftowoxmn" path="res://assets/images/weapons.png" id="12_umypx"]
@@ -317,7 +318,14 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_x5f0r")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_x5f0r")
 disabled = true
 shortcut_in_tooltip = false
-text = "Rain (Coming Soon)"
+text = "Rain "
+
+[node name="Sprite2D" type="Sprite2D" parent="GameManager/NatureShop/Rain"]
+position = Vector2(44, 37)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("10_4ca1i")
+region_enabled = true
+region_rect = Rect2(233, 36, 209, 302)
 
 [node name="Earth" type="Button" parent="GameManager/NatureShop"]
 layout_mode = 2
@@ -522,6 +530,7 @@ text = "Try Again"
 
 [node name="MooWorld" parent="." instance=ExtResource("2_njtbt")]
 position = Vector2(344, 246)
+weather_duration = null
 
 [node name="CameraControl" type="Camera2D" parent="."]
 position = Vector2(543, 328)

@@ -112,6 +112,11 @@ func _on_buy_button_pressed(item_name: String):
 		current_world.tool_mode = true
 		current_world.active_tool = Tool.AxeTool.new()
 		return
+	elif item_name == "Rain":
+		current_world.reset_placement()
+		current_world.activate_weather()
+		return
+
 	else:
 		current_world.land_expander_active = false
 		current_world.tool_mode = false
