@@ -97,7 +97,7 @@ const BUYABLES = {
 	},
 }
 
-@export var life_force := 440.0
+@export var life_force := 0.0
 @export var max_life_force := 500.0
 @export var game_state: Enums.GAME_STATE
 @export var current_world: World = null

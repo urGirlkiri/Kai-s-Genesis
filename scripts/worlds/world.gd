@@ -13,6 +13,9 @@ var click_threshold = 32.0
 @onready var tile_map: TileMapLayer = $WorldVisuals/TileMapLayer
 @onready var world_visuals: CanvasGroup = $WorldVisuals
 
+var tool_mode := false
+var active_tool: Tool = null
+
 func _ready() -> void:
 	Globals.current_world = self
 	if world_visuals.material:
@@ -23,7 +26,7 @@ func _ready() -> void:
 		mat.set_shader_parameter("radius", -1)
 
 func _process(_delta: float) -> void:
-	if is_placing_mode:
+	if is_placing_mode or tool_mode:
 		queue_redraw()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -31,14 +34,35 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if is_aborting:
 		SignalBus.show_message.emit("Placement Mode Exited", "info")
+		reset_placement()
 
-		reset_placement_state()
+	if tool_mode:
+		handle_tool_input(event)
+		return
 
 	if is_placing_mode:
 		SignalBus.show_message.emit("Press X to exit placing mode", "info")
 		handle_placement_input(event)
 	else:
 		handle_world_click_input(event)
+
+func handle_tool_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		var mouse_pos = get_global_mouse_position()
+		var entity = get_hovered_entity(mouse_pos)
+		if active_tool:
+			active_tool.action(entity)
+			if entity:
+				spawn_popup(mouse_pos, -1)
+	else:
+		SignalBus.show_message.emit("Press X to exit tool mode", "info")
+
+func get_hovered_entity(mouse_pos: Vector2):
+	for group in ["axable"]: 
+		for entity in get_tree().get_nodes_in_group(group):
+			if entity is Node2D and entity.global_position.distance_to(mouse_pos) < click_threshold:
+				return entity
+	return null
 
 func handle_placement_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and is_drawing:
@@ -50,7 +74,7 @@ func handle_placement_input(event: InputEvent) -> void:
 
 	if (event.button_index == MOUSE_BUTTON_RIGHT and event.pressed) or \
 	   (event.button_index == MOUSE_BUTTON_LEFT and not event.pressed and is_drawing):
-		reset_placement_state()
+		reset_placement()
 		return
 
 	if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -90,17 +114,6 @@ func handle_world_click_input(event: InputEvent) -> void:
 		Globals.add_life_force(energy_gain)
 		spawn_popup(mouse_pos, energy_gain)
 
-func reset_placement_state() -> void:
-	if is_placing_mode:
-		SignalBus.show_message.emit("Placement Mode Exited", "info")
-
-	is_placing_mode = false
-	is_drawing = false
-	is_drawing_allowed = false
-	placing_scene = null
-	placement_cost = 0.0
-	queue_redraw()
-
 func finalize_placement(raw_pos: Vector2):
 	if placing_scene == null:
 		return
@@ -111,6 +124,22 @@ func finalize_placement(raw_pos: Vector2):
 	place_item(raw_pos)
 
 func _draw() -> void:
+	if tool_mode and active_tool:
+		var mouse_pos = get_global_mouse_position()
+		var local_mouse_pos = to_local(mouse_pos)
+		
+		match active_tool.shape:
+			Tool.ToolShape.RECT:
+				var rect_top_left = local_mouse_pos - (active_tool.size / 2)
+				draw_rect(Rect2(rect_top_left, active_tool.size), active_tool.color, true)
+			Tool.ToolShape.CIRCLE:
+				draw_circle(local_mouse_pos, active_tool.size.x / 2, active_tool.color)
+			Tool.ToolShape.CROSS:
+				var half_size = active_tool.size / 2
+				draw_line(local_mouse_pos - half_size, local_mouse_pos + half_size, active_tool.color, 2)
+				draw_line(local_mouse_pos + Vector2(half_size.x, -half_size.y), local_mouse_pos + Vector2(-half_size.x, half_size.y), active_tool.color, 2)
+		return
+
 	if is_placing_mode:
 		var mouse_pos = get_global_mouse_position()
 		
@@ -152,10 +181,16 @@ func place_item(raw_pos: Vector2):
 	Globals.add_life_force(-placement_cost)
 
 func reset_placement():
+	if is_placing_mode:
+		SignalBus.show_message.emit("Placement Mode Exited", "info")
+
 	is_placing_mode = false
 	is_drawing = false
 	is_drawing_allowed = false
 	placing_scene = null
+	placement_cost = 0.0
+	tool_mode = false
+	active_tool = null
 	queue_redraw()
 
 func start_placement(item_path: String):

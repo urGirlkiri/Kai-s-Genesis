@@ -109,9 +109,8 @@ func _on_buy_button_pressed(item_name: String):
 		current_world.cancel_placement()
 		return
 	elif item_name == "Axe":
-		current_world.tool_mode = not current_world.tool_mode
-		current_world.land_expander_active = false
-		current_world.cancel_placement()
+		current_world.tool_mode = true
+		current_world.active_tool = Tool.AxeTool.new()
 		return
 	else:
 		current_world.land_expander_active = false
