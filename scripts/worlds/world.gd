@@ -127,17 +127,7 @@ func _draw() -> void:
 	if tool_mode and active_tool:
 		var mouse_pos = get_global_mouse_position()
 		var local_mouse_pos = to_local(mouse_pos)
-		
-		match active_tool.shape:
-			Tool.ToolShape.RECT:
-				var rect_top_left = local_mouse_pos - (active_tool.size / 2)
-				draw_rect(Rect2(rect_top_left, active_tool.size), active_tool.color, true)
-			Tool.ToolShape.CIRCLE:
-				draw_circle(local_mouse_pos, active_tool.size.x / 2, active_tool.color)
-			Tool.ToolShape.CROSS:
-				var half_size = active_tool.size / 2
-				draw_line(local_mouse_pos - half_size, local_mouse_pos + half_size, active_tool.color, 2)
-				draw_line(local_mouse_pos + Vector2(half_size.x, -half_size.y), local_mouse_pos + Vector2(-half_size.x, half_size.y), active_tool.color, 2)
+		active_tool.draw(self, local_mouse_pos)
 		return
 
 	if is_placing_mode:
