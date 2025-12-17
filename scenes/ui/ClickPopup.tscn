@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://8fb6wcyv0w0p" path="res://scripts/ui/click_popup.gd" id="1_vramm"]
 
 [node name="ClickPopup" type="Node2D"]
+z_index = 2
 script = ExtResource("1_vramm")
 
 [node name="PopText" type="Label" parent="."]

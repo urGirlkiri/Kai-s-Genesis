@@ -4,6 +4,7 @@ func _ready():
 	if not is_in_group("chick"):
 		add_to_group("chick")
 	
+	animal_name = 'Chick'
 	wander_range = 200.0
 	wander_timer_duration = 3.0
 	move_speed = 100.0

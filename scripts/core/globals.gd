@@ -1,7 +1,7 @@
 extends Node
 
 const CLICK_ENERGY_GAIN = 1.0
-const ENERGY_GEN_CYCLE = 20.0 #seconds
+const ENERGY_GEN_CYCLE = 1.0 #seconds
 
 const GRASS_ENERGY_OUT_PER_CYCLE = 0.1 
 const CHICK_ENERGY_OUT_PER_CYCLE = 0.5 
@@ -41,7 +41,7 @@ const BUYABLES = {
 		"cost": 10,
 		"group": "grass",
 		"click_energy_gain": 2.0,
-		"energy_per_cycle": 0.1,
+		"energy_per_cycle": 0.25,
 		"can_be_drawn": true
 	},
 	"Pond":{
@@ -50,7 +50,7 @@ const BUYABLES = {
 		"cost": 15,
 		"group": "pond",
 		"click_energy_gain": 1.5,
-		"energy_per_cycle": 0.0
+		"energy_per_cycle": 0.2
 	},
 	"Grain": {
 		"button_path": "GameManager/ConsuShop/Grain",
@@ -77,7 +77,6 @@ const BUYABLES = {
 		"click_energy_gain": 2.5,
 		"energy_per_cycle": 0.0
 	},
-
 	# Tools
 	"Axe": {
 		"button_path": "GameManager/SynthShop/Axe",
