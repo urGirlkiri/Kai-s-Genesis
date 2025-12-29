@@ -465,7 +465,6 @@ region_enabled = true
 region_rect = Rect2(16, 49, 16, 15)
 
 [node name="Overlays" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="GameOver" type="ColorRect" parent="Overlays"]
 anchors_preset = 15

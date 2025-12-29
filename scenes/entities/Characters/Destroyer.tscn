@@ -184,6 +184,5 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ptfhq")
-animation = &"sleeping"
+animation = &"awaken"
 autoplay = "sleeping"
-frame_progress = 0.31956336
