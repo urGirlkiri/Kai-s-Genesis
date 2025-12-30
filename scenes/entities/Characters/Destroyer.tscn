@@ -2,13 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://dgneyt37adgmw" path="res://assets/sprites/destoryer.png" id="1_pscl8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_swgns"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilddc"]
 atlas = ExtResource("1_pscl8")
-region = Rect2(582, 121, 97, 121)
+region = Rect2(595, 0, 85, 121)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3rmfo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqamc"]
 atlas = ExtResource("1_pscl8")
-region = Rect2(485, 121, 97, 121)
+region = Rect2(94, 121, 94, 121)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ab1t0"]
 atlas = ExtResource("1_pscl8")
@@ -18,9 +18,17 @@ region = Rect2(388, 121, 97, 121)
 atlas = ExtResource("1_pscl8")
 region = Rect2(291, 121, 97, 121)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rmfo"]
+atlas = ExtResource("1_pscl8")
+region = Rect2(485, 121, 97, 121)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_raskj"]
 atlas = ExtResource("1_pscl8")
 region = Rect2(194, 121, 97, 121)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swgns"]
+atlas = ExtResource("1_pscl8")
+region = Rect2(582, 121, 97, 121)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2fjmd"]
 atlas = ExtResource("1_pscl8")
@@ -33,14 +41,6 @@ region = Rect2(192, 0, 96, 119)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ai85"]
 atlas = ExtResource("1_pscl8")
 region = Rect2(291, 0, 97, 121)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ilddc"]
-atlas = ExtResource("1_pscl8")
-region = Rect2(595, 0, 85, 121)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hqamc"]
-atlas = ExtResource("1_pscl8")
-region = Rect2(94, 121, 94, 121)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tnte1"]
 atlas = ExtResource("1_pscl8")
@@ -82,34 +82,34 @@ region = Rect2(388, 0, 97, 121)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_swgns")
+"texture": SubResource("AtlasTexture_ilddc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3rmfo")
-}],
-"loop": true,
-"name": &"angry",
-"speed": 5.0
+"texture": SubResource("AtlasTexture_hqamc")
 }, {
-"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ab1t0")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ye01j")
+}],
+"loop": false,
+"name": &"awaken",
+"speed": 2.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rmfo")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_raskj")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_swgns")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3rmfo")
 }],
 "loop": false,
-"name": &"awaken",
-"speed": 2.5
+"name": &"cranky",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -123,15 +123,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2fjmd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ilddc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hqamc")
 }],
-"loop": false,
-"name": &"disturbed ",
+"loop": true,
+"name": &"disturbed",
 "speed": 1.5
 }, {
 "frames": [{
@@ -144,7 +138,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mffsf")
 }],
-"loop": true,
+"loop": false,
 "name": &"hakai",
 "speed": 5.0
 }, {
@@ -184,5 +178,5 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ptfhq")
-animation = &"awaken"
+animation = &"cranky"
 autoplay = "sleeping"

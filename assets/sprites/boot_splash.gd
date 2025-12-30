@@ -1,6 +1,7 @@
 extends Control
 
 const MAIN_GAME_SCENE = preload("uid://c2g0pw5amocod")
+const DESTRUCTION_STORY_SCENE = preload("uid://davl57fvi7f8d")
 
 @onready var progress_bar: TextureProgressBar = $ProgressBar
 
@@ -15,4 +16,4 @@ func start_loading_animation() -> void:
 	tween.finished.connect(_on_loading_complete)
 
 func _on_loading_complete() -> void:
-	get_tree().change_scene_to_packed(MAIN_GAME_SCENE)
+	get_tree().change_scene_to_packed(DESTRUCTION_STORY_SCENE)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://davl57fvi7f8d"]
+[gd_scene load_steps=6 format=3 uid="uid://davl57fvi7f8d"]
 
 [ext_resource type="PackedScene" uid="uid://dsj2gdiciyu20" path="res://scenes/entities/Characters/Destroyer.tscn" id="1_2rsvo"]
 [ext_resource type="Script" uid="uid://ehq1cy5tlnex" path="res://scripts/core/destruction_story.gd" id="1_mg0bg"]
 [ext_resource type="Texture2D" uid="uid://dmntxk2hreiia" path="res://assets/images/void_texture.png" id="2_jc1nh"]
+[ext_resource type="PackedScene" uid="uid://gxpihnofjh4q" path="res://scenes/entities/Characters/goblin.tscn" id="4_6hldp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xcw06"]
 content_margin_left = 2.0
@@ -54,3 +55,41 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_xcw06")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="Goblins" type="Node" parent="."]
+
+[node name="Goblin" parent="Goblins" instance=ExtResource("4_6hldp")]
+position = Vector2(1033, 62)
+
+[node name="Goblin2" parent="Goblins" instance=ExtResource("4_6hldp")]
+position = Vector2(1041, 153)
+
+[node name="Goblin3" parent="Goblins" instance=ExtResource("4_6hldp")]
+position = Vector2(1044, 245)
+
+[node name="Goblin4" parent="Goblins" instance=ExtResource("4_6hldp")]
+position = Vector2(1048, 354)
+
+[node name="Goblin5" parent="Goblins" instance=ExtResource("4_6hldp")]
+position = Vector2(1016, 479)
+
+[node name="Goblin6" parent="Goblins" instance=ExtResource("4_6hldp")]
+position = Vector2(975, 15)
+
+[node name="Goblin7" parent="Goblins" instance=ExtResource("4_6hldp")]
+position = Vector2(50, 15)
+
+[node name="Goblin8" parent="Goblins" instance=ExtResource("4_6hldp")]
+position = Vector2(34, 80)
+
+[node name="Goblin9" parent="Goblins" instance=ExtResource("4_6hldp")]
+position = Vector2(30, 173)
+
+[node name="Goblin10" parent="Goblins" instance=ExtResource("4_6hldp")]
+position = Vector2(30, 270)
+
+[node name="Goblin11" parent="Goblins" instance=ExtResource("4_6hldp")]
+position = Vector2(34, 371)
+
+[node name="Goblin12" parent="Goblins" instance=ExtResource("4_6hldp")]
+position = Vector2(49, 479)

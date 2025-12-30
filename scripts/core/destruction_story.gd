@@ -1,14 +1,13 @@
 extends Control
 
 @onready var destroyer: Node2D = $Destroyer
+@onready var anim_sprite: AnimatedSprite2D = $Destroyer/AnimatedSprite2D
 @onready var label: Label = $Label
 
 const STORY = [
-	# sleeping state
 	'The Milky Way is currently enjoying its greatest age of peace, a period lasting for eons.',
-	# show him being woke up
-	'Until a group of misfits woke up the God Of Destruction from his slumber.',
-	# waking up and going beserk
+	'Like all things , the peace did not last',
+	'A group of misfits woke up the God Of Destruction from his slumber.',
 	'Having only slept for a billion years, Lord Beerus was cranky.',
 	# play the planet destruction sequence
 	'So he went on a rampage and destroyed three quarters of the universe',
@@ -20,7 +19,8 @@ const STORY = [
 
 var current_line_index := -1
 var is_typing := false
-#var typing_speed :=
+var typing_speed := 0.07
+var story_time := 2.4
 
 func _ready() -> void:
 	advance_story()
@@ -42,25 +42,32 @@ func type_text(text_to_show: String) -> void:
 	label.text = text_to_show
 	label.visible_ratio = 0.0
 	
-	var duration = text_to_show.length() * 0.05 
+	var duration = text_to_show.length() * typing_speed
 	
 	var tween = create_tween()
-	tween.tween_property(label, "visible_ratio", 1.0, duration)
+	tween.tween_property(label, "visible_ratio",1.0, duration)
 	
 	await tween.finished
 	is_typing = false
 	
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(story_time).timeout
 	advance_story()
 
-func index_story(index: int) -> void:
-	var tween = create_tween()
-	
+func index_story(index: int) -> void:	
 	match index:
 		0: 
-			print("sleeping")
+			anim_sprite.play("sleeping")
 		1: 
-			print("woke up")
+			for gob in get_tree().get_nodes_in_group('goblins'):
+				gob.visible = true
+				gob.set_physics_process(true)
+				gob.animated_sprite.play('playing')
+				
+			anim_sprite.play("disturbed") 
+		2: 
+			anim_sprite.play("awaken") 
+		3:
+			anim_sprite.play("cranky")
 
 func finish_intro() -> void:
 	pass
