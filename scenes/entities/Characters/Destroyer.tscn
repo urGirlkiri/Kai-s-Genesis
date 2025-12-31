@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dsj2gdiciyu20"]
+[gd_scene load_steps=23 format=3 uid="uid://dsj2gdiciyu20"]
 
 [ext_resource type="Texture2D" uid="uid://dgneyt37adgmw" path="res://assets/sprites/destoryer.png" id="1_pscl8"]
 
@@ -174,9 +174,17 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="Destroyer" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_pscl8"]
+radius = 45.01111
+
+[node name="Destroyer" type="StaticBody2D"]
+collision_layer = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ptfhq")
-animation = &"cranky"
+animation = &"sleeping"
 autoplay = "sleeping"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 3)
+shape = SubResource("CircleShape2D_pscl8")

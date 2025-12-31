@@ -59,22 +59,22 @@ autowrap_mode = 2
 [node name="Goblins" type="Node" parent="."]
 
 [node name="Goblin" parent="Goblins" instance=ExtResource("4_6hldp")]
-position = Vector2(1033, 62)
+position = Vector2(1041, 93)
 
 [node name="Goblin2" parent="Goblins" instance=ExtResource("4_6hldp")]
-position = Vector2(1041, 153)
+position = Vector2(1037, 188)
 
 [node name="Goblin3" parent="Goblins" instance=ExtResource("4_6hldp")]
-position = Vector2(1044, 245)
+position = Vector2(1039, 285)
 
 [node name="Goblin4" parent="Goblins" instance=ExtResource("4_6hldp")]
-position = Vector2(1048, 354)
+position = Vector2(1035, 370)
 
 [node name="Goblin5" parent="Goblins" instance=ExtResource("4_6hldp")]
-position = Vector2(1016, 479)
+position = Vector2(1020, 461)
 
 [node name="Goblin6" parent="Goblins" instance=ExtResource("4_6hldp")]
-position = Vector2(975, 15)
+position = Vector2(1026, 20)
 
 [node name="Goblin7" parent="Goblins" instance=ExtResource("4_6hldp")]
 position = Vector2(50, 15)
