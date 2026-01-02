@@ -6,6 +6,8 @@ const SPEED = 400
 const KNOCK_BACK_FORCE = 500
 const ATTACK_TIME = 1.5
 
+const SWORD = preload("uid://co0lyoalrjey8")
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var attackLocation: Vector2

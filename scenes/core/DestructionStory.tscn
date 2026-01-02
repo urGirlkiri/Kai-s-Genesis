@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://davl57fvi7f8d"]
+[gd_scene load_steps=7 format=3 uid="uid://davl57fvi7f8d"]
 
 [ext_resource type="PackedScene" uid="uid://dsj2gdiciyu20" path="res://scenes/entities/Characters/Destroyer.tscn" id="1_2rsvo"]
 [ext_resource type="Script" uid="uid://ehq1cy5tlnex" path="res://scripts/core/destruction_story.gd" id="1_mg0bg"]
 [ext_resource type="Texture2D" uid="uid://dmntxk2hreiia" path="res://assets/images/void_texture.png" id="2_jc1nh"]
 [ext_resource type="PackedScene" uid="uid://gxpihnofjh4q" path="res://scenes/entities/Characters/goblin.tscn" id="4_6hldp"]
+[ext_resource type="PackedScene" uid="uid://6lrlfib4yh1u" path="res://scenes/entities/planet.tscn" id="5_e0wff"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xcw06"]
 content_margin_left = 2.0
@@ -93,3 +94,14 @@ position = Vector2(34, 371)
 
 [node name="Goblin12" parent="Goblins" instance=ExtResource("4_6hldp")]
 position = Vector2(49, 479)
+
+[node name="Planets" type="Node" parent="."]
+
+[node name="Planet5" parent="Planets" instance=ExtResource("5_e0wff")]
+position = Vector2(931, 117)
+
+[node name="Planet3" parent="Planets" instance=ExtResource("5_e0wff")]
+position = Vector2(150, 404)
+
+[node name="Planet4" parent="Planets" instance=ExtResource("5_e0wff")]
+position = Vector2(145, 88)

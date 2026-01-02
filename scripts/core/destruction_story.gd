@@ -8,10 +8,9 @@ const STORY = [
 	'The Milky Way is currently enjoying its greatest age of peace, a period lasting for eons.',
 	'Like all things , the peace did not last',
 	'A group of misfits woke up the God Of Destruction from his slumber.',
-	
 	'Having only slept for a billion years, Lord Beerus was cranky.',
-	# play the planet destruction sequence
 	'So he went on a rampage and destroyed three quarters of the universe',
+	
 	# probably gave beerus oudding or something :)
 	'It was only after The Supreme Kais, Gods of Creation paid a heavy price that they were able to send Beerus back to sleep.',
 	# trigger the avatar scene transition 
@@ -20,7 +19,7 @@ const STORY = [
 
 const ANIMATABLE = [2,3]
 
-var current_line_index := 0
+var current_line_index := 2
 var is_typing := false
 var typing_speed := 0.07
 var story_time := 2.4
@@ -59,6 +58,7 @@ func type_text(text_to_show: String, index : int) -> void:
 
 func index_story(index: int) -> void:
 	var goblins = get_tree().get_nodes_in_group('goblins')
+	var planets = get_tree().get_nodes_in_group('planets')
 	
 	match index:
 		0:
@@ -84,6 +84,18 @@ func index_story(index: int) -> void:
 			await anim_sprite.animation_finished
 			for gob in goblins:
 				gob.takeBlow()
-
+			
+			advance_story()
+		4:
+			for p in planets:
+				p.visible = true
+				p.set_physics_process(true)
+				p.animated_sprite.play('idle')
+			
+			for gob in goblins: 
+				gob.queue_free()
+				
+			#destroyer.attack()
+				
 func finish_intro() -> void:
 	pass
