@@ -18,13 +18,13 @@ region = Rect2(388, 121, 97, 121)
 atlas = ExtResource("1_pscl8")
 region = Rect2(291, 121, 97, 121)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3rmfo"]
-atlas = ExtResource("1_pscl8")
-region = Rect2(485, 121, 97, 121)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_raskj"]
 atlas = ExtResource("1_pscl8")
 region = Rect2(194, 121, 97, 121)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rmfo"]
+atlas = ExtResource("1_pscl8")
+region = Rect2(485, 121, 97, 121)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_swgns"]
 atlas = ExtResource("1_pscl8")
@@ -99,17 +99,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3rmfo")
+"texture": SubResource("AtlasTexture_ye01j")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_raskj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rmfo")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_swgns")
 }],
 "loop": false,
 "name": &"cranky",
-"speed": 5.0
+"speed": 1.5
 }, {
 "frames": [{
 "duration": 1.0,
@@ -182,8 +185,10 @@ collision_layer = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ptfhq")
-animation = &"sleeping"
+animation = &"cranky"
 autoplay = "sleeping"
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4, 3)

@@ -8,6 +8,7 @@ const STORY = [
 	'The Milky Way is currently enjoying its greatest age of peace, a period lasting for eons.',
 	'Like all things , the peace did not last',
 	'A group of misfits woke up the God Of Destruction from his slumber.',
+	
 	'Having only slept for a billion years, Lord Beerus was cranky.',
 	# play the planet destruction sequence
 	'So he went on a rampage and destroyed three quarters of the universe',
@@ -17,7 +18,9 @@ const STORY = [
 	'However the universe is in need of restoration.'
 ]
 
-var current_line_index := -1
+const ANIMATABLE = [2,3]
+
+var current_line_index := 0
 var is_typing := false
 var typing_speed := 0.07
 var story_time := 2.4
@@ -51,35 +54,36 @@ func type_text(text_to_show: String, index : int) -> void:
 	is_typing = false
 	
 	await get_tree().create_timer(story_time).timeout
-	if current_line_index not in [2]:
+	if current_line_index not in ANIMATABLE:
 		advance_story()
 
 func index_story(index: int) -> void:
+	var goblins = get_tree().get_nodes_in_group('goblins')
+	
 	match index:
 		0:
 			anim_sprite.play("sleeping")
 		1:
-			for gob in get_tree().get_nodes_in_group('goblins'):
+			for gob in goblins:
 				gob.visible = true
 				gob.set_physics_process(true)
 				gob.animated_sprite.play('playing')
 				
 			anim_sprite.play("disturbed")
 		2:
-			var goblins = get_tree().get_nodes_in_group('goblins')
 			for gob in goblins:
 				gob.attack(destroyer.global_position)
 			
 			await goblins[0].attack_landed
 			anim_sprite.play("awaken")
 			
-			await anim_sprite.animation_finished
 			advance_story()
 			
 		3:
-			anim_sprite.play("cranky")		
-			#await anim_sprite.animation_finished
-			#advance_story()
+			anim_sprite.play("cranky")
+			await anim_sprite.animation_finished
+			for gob in goblins:
+				gob.takeBlow()
 
 func finish_intro() -> void:
 	pass

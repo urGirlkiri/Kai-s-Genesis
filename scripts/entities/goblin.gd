@@ -3,6 +3,8 @@ extends RigidBody2D
 signal attack_landed 
 
 const SPEED = 400
+const KNOCK_BACK_FORCE = 500
+const ATTACK_TIME = 1.5
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -38,11 +40,22 @@ func _on_target_reached(body: Node) -> void:
 	linear_velocity = Vector2.ZERO
 	
 	animated_sprite.play('attack')
-	
-	await animated_sprite.animation_finished
+	await get_tree().create_timer(ATTACK_TIME).timeout
 	attack_landed.emit() 
 
 func attack(pos: Vector2):
 	if isMoving: return
 	isMoving = true
 	attackLocation = pos
+
+func takeBlow():
+	animated_sprite.play("blow")
+	
+	var direction = ( global_position - attackLocation).normalized()
+	apply_central_impulse(direction * KNOCK_BACK_FORCE)
+	
+func die():
+	animated_sprite.play("die")
+	
+	await animated_sprite.animation_finished
+	self.queue_free()
