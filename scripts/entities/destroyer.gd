@@ -35,3 +35,6 @@ func attack(target_node: Node2D):
 	blast.global_position = global_position + rotated_hand_pos
 	blast.velocity = direction 
 	blast.rotation = angle
+
+func reset():
+	animated_sprite.rotation = 0

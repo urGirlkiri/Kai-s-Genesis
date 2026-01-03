@@ -132,6 +132,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_3rmfo")
+}],
+"loop": true,
+"name": &"done",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_8sj3l")
 }, {
 "duration": 1.0,
@@ -157,7 +165,7 @@ script = ExtResource("1_8sj3l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ptfhq")
-animation = &"attack"
+animation = &"done"
 autoplay = "sleeping"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

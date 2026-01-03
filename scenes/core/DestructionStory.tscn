@@ -1,10 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://davl57fvi7f8d"]
+[gd_scene load_steps=29 format=3 uid="uid://davl57fvi7f8d"]
 
 [ext_resource type="PackedScene" uid="uid://dsj2gdiciyu20" path="res://scenes/entities/Characters/Destroyer.tscn" id="1_2rsvo"]
 [ext_resource type="Script" uid="uid://ehq1cy5tlnex" path="res://scripts/core/destruction_story.gd" id="1_mg0bg"]
 [ext_resource type="Texture2D" uid="uid://dmntxk2hreiia" path="res://assets/images/void_texture.png" id="2_jc1nh"]
 [ext_resource type="PackedScene" uid="uid://gxpihnofjh4q" path="res://scenes/entities/Characters/goblin.tscn" id="4_6hldp"]
 [ext_resource type="PackedScene" uid="uid://6lrlfib4yh1u" path="res://scenes/entities/planet.tscn" id="5_e0wff"]
+[ext_resource type="Texture2D" uid="uid://720erwmx3ns1" path="res://assets/sprites/Food/06_apple_pie_dish.png" id="6_x5vhu"]
+[ext_resource type="Texture2D" uid="uid://72j001vnl5l0" path="res://assets/sprites/Food/14_bacon_dish.png" id="7_eoisc"]
+[ext_resource type="Texture2D" uid="uid://can81cmhb3s0m" path="res://assets/sprites/Food/16_burger_dish.png" id="8_oy78r"]
+[ext_resource type="Texture2D" uid="uid://vomoq2lhfgy3" path="res://assets/sprites/Food/19_burrito_dish.png" id="9_5108v"]
+[ext_resource type="Texture2D" uid="uid://5lgkyiuj7qmb" path="res://assets/sprites/Food/23_cheesecake_dish.png" id="10_edyen"]
+[ext_resource type="Texture2D" uid="uid://dyotbs7rkn4yu" path="res://assets/sprites/Food/25_cheesepuff_bowl.png" id="11_s1idv"]
+[ext_resource type="Texture2D" uid="uid://hp5cegp1df3w" path="res://assets/sprites/Food/27_chocolate_dish.png" id="12_0hbnd"]
+[ext_resource type="Texture2D" uid="uid://bn2lo58mwf0bo" path="res://assets/sprites/Food/29_cookies_dish.png" id="13_uexhq"]
+[ext_resource type="Texture2D" uid="uid://bt7mkrf0r38t2" path="res://assets/sprites/Food/31_chocolatecake_dish.png" id="14_ky0e0"]
+[ext_resource type="Texture2D" uid="uid://c46mltq6lm8ng" path="res://assets/sprites/Food/33_curry_dish.png" id="15_xy8pg"]
+[ext_resource type="Texture2D" uid="uid://bsljhi02ch5e1" path="res://assets/sprites/Food/41_eggsalad_bowl.png" id="16_we8kj"]
+[ext_resource type="Texture2D" uid="uid://bas46vcxvlr73" path="res://assets/sprites/Food/47_fruitcake_dish.png" id="17_c45pa"]
+[ext_resource type="Texture2D" uid="uid://crbqv05d253d1" path="res://assets/sprites/Food/56_hotdog_dish.png" id="18_hfrph"]
+[ext_resource type="Texture2D" uid="uid://dtixgolvrie1" path="res://assets/sprites/Food/70_meatball_dish.png" id="19_8dkyn"]
+[ext_resource type="Texture2D" uid="uid://dif2tiw8dovft" path="res://assets/sprites/Food/72_nacho_dish.png" id="20_2vxls"]
+[ext_resource type="Texture2D" uid="uid://bpbji4u8flj3m" path="res://assets/sprites/Food/76_pudding_dish.png" id="21_ktitf"]
+[ext_resource type="Texture2D" uid="uid://cx7xl2fqv080n" path="res://assets/sprites/Food/80_pancakes_dish.png" id="22_quqje"]
+[ext_resource type="Texture2D" uid="uid://bx5g33ffyarbf" path="res://assets/sprites/Food/86_roastedchicken_dish.png" id="23_5pbgs"]
+[ext_resource type="Texture2D" uid="uid://ddr1vk1mdooul" path="res://assets/sprites/Food/87_ramen.png" id="24_f0lea"]
+[ext_resource type="Texture2D" uid="uid://dic4qml0rul5x" path="res://assets/sprites/Food/91_strawberrycake_dish.png" id="25_ytdwi"]
+[ext_resource type="Texture2D" uid="uid://bap6iejxlj6s2" path="res://assets/sprites/Food/93_sandwich_dish.png" id="26_6rlm7"]
+[ext_resource type="Texture2D" uid="uid://cy1heen7hmi1y" path="res://assets/sprites/Food/96_steak_dish.png" id="27_k17dq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xcw06"]
 content_margin_left = 2.0
@@ -107,3 +129,91 @@ position = Vector2(150, 404)
 position = Vector2(145, 88)
 
 [node name="Foods" type="Node" parent="." groups=["food"]]
+
+[node name="06ApplePieDish" type="Sprite2D" parent="Foods"]
+position = Vector2(548, 502)
+texture = ExtResource("6_x5vhu")
+
+[node name="14BaconDish" type="Sprite2D" parent="Foods"]
+position = Vector2(259, 353)
+texture = ExtResource("7_eoisc")
+
+[node name="16BurgerDish" type="Sprite2D" parent="Foods"]
+position = Vector2(748, 190)
+texture = ExtResource("8_oy78r")
+
+[node name="19BurritoDish" type="Sprite2D" parent="Foods"]
+position = Vector2(702, 450)
+texture = ExtResource("9_5108v")
+
+[node name="23CheesecakeDish" type="Sprite2D" parent="Foods"]
+position = Vector2(619, 484)
+texture = ExtResource("10_edyen")
+
+[node name="25CheesepuffBowl" type="Sprite2D" parent="Foods"]
+position = Vector2(711, 333)
+texture = ExtResource("11_s1idv")
+
+[node name="27ChocolateDish" type="Sprite2D" parent="Foods"]
+position = Vector2(698, 257)
+texture = ExtResource("12_0hbnd")
+
+[node name="29CookiesDish" type="Sprite2D" parent="Foods"]
+position = Vector2(544, 68)
+texture = ExtResource("13_uexhq")
+
+[node name="31ChocolatecakeDish" type="Sprite2D" parent="Foods"]
+position = Vector2(479, 156)
+texture = ExtResource("14_ky0e0")
+
+[node name="33CurryDish" type="Sprite2D" parent="Foods"]
+position = Vector2(477, 480)
+texture = ExtResource("15_xy8pg")
+
+[node name="41EggsaladBowl" type="Sprite2D" parent="Foods"]
+position = Vector2(413, 388)
+texture = ExtResource("16_we8kj")
+
+[node name="47FruitcakeDish" type="Sprite2D" parent="Foods"]
+position = Vector2(752, 401)
+texture = ExtResource("17_c45pa")
+
+[node name="56HotdogDish" type="Sprite2D" parent="Foods"]
+position = Vector2(312, 239)
+texture = ExtResource("18_hfrph")
+
+[node name="70MeatballDish" type="Sprite2D" parent="Foods"]
+position = Vector2(339, 339)
+texture = ExtResource("19_8dkyn")
+
+[node name="72NachoDish" type="Sprite2D" parent="Foods"]
+position = Vector2(592, 117)
+texture = ExtResource("20_2vxls")
+
+[node name="76PuddingDish" type="Sprite2D" parent="Foods"]
+position = Vector2(387, 174)
+texture = ExtResource("21_ktitf")
+
+[node name="80PancakesDish" type="Sprite2D" parent="Foods"]
+position = Vector2(650, 146)
+texture = ExtResource("22_quqje")
+
+[node name="86RoastedchickenDish" type="Sprite2D" parent="Foods"]
+position = Vector2(312, 137)
+texture = ExtResource("23_5pbgs")
+
+[node name="87Ramen" type="Sprite2D" parent="Foods"]
+position = Vector2(348, 418)
+texture = ExtResource("24_f0lea")
+
+[node name="91StrawberrycakeDish" type="Sprite2D" parent="Foods"]
+position = Vector2(709, 140)
+texture = ExtResource("25_ytdwi")
+
+[node name="93SandwichDish" type="Sprite2D" parent="Foods"]
+position = Vector2(803, 285)
+texture = ExtResource("26_6rlm7")
+
+[node name="96SteakDish" type="Sprite2D" parent="Foods"]
+position = Vector2(403, 231)
+texture = ExtResource("27_k17dq")

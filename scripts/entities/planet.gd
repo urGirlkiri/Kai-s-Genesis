@@ -14,3 +14,6 @@ func take_damage() -> void:
 	
 	destroyed.emit()
 	animated_sprite.play("barren")
+
+func restore():
+	animated_sprite.play("restore")
