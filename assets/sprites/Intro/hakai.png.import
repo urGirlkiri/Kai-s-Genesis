@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://k6kd2bjpeo2y"
-path="res://.godot/imported/planets.png-9194591c277a8a604877219dc57b4f3b.ctex"
+uid="uid://2j5fqmqpvnqk"
+path="res://.godot/imported/hakai.png-f75091f0d73cdca220b21d5429bc5527.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/planets.png"
-dest_files=["res://.godot/imported/planets.png-9194591c277a8a604877219dc57b4f3b.ctex"]
+source_file="res://assets/sprites/Intro/hakai.png"
+dest_files=["res://.godot/imported/hakai.png-f75091f0d73cdca220b21d5429bc5527.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://voptki7dulrl"
-path="res://.godot/imported/goblin.png-1dcab3d284c086db871ca1152d1a6b5e.ctex"
+uid="uid://k6kd2bjpeo2y"
+path="res://.godot/imported/planets.png-840bf74077148e1100f68971c234cfe3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/goblin.png"
-dest_files=["res://.godot/imported/goblin.png-1dcab3d284c086db871ca1152d1a6b5e.ctex"]
+source_file="res://assets/sprites/Intro/planets.png"
+dest_files=["res://.godot/imported/planets.png-840bf74077148e1100f68971c234cfe3.ctex"]
 
 [params]
 

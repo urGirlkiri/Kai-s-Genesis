@@ -1,7 +1,7 @@
 [gd_scene load_steps=41 format=3 uid="uid://gxpihnofjh4q"]
 
 [ext_resource type="Script" uid="uid://0abhow6w41x1" path="res://scripts/entities/goblin.gd" id="1_7xmao"]
-[ext_resource type="Texture2D" uid="uid://voptki7dulrl" path="res://assets/sprites/goblin.png" id="1_agg8s"]
+[ext_resource type="Texture2D" uid="uid://voptki7dulrl" path="res://assets/sprites/Intro/goblin.png" id="1_agg8s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2simt"]
 atlas = ExtResource("1_agg8s")

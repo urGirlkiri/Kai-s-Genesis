@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgneyt37adgmw"
-path="res://.godot/imported/destoryer.png-ec1d82ec09f0efaf56efef974d54ac75.ctex"
+uid="uid://ct0j0nkh3ochu"
+path="res://.godot/imported/sword.png-d36420c667438f07d07ed16ede387f5c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/destoryer.png"
-dest_files=["res://.godot/imported/destoryer.png-ec1d82ec09f0efaf56efef974d54ac75.ctex"]
+source_file="res://assets/sprites/Intro/sword.png"
+dest_files=["res://.godot/imported/sword.png-d36420c667438f07d07ed16ede387f5c.ctex"]
 
 [params]
 

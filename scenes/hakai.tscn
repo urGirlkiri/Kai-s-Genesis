@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d32s3y3gqc547"]
 
-[ext_resource type="Texture2D" uid="uid://2j5fqmqpvnqk" path="res://assets/sprites/hakai.png" id="1_m7qt8"]
+[ext_resource type="Texture2D" uid="uid://2j5fqmqpvnqk" path="res://assets/sprites/Intro/hakai.png" id="1_m7qt8"]
 [ext_resource type="Script" uid="uid://cjyxrqvgj1wer" path="res://scripts/hakai.gd" id="1_ny86r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m7qt8"]

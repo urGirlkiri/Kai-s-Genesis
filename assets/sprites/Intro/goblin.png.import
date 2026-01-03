@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2j5fqmqpvnqk"
-path="res://.godot/imported/hakai.png-7117da8daa91c1c569efdf0daf3e8b4d.ctex"
+uid="uid://voptki7dulrl"
+path="res://.godot/imported/goblin.png-37349bbf3fa863cc413b8a0b73151bda.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/hakai.png"
-dest_files=["res://.godot/imported/hakai.png-7117da8daa91c1c569efdf0daf3e8b4d.ctex"]
+source_file="res://assets/sprites/Intro/goblin.png"
+dest_files=["res://.godot/imported/goblin.png-37349bbf3fa863cc413b8a0b73151bda.ctex"]
 
 [params]
 

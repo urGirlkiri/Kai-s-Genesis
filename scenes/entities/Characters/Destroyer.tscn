@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://dsj2gdiciyu20"]
 
 [ext_resource type="Script" uid="uid://y81s45oq4x14" path="res://scripts/entities/destroyer.gd" id="1_8sj3l"]
-[ext_resource type="Texture2D" uid="uid://dgneyt37adgmw" path="res://assets/sprites/destoryer.png" id="1_pscl8"]
+[ext_resource type="Texture2D" uid="uid://dgneyt37adgmw" path="res://assets/sprites/Intro/destoryer.png" id="1_pscl8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ucemx"]
 atlas = ExtResource("1_pscl8")

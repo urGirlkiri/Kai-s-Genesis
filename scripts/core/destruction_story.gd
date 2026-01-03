@@ -10,9 +10,8 @@ const STORY = [
 	'A group of misfits woke up the God Of Destruction from his slumber.',
 	'Having only slept for a billion years, Lord Beerus was cranky.',
 	'So he went on a rampage and destroyed three quarters of the universe',
-	
-	# probably gave beerus oudding or something :)
 	'It was only after The Supreme Kais, Gods of Creation paid a heavy price that they were able to send Beerus back to sleep.',
+	
 	# trigger the avatar scene transition 
 	'However the universe is in need of restoration.'
 ]
@@ -95,7 +94,12 @@ func index_story(index: int) -> void:
 				gob.queue_free()
 				
 			destroy_next_planet(planets)
-				
+		5:
+			pass
+		
+		6:
+			pass
+			
 func destroy_next_planet(available_planets: Array) -> void:
 	if available_planets.is_empty():
 		advance_story() 

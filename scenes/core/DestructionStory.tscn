@@ -105,3 +105,5 @@ position = Vector2(150, 404)
 
 [node name="Planet4" parent="Planets" instance=ExtResource("5_e0wff")]
 position = Vector2(145, 88)
+
+[node name="Foods" type="Node" parent="." groups=["food"]]
