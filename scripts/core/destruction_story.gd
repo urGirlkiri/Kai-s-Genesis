@@ -16,7 +16,7 @@ const STORY = [
 	'However the universe is in need of restoration.'
 ]
 
-const ANIMATABLE = [2,3,4]
+const ANIMATABLE = [2,3,4,5]
 
 var current_line_index := -1
 var is_typing := false
@@ -99,12 +99,13 @@ func index_story(index: int) -> void:
 				
 			destroy_next_planet(planets)
 		5:
-			anim_sprite.play("done")
 			destroyer.reset()
 			
 			for food in foods:
 				food.visible = true
 				
+			await get_tree().create_timer(14).timeout
+			advance_story() 
 		6:
 			for food in foods:
 				food.visible = false
@@ -127,5 +128,5 @@ func destroy_next_planet(available_planets: Array) -> void:
 	, CONNECT_ONE_SHOT)
 	
 func finish_intro() -> void:
-	await get_tree().create_timer(2).timeout
+	#await get_tree().create_timer(2).timeout
 	get_tree().change_scene_to_packed(MAIN_GAME_SCENE)

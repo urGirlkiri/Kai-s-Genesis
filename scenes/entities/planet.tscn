@@ -149,7 +149,6 @@ animations = [{
 radius = 60.0
 
 [node name="Planet" type="StaticBody2D" groups=["planets"]]
-scale = Vector2(0.8, 0.8)
 collision_layer = 5
 script = ExtResource("1_4qsga")
 

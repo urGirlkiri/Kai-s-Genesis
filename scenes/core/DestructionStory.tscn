@@ -132,88 +132,110 @@ position = Vector2(145, 88)
 
 [node name="06ApplePieDish" type="Sprite2D" parent="Foods"]
 position = Vector2(548, 502)
+scale = Vector2(2, 2)
 texture = ExtResource("6_x5vhu")
 
 [node name="14BaconDish" type="Sprite2D" parent="Foods"]
 position = Vector2(259, 353)
+scale = Vector2(2, 2)
 texture = ExtResource("7_eoisc")
 
 [node name="16BurgerDish" type="Sprite2D" parent="Foods"]
 position = Vector2(748, 190)
+scale = Vector2(2, 2)
 texture = ExtResource("8_oy78r")
 
 [node name="19BurritoDish" type="Sprite2D" parent="Foods"]
 position = Vector2(702, 450)
+scale = Vector2(2, 2)
 texture = ExtResource("9_5108v")
 
 [node name="23CheesecakeDish" type="Sprite2D" parent="Foods"]
 position = Vector2(619, 484)
+scale = Vector2(2, 2)
 texture = ExtResource("10_edyen")
 
 [node name="25CheesepuffBowl" type="Sprite2D" parent="Foods"]
 position = Vector2(711, 333)
+scale = Vector2(2, 2)
 texture = ExtResource("11_s1idv")
 
 [node name="27ChocolateDish" type="Sprite2D" parent="Foods"]
 position = Vector2(698, 257)
+scale = Vector2(2, 2)
 texture = ExtResource("12_0hbnd")
 
 [node name="29CookiesDish" type="Sprite2D" parent="Foods"]
 position = Vector2(544, 68)
+scale = Vector2(2, 2)
 texture = ExtResource("13_uexhq")
 
 [node name="31ChocolatecakeDish" type="Sprite2D" parent="Foods"]
 position = Vector2(479, 156)
+scale = Vector2(2, 2)
 texture = ExtResource("14_ky0e0")
 
 [node name="33CurryDish" type="Sprite2D" parent="Foods"]
 position = Vector2(477, 480)
+scale = Vector2(2, 2)
 texture = ExtResource("15_xy8pg")
 
 [node name="41EggsaladBowl" type="Sprite2D" parent="Foods"]
 position = Vector2(413, 388)
+scale = Vector2(2, 2)
 texture = ExtResource("16_we8kj")
 
 [node name="47FruitcakeDish" type="Sprite2D" parent="Foods"]
 position = Vector2(752, 401)
+scale = Vector2(2, 2)
 texture = ExtResource("17_c45pa")
 
 [node name="56HotdogDish" type="Sprite2D" parent="Foods"]
 position = Vector2(312, 239)
+scale = Vector2(2, 2)
 texture = ExtResource("18_hfrph")
 
 [node name="70MeatballDish" type="Sprite2D" parent="Foods"]
 position = Vector2(339, 339)
+scale = Vector2(2, 2)
 texture = ExtResource("19_8dkyn")
 
 [node name="72NachoDish" type="Sprite2D" parent="Foods"]
 position = Vector2(592, 117)
+scale = Vector2(2, 2)
 texture = ExtResource("20_2vxls")
 
 [node name="76PuddingDish" type="Sprite2D" parent="Foods"]
 position = Vector2(387, 174)
+scale = Vector2(2, 2)
 texture = ExtResource("21_ktitf")
 
 [node name="80PancakesDish" type="Sprite2D" parent="Foods"]
 position = Vector2(650, 146)
+scale = Vector2(2, 2)
 texture = ExtResource("22_quqje")
 
 [node name="86RoastedchickenDish" type="Sprite2D" parent="Foods"]
 position = Vector2(312, 137)
+scale = Vector2(2, 2)
 texture = ExtResource("23_5pbgs")
 
 [node name="87Ramen" type="Sprite2D" parent="Foods"]
 position = Vector2(348, 418)
+scale = Vector2(2, 2)
 texture = ExtResource("24_f0lea")
 
 [node name="91StrawberrycakeDish" type="Sprite2D" parent="Foods"]
 position = Vector2(709, 140)
+scale = Vector2(2, 2)
 texture = ExtResource("25_ytdwi")
 
 [node name="93SandwichDish" type="Sprite2D" parent="Foods"]
 position = Vector2(803, 285)
+scale = Vector2(2, 2)
 texture = ExtResource("26_6rlm7")
 
 [node name="96SteakDish" type="Sprite2D" parent="Foods"]
 position = Vector2(403, 231)
+scale = Vector2(2, 2)
 texture = ExtResource("27_k17dq")
