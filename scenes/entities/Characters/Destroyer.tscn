@@ -1,6 +1,15 @@
-[gd_scene load_steps=23 format=3 uid="uid://dsj2gdiciyu20"]
+[gd_scene load_steps=20 format=3 uid="uid://dsj2gdiciyu20"]
 
+[ext_resource type="Script" uid="uid://y81s45oq4x14" path="res://scripts/entities/destroyer.gd" id="1_8sj3l"]
 [ext_resource type="Texture2D" uid="uid://dgneyt37adgmw" path="res://assets/sprites/destoryer.png" id="1_pscl8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucemx"]
+atlas = ExtResource("1_pscl8")
+region = Rect2(291, 242, 97, 121)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjgc2"]
+atlas = ExtResource("1_pscl8")
+region = Rect2(392, 242, 98, 121)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ilddc"]
 atlas = ExtResource("1_pscl8")
@@ -42,30 +51,6 @@ region = Rect2(192, 0, 96, 119)
 atlas = ExtResource("1_pscl8")
 region = Rect2(291, 0, 97, 121)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tnte1"]
-atlas = ExtResource("1_pscl8")
-region = Rect2(0, 242, 97, 121)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mm3e7"]
-atlas = ExtResource("1_pscl8")
-region = Rect2(97, 242, 97, 121)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mffsf"]
-atlas = ExtResource("1_pscl8")
-region = Rect2(194, 242, 97, 121)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ucemx"]
-atlas = ExtResource("1_pscl8")
-region = Rect2(291, 242, 97, 121)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rjgc2"]
-atlas = ExtResource("1_pscl8")
-region = Rect2(392, 242, 98, 121)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1c3sj"]
-atlas = ExtResource("1_pscl8")
-region = Rect2(501, 242, 109, 121)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_8sj3l"]
 atlas = ExtResource("1_pscl8")
 region = Rect2(0, 0, 97, 121)
@@ -80,6 +65,20 @@ region = Rect2(388, 0, 97, 121)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ptfhq"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucemx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjgc2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucemx")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ilddc")
@@ -133,34 +132,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tnte1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mm3e7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mffsf")
-}],
-"loop": false,
-"name": &"hakai",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ucemx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rjgc2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1c3sj")
-}],
-"loop": true,
-"name": &"longAttack",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_8sj3l")
 }, {
 "duration": 1.0,
@@ -182,13 +153,12 @@ radius = 45.01111
 
 [node name="Destroyer" type="StaticBody2D"]
 collision_layer = 3
+script = ExtResource("1_8sj3l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ptfhq")
 animation = &"cranky"
 autoplay = "sleeping"
-frame = 2
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4, 3)

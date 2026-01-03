@@ -172,7 +172,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"locked",
-"speed": 5.0
+"speed": 20.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h75tk"]
@@ -180,6 +180,7 @@ radius = 60.0
 
 [node name="Planet" type="StaticBody2D" groups=["planets"]]
 scale = Vector2(0.8, 0.8)
+collision_layer = 5
 script = ExtResource("1_4qsga")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

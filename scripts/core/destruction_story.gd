@@ -17,9 +17,9 @@ const STORY = [
 	'However the universe is in need of restoration.'
 ]
 
-const ANIMATABLE = [2,3]
+const ANIMATABLE = [2,3,4]
 
-var current_line_index := 2
+var current_line_index := 3
 var is_typing := false
 var typing_speed := 0.07
 var story_time := 2.4
@@ -37,9 +37,9 @@ func advance_story() -> void:
 	index_story(current_line_index)
 	
 	var line_text = STORY[current_line_index]
-	type_text(line_text, current_line_index)
+	type_text(line_text)
 
-func type_text(text_to_show: String, index : int) -> void:
+func type_text(text_to_show: String) -> void:
 	is_typing = true
 	label.text = text_to_show
 	label.visible_ratio = 0.0
@@ -78,7 +78,6 @@ func index_story(index: int) -> void:
 			anim_sprite.play("awaken")
 			
 			advance_story()
-			
 		3:
 			anim_sprite.play("cranky")
 			await anim_sprite.animation_finished
@@ -95,7 +94,20 @@ func index_story(index: int) -> void:
 			for gob in goblins: 
 				gob.queue_free()
 				
-			#destroyer.attack()
+			destroy_next_planet(planets)
 				
+func destroy_next_planet(available_planets: Array) -> void:
+	if available_planets.is_empty():
+		advance_story() 
+		return
+		
+	var current_target = available_planets.pop_front()
+	
+	destroyer.attack(current_target)
+	
+	current_target.destroyed.connect(func():
+		destroy_next_planet(available_planets)
+	, CONNECT_ONE_SHOT)
+	
 func finish_intro() -> void:
 	pass
