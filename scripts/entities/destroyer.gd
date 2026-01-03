@@ -5,6 +5,10 @@ const HAKAI = preload("uid://d32s3y3gqc547")
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var right_hand_offset = Vector2(100, -15) 
+var default_location := Vector2.ZERO
+
+func _ready() -> void:
+	default_location = global_position
 
 func attack(target_node: Node2D):
 	if target_node == null: return
@@ -38,3 +42,5 @@ func attack(target_node: Node2D):
 
 func reset():
 	animated_sprite.rotation = 0
+	animated_sprite.play("sleeping")
+	global_position = default_location

@@ -16,13 +16,12 @@ const STORY = [
 	'However the universe is in need of restoration.'
 ]
 
-const ANIMATABLE = [2,3,4,5,6]
+const ANIMATABLE = [2,3,4]
 
 var current_line_index := -1
 var is_typing := false
 var typing_speed := 0.07
 var story_time := 2.4
-var default_location := Vector2.ZERO
 
 func _ready() -> void:
 	advance_story()
@@ -87,6 +86,7 @@ func index_story(index: int) -> void:
 			for gob in goblins:
 				gob.takeBlow()
 			
+			await get_tree().create_timer(1.2).timeout
 			advance_story()
 		4:
 			for p in planets:
@@ -105,23 +105,16 @@ func index_story(index: int) -> void:
 			for food in foods:
 				food.visible = true
 				
-			await get_tree().create_timer(2).timeout
-			advance_story()
 		6:
-			destroyer.restore()
-			
 			for food in foods:
 				food.visible = false
 				
 			for p in planets:
 				p.restore()
 			
-			await get_tree().create_timer(2).timeout
-			advance_story()
-			
 func destroy_next_planet(available_planets: Array) -> void:
 	if available_planets.is_empty():
-		await get_tree().create_timer(3).timeout
+		await get_tree().create_timer(2).timeout
 		advance_story() 
 		return
 		
@@ -134,4 +127,5 @@ func destroy_next_planet(available_planets: Array) -> void:
 	, CONNECT_ONE_SHOT)
 	
 func finish_intro() -> void:
+	await get_tree().create_timer(2).timeout
 	get_tree().change_scene_to_packed(MAIN_GAME_SCENE)
