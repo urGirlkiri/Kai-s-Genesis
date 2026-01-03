@@ -157,7 +157,7 @@ script = ExtResource("1_8sj3l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ptfhq")
-animation = &"cranky"
+animation = &"attack"
 autoplay = "sleeping"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
