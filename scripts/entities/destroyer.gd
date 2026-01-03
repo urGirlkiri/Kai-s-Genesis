@@ -10,11 +10,14 @@ func attack(target_node: Node2D):
 	if target_node == null: return
 	
 	var direction = (target_node.global_position - global_position).normalized()
+	var angle = direction.angle()
 	
-	if direction.x < 0:
-		animated_sprite.flip_h = true 
+	animated_sprite.rotation = angle
+	
+	if abs(angle) > PI / 2:
+		animated_sprite.flip_v = true
 	else:
-		animated_sprite.flip_h = false
+		animated_sprite.flip_v = false
 		
 	animated_sprite.play("attack")
 	await animated_sprite.animation_finished
@@ -22,14 +25,13 @@ func attack(target_node: Node2D):
 	var blast = HAKAI.instantiate()
 	get_tree().root.add_child(blast) 
 	
-	var current_hand_pos = Vector2.ZERO
+	var final_offset = right_hand_offset
 	
-	if animated_sprite.flip_h:
-		current_hand_pos = Vector2(-right_hand_offset.x, right_hand_offset.y)
-	else:
-		current_hand_pos = right_hand_offset
+	if animated_sprite.flip_v:
+		final_offset.y = -final_offset.y
 	
-	blast.global_position = global_position + current_hand_pos
+	var rotated_hand_pos = final_offset.rotated(angle)
 	
+	blast.global_position = global_position + rotated_hand_pos
 	blast.velocity = direction 
-	blast.rotation = direction.angle()
+	blast.rotation = angle
